@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- region TextSize dimens-->
+    <dimen name="text.size.small">10sp</dimen>
+    <dimen name="text.size.x_small">12sp</dimen>
+    <dimen name="text.size.normal">14sp</dimen>
+    <dimen name="text.size.medium">16sp</dimen>
+    <dimen name="text.size.x_medium">18sp</dimen>
+    <dimen name="text.size.xx_medium">20sp</dimen>
+    <dimen name="text.size.xxx_medium">22sp</dimen>
+    <dimen name="text.size.large">24sp</dimen>
+    <dimen name="text.size.x_large">30sp</dimen>
+    <dimen name="text.size.xx_large">32sp</dimen>
+    <dimen name="text.size.xxx_large">36sp</dimen>
+    <!-- endregion -->
+
+    <!-- region Spacing dimens-->
+    <dimen name="no_spacing">0dp</dimen>
+    <dimen name="spacing">1dp</dimen>
+    <dimen name="spacing_0_25">2dp</dimen>
+    <dimen name="spacing_0_5">4dp</dimen>
+    <dimen name="spacing_0_75">6dp</dimen>
+    <dimen name="spacing_1">8dp</dimen>
+    <dimen name="spacing_1_25">10dp</dimen>
+    <dimen name="spacing_1_5">12dp</dimen>
+    <dimen name="spacing_1_75">14dp</dimen>
+    <dimen name="spacing_2">16dp</dimen>
+    <dimen name="spacing_2_25">18dp</dimen>
+    <dimen name="spacing_2_5">20dp</dimen>
+    <dimen name="spacing_3">24dp</dimen>
+    <dimen name="spacing_4">32dp</dimen>
+    <dimen name="spacing_4_1">34dp</dimen>
+    <dimen name="spacing_4_25">36dp</dimen>
+    <dimen name="spacing_5">40dp</dimen>
+    <dimen name="spacing_5_5">44dp</dimen>
+    <dimen name="spacing_6">48dp</dimen>
+    <dimen name="spacing_7">56dp</dimen>
+    <dimen name="spacing_7_5">60dp</dimen>
+    <dimen name="spacing_8">64dp</dimen>
+    <dimen name="spacing_9">72dp</dimen>
+    <dimen name="spacing_9_25">74dp</dimen>
+    <dimen name="spacing_10">80dp</dimen>
+    <dimen name="spacing_10_25">82dp</dimen>
+    <dimen name="spacing_10_5">84dp</dimen>
+    <dimen name="spacing_11">88dp</dimen>
+    <dimen name="spacing_12">96dp</dimen>
+    <dimen name="spacing_13">104dp</dimen>
+    <dimen name="spacing_14">112dp</dimen>
+    <dimen name="spacing_15">120dp</dimen>
+    <dimen name="spacing_16">128dp</dimen>
+    <dimen name="spacing_17">136dp</dimen>
+    <dimen name="spacing_18">144dp</dimen>
+    <dimen name="spacing_19">152dp</dimen>
+    <dimen name="spacing_20">160dp</dimen>
+    <!-- endregion -->
+
+    <!-- region scaled Spacing dimens-->
+    <dimen name="sc_spacing">1dp</dimen>
+    <dimen name="sc_spacing_0_25">2dp</dimen>
+    <dimen name="sc_spacing_0_5">4dp</dimen>
+    <dimen name="sc_spacing_1">8dp</dimen>
+    <dimen name="sc_spacing_1_5">12dp</dimen>
+    <dimen name="sc_spacing_2">16dp</dimen>
+    <dimen name="sc_spacing_3">24dp</dimen>
+    <dimen name="sc_spacing_4">32dp</dimen>
+    <dimen name="sc_spacing_4_1">34dp</dimen>
+    <dimen name="sc_spacing_5">40dp</dimen>
+    <dimen name="sc_spacing_5_5">44dp</dimen>
+    <dimen name="sc_spacing_6">48dp</dimen>
+    <dimen name="sc_spacing_7">56dp</dimen>
+    <dimen name="sc_spacing_8">64dp</dimen>
+    <dimen name="sc_spacing_9">72dp</dimen>
+    <dimen name="sc_spacing_10">80dp</dimen>
+    <!-- endregion -->
+
+    <!-- region Stroke dimens-->
+    <dimen name="border_stroke">1dp</dimen>
+    <dimen name="border_stroke_2">2dp</dimen>
+    <!-- endregion -->
+
+    <!-- region Elevation dimens -->
+    <dimen name="elevation_0_5">1dp</dimen>
+    <dimen name="elevation_1">2dp</dimen>
+    <dimen name="elevation_2">4dp</dimen>
+    <dimen name="elevation_3">6dp</dimen>
+    <dimen name="elevation_4">8dp</dimen>
+    <!-- endregion -->
+
+    <!-- region Corner dimens -->
+    <dimen name="corner_radius_0_5">4dp</dimen>
+    <dimen name="corner_radius_1">8dp</dimen>
+    <dimen name="corner_radius_1_5">12dp</dimen>
+    <dimen name="corner_radius_2">16dp</dimen>
+    <dimen name="corner_radius_5">40dp</dimen>
+    <!-- endregion -->
+
+    <!-- region WidgetSize dimens -->
+    <dimen name="widget_no_size">0dp</dimen>
+    <dimen name="widget_size">1dp</dimen>
+    <dimen name="widget_size_0_25">2dp</dimen>
+    <dimen name="widget_size_1">8dp</dimen>
+    <dimen name="widget_size_2">16dp</dimen>
+    <dimen name="widget_size_2_5">20dp</dimen>
+    <dimen name="widget_size_5">40dp</dimen>
+    <dimen name="widget_size_7_5">60dp</dimen>
+    <dimen name="widget_size_10">80dp</dimen>
+    <dimen name="widget_size_13">104dp</dimen>
+    <dimen name="widget_size_30">240dp</dimen>
+</resources>

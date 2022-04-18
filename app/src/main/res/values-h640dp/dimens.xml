@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- region scaled Spacing dimens-->
+    <dimen name="sc_spacing">1dp</dimen>
+    <dimen name="sc_spacing_0_25">2dp</dimen>
+    <dimen name="sc_spacing_0_5">4dp</dimen>
+    <dimen name="sc_spacing_1">8dp</dimen>
+    <dimen name="sc_spacing_1_5">12dp</dimen>
+    <dimen name="sc_spacing_2">16dp</dimen>
+    <dimen name="sc_spacing_3">24dp</dimen>
+    <dimen name="sc_spacing_4">32dp</dimen>
+    <dimen name="sc_spacing_4_1">34dp</dimen>
+    <dimen name="sc_spacing_5">40dp</dimen>
+    <dimen name="sc_spacing_5_5">44dp</dimen>
+    <dimen name="sc_spacing_6">48dp</dimen>
+    <dimen name="sc_spacing_7">56dp</dimen>
+    <dimen name="sc_spacing_8">64dp</dimen>
+    <dimen name="sc_spacing_9">72dp</dimen>
+    <dimen name="sc_spacing_10">80dp</dimen>
+    <!-- endregion -->
+
+    <!-- region TextSize dimens-->
+    <dimen name="text.size.small">10sp</dimen>
+    <dimen name="text.size.x_small">12sp</dimen>
+    <dimen name="text.size.normal">14sp</dimen>
+    <dimen name="text.size.medium">16sp</dimen>
+    <dimen name="text.size.x_medium">18sp</dimen>
+    <dimen name="text.size.xx_medium">20sp</dimen>
+    <dimen name="text.size.xxx_medium">22sp</dimen>
+    <dimen name="text.size.large">24sp</dimen>
+    <dimen name="text.size.x_large">30sp</dimen>
+    <dimen name="text.size.xx_large">32sp</dimen>
+    <dimen name="text.size.xxx_large">36sp</dimen>
+    <!-- endregion -->
+</resources>
