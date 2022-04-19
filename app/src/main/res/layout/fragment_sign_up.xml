@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.traday.longholder.presentation.customviews.SimpleToolbar
+        android:id="@+id/stSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/sign_up_header"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large" />
+
+    <com.traday.longholder.presentation.customviews.AppTextInputLayout
+        android:id="@+id/tilSignInEmail"
+        style="@style/Widget.App.TextInputLayout.FilledBox.Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_3"
+        app:helperText="@string/sign_up_policy">
+
+        <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+            android:id="@+id/etSignInEmail"
+            style="@style/Widget.App.TextInputEditText.OutlinedBox.Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no" />
+    </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.traday.longholder.presentation.customviews.ProgressButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginBottom="@dimen/spacing_5"
+        app:progressButtonText="@string/common_next" />
+</LinearLayout>

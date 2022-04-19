@@ -5,6 +5,8 @@
         <item name="colorPrimary">@color/st_tropaz</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
+        <item name="background">@color/white</item>
+        <item name="colorOnBackground">@color/st_tropaz</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>

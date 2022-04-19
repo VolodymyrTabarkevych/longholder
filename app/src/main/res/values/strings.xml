@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">longholder</string>
 
+    <!-- Common messages-->
+    <string name="common_ok">Ok</string>
+    <string name="common_your_email">Your e-mail</string>
+    <string name="common_password">Password</string>
+    <string name="common_next">Next</string>
+
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
     <string name="welcome_login">Login</string>
+
+    <!-- Sign up screen -->
+    <string name="sign_up_header">What is your e-mail?</string>
+    <string name="sign_up_policy">Policy term refers to the period for which your term insurance policy will remain active. This term is determined at the time of purchasing the insurance plan.</string>
 </resources>
