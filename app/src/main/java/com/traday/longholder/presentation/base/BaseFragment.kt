@@ -14,7 +14,7 @@ import com.traday.longholder.extensions.hideKeyboard
 
 abstract class BaseFragment<out B : ViewBinding>(
     @LayoutRes private val layoutResId: Int,
-    private val tabBarMode: TabBarMode
+    private val tabBarMode: TabBarMode = TabBarMode.INVISIBLE
 ) : BaseInjectFragment() {
 
     protected abstract val binding: B
