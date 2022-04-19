@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Parent text input layout -->
+    <style name="Widget.App.TextInputLayout.FilledBox" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputEditText.OutlinedBox
+        </item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.TextInputLayout</item>
+        <item name="boxCollapsedPaddingTop">@dimen/spacing_1</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">true</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="hintTextColor">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="passwordToggleDrawable">@drawable/ic_password_toggle</item>
+        <item name="passwordToggleTint">@color/st_tropaz</item>
+        <item name="errorTextAppearance">@style/TextAppearance.App.TextInputLayout.Error</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.App.TextInputLayout.Helper
+        </item>
+        <item name="helperTextTextColor">@color/gray</item>
+        <item name="errorTextColor">@color/thunderbird</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout.Error" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">@dimen/text.size.normal</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout.Helper" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">@dimen/text.size.normal</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TextInputEditText.OutlinedBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="editTextStyle">@style/Widget.App.TextInputEditText.OutlinedBox</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.TextInputLayout" parent="">
+        <item name="cornerSizeBottomLeft">4dp</item>
+        <item name="cornerSizeBottomRight">4dp</item>
+    </style>
+    <!-- Custom text input layouts -->
+    <style name="Widget.App.TextInputLayout.FilledBox.Email" parent="Widget.App.TextInputLayout.FilledBox">
+        <item name="android:hint">@string/common_your_email</item>
+        <item name="endIconDrawable">@drawable/ic_clear_text</item>
+        <item name="endIconMode">clear_text</item>
+        <item name="endIconTint">@color/st_tropaz</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.FilledBox.Password" parent="Widget.App.TextInputLayout.FilledBox">
+        <item name="android:hint">@string/common_password</item>
+        <item name="passwordToggleEnabled">true</item>
+    </style>
+
+    <!-- Parent edit text -->
+    <style name="Widget.App.TextInputEditText.OutlinedBox" parent="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textCursorDrawable">@drawable/background_et_cursor</item>
+        <item name="android:textSize">@dimen/text.size.medium</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/st_tropaz</item>
+        <item name="android:background">@drawable/background_et</item>
+        <item name="android:paddingTop">@dimen/spacing_3</item>
+        <item name="android:paddingBottom">@dimen/spacing_1_5</item>
+    </style>
+
+    <!-- Custom edit texts -->
+    <style name="Widget.App.TextInputEditText.OutlinedBox.Email" parent="Widget.App.TextInputEditText.OutlinedBox">
+        <item name="android:maxLength">@integer/max_email_length</item>
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
+
+    <style name="Widget.App.TextInputEditText.OutlinedBox.Password" parent="Widget.App.TextInputEditText.OutlinedBox">
+        <item name="android:inputType">textPassword</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+</resources>
