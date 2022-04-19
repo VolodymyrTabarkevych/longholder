@@ -33,6 +33,7 @@
         android:textSize="@dimen/text.size.xx_medium" />
 
     <com.traday.longholder.presentation.customviews.ProgressButton
+        android:id="@+id/pbWelcomeRegistration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
@@ -40,6 +41,7 @@
         app:progressButtonText="@string/welcome_registration" />
 
     <com.traday.longholder.presentation.customviews.ProgressButton
+        android:id="@+id/pbWelcomeLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"

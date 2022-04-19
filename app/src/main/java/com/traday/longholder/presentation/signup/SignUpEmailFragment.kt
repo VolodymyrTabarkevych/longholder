@@ -5,16 +5,16 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
-import com.traday.longholder.databinding.FragmentSignUpBinding
+import com.traday.longholder.databinding.FragmentSignUpEmailBinding
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 
-class SignUpFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpBinding>(
-    R.layout.fragment_sign_up
+class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignUpEmailBinding>(
+    R.layout.fragment_sign_up_email
 ) {
 
-    override val binding: FragmentSignUpBinding by viewBinding(FragmentSignUpBinding::bind)
+    override val binding: FragmentSignUpEmailBinding by viewBinding(FragmentSignUpEmailBinding::bind)
 
-    override val viewModel: SignUpViewModel by viewModels()
+    override val viewModel: SignUpEmailViewModel by viewModels()
 
     override fun initView(inflatedView: View, args: Bundle?) {
         binding.stSignUp.setLeftActionOnCLickListener { navController.popBackStack() }
