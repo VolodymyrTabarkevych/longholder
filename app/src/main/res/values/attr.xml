@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ProgressButton -->
+    <declare-styleable name="ProgressButton">
+        <attr name="progressButtonText" format="string" />
+        <attr name="progressButtonColor" format="color" />
+        <attr name="progressButtonEnabled" format="boolean" />
+        <attr name="progressButtonLoading" format="boolean" />
+        <attr name="pbIcon" format="reference" />
+        <attr name="progressButtonType" format="enum">
+            <enum name="primary" value="0" />
+            <enum name="emptyWithBorder" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

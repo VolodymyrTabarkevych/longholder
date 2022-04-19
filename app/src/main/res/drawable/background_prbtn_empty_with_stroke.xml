@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight">
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="@dimen/border_stroke"
+                android:color="@color/st_tropaz" />
+            <corners android:radius="@dimen/corner_radius_1_75" />
+            <solid android:color="@color/selector_progress_button_empty_with_stroke" />
+        </shape>
+    </item>
+</ripple>

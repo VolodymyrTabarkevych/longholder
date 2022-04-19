@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flProgressButtonRoot"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/widget_size_7">
+
+    <FrameLayout
+        android:id="@+id/flProgressButtonMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_prbtn_primary">
+
+        <TextView
+            android:id="@+id/tvProgressButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/spacing_1_25"
+            android:textAppearance="@style/TextAppearance.App.ProgressButton.Primary"
+            tools:text="Button text" />
+
+        <ProgressBar
+            android:id="@+id/pbProgressButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flProgressButtonDisabled"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</FrameLayout>
