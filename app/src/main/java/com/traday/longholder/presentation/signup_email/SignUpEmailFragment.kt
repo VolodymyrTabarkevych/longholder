@@ -21,9 +21,13 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
         with(binding) {
             stSignUpEmail.setLeftActionOnCLickListener { navController.popBackStack() }
             pbSignUpEmailNext.setOnClickListener {
-                navController.navigateSafe(
-                    SignUpEmailFragmentDirections.actionSignUpFragmentToSignUpNameFragment()
-                )
+                pbSignUpEmailNext.setLoading(true)
+                mainHandler.postDelayed({
+                    pbSignUpEmailNext.setLoading(false)
+                    navController.navigateSafe(
+                        SignUpEmailFragmentDirections.actionSignUpFragmentToSignUpNameFragment()
+                    )
+                }, 500)
             }
         }
     }

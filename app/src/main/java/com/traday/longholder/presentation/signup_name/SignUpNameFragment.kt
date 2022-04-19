@@ -26,9 +26,13 @@ class SignUpNameFragment : BaseMVVMFragment<SignUpNameViewModel, FragmentSignUpN
                 )
             }
             pbSignUpNameNext.setOnClickListener {
-                navController.navigateSafe(
-                    SignUpNameFragmentDirections.actionSignUpNameFragmentToSingUpPasswordFragment()
-                )
+                pbSignUpNameNext.setLoading(true)
+                mainHandler.postDelayed({
+                    pbSignUpNameNext.setLoading(false)
+                    navController.navigateSafe(
+                        SignUpNameFragmentDirections.actionSignUpNameFragmentToSingUpPasswordFragment()
+                    )
+                }, 500)
             }
         }
     }
