@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,24 +25,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_5"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/nunito_medium"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/spacing_0_5"
         android:text="Subtitle text in 2 lines \n Describing the mission of the app"
         android:textColor="@color/black"
         android:textSize="@dimen/text.size.xx_medium" />
 
-    <Button
+    <com.traday.longholder.presentation.customviews.ProgressButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_4"
-        android:text="@string/welcome_registration" />
+        app:progressButtonText="@string/welcome_registration" />
 
-    <Button
+    <com.traday.longholder.presentation.customviews.ProgressButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_2"
-        android:text="@string/welcome_login" />
+        app:progressButtonText="@string/welcome_login"
+        app:progressButtonType="emptyWithBorder" />
 </LinearLayout>
