@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentLoginBinding
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 
 class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
@@ -19,7 +20,7 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
     override fun initView(inflatedView: View, args: Bundle?) {
         with(binding) {
             stLogin.setLeftActionOnCLickListener { navController.popBackStack() }
-            pbLogin.setOnClickListener { }
+            pbLogin.setOnClickListener { navController.navigateSafe(LoginFragmentDirections.actionGlobalOnboardingFragment()) }
         }
     }
 

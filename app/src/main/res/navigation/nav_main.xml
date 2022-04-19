@@ -25,5 +25,13 @@
         android:name="com.traday.longholder.presentation.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.traday.longholder.presentation.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding" />
+    <action
+        android:id="@+id/action_global_onboardingFragment"
+        app:destination="@id/onboardingFragment" />
 
 </navigation>

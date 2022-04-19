@@ -21,7 +21,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
                 navController.navigateSafe(NavMainDirections.actionGlobalNavSignUp())
             }
             pbWelcomeLogin.setOnClickListener {
-                navController.navigateSafe(NavMainDirections.)
+                navController.navigateSafe(WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment())
             }
         }
     }
