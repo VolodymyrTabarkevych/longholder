@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpNameBinding
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 
 class SignUpNameFragment : BaseMVVMFragment<SignUpNameViewModel, FragmentSignUpNameBinding>(
@@ -19,7 +20,16 @@ class SignUpNameFragment : BaseMVVMFragment<SignUpNameViewModel, FragmentSignUpN
     override fun initView(inflatedView: View, args: Bundle?) {
         with(binding) {
             stSignUpName.setLeftActionOnCLickListener { navController.popBackStack() }
-            stSignUpName.setRightActionOnClickListener {}
+            stSignUpName.setRightActionOnClickListener {
+                navController.navigateSafe(
+                    SignUpNameFragmentDirections.actionSignUpNameFragmentToSingUpPasswordFragment()
+                )
+            }
+            pbSignUpNameNext.setOnClickListener {
+                navController.navigateSafe(
+                    SignUpNameFragmentDirections.actionSignUpNameFragmentToSingUpPasswordFragment()
+                )
+            }
         }
     }
 

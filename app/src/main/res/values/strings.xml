@@ -18,4 +18,6 @@
     <string name="sign_up_what_email">What is your e-mail?</string>
     <string name="sign_up_policy">Policy term refers to the period for which your term insurance policy will remain active. This term is determined at the time of purchasing the insurance plan.</string>
     <string name="sign_up_what_name">What is your name?</string>
+    <string name="sign_up_create_password">Create a password.</string>
+    <string name="sign_up_create_password_description">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
 </resources>
