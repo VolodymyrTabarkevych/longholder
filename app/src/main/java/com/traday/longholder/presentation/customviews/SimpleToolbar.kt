@@ -3,7 +3,6 @@ package com.traday.longholder.presentation.customviews
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
@@ -19,19 +18,10 @@ class SimpleToolbar @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val binding: WidgetSimpleToolbarBinding =
-        WidgetSimpleToolbarBinding.inflate(LayoutInflater.from(context), this)
+        WidgetSimpleToolbarBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-        initParams()
         loadAttr(attrs, defStyleAttr)
-    }
-
-    private fun initParams() {
-        layoutParams = LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        orientation = HORIZONTAL
     }
 
     private fun loadAttr(attrs: AttributeSet?, defStyleAttr: Int) {
