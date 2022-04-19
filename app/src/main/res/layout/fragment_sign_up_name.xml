@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <com.traday.longholder.presentation.customviews.SimpleToolbar
-        android:id="@+id/stSignUpEmail"
+        android:id="@+id/stSignUpName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
+        app:toolbarRightActionText="@string/common_skip" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,21 +17,37 @@
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/sign_up_what_email"
+        android:text="@string/sign_up_what_name"
         android:textColor="@color/black"
         android:textSize="@dimen/text.size.large" />
 
     <com.traday.longholder.presentation.customviews.AppTextInputLayout
-        android:id="@+id/tilSignUpEmail"
-        style="@style/Widget.App.TextInputLayout.FilledBox.Email"
+        android:id="@+id/tilSignUpName"
+        style="@style/Widget.App.TextInputLayout.FilledBox.Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
-        android:layout_marginTop="@dimen/sc_spacing_3"
-        app:helperText="@string/sign_up_policy">
+        android:layout_marginTop="@dimen/sc_spacing_3">
 
         <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
-            android:id="@+id/etSignUpEmail"
+            android:id="@+id/etSignUpName"
+            style="@style/Widget.App.TextInputEditText.OutlinedBox.Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no" />
+    </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+    <com.traday.longholder.presentation.customviews.AppTextInputLayout
+        android:id="@+id/tilSignUpSurname"
+        style="@style/Widget.App.TextInputLayout.FilledBox.Surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_2">
+
+        <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+            android:id="@+id/etSignUpSurname"
             style="@style/Widget.App.TextInputEditText.OutlinedBox.Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,10 +61,11 @@
         android:layout_weight="1" />
 
     <com.traday.longholder.presentation.customviews.ProgressButton
-        android:id="@+id/pbSignUpEmailNext"
+        android:id="@+id/pbSignUpNameNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginBottom="@dimen/spacing_5"
         app:progressButtonText="@string/common_next" />
+
 </LinearLayout>

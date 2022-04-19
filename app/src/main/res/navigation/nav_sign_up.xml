@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.traday.longholder.presentation.signup.SignUpEmailFragment"
+        android:name="com.traday.longholder.presentation.signup_email.SignUpEmailFragment"
         android:label="SignUpFragment"
-        tools:layout="@layout/fragment_sign_up_email" />
+        tools:layout="@layout/fragment_sign_up_email">
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpNameFragment"
+            app:destination="@id/signUpNameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpNameFragment"
+        android:name="com.traday.longholder.presentation.signup_name.SignUpNameFragment"
+        android:label="SignUpNameFragment"
+        tools:layout="@layout/fragment_sign_up_name" />
 </navigation>

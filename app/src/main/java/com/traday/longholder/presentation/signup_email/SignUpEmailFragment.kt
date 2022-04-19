@@ -1,4 +1,4 @@
-package com.traday.longholder.presentation.signup
+package com.traday.longholder.presentation.signup_email
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpEmailBinding
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 
 class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignUpEmailBinding>(
@@ -17,7 +18,14 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
     override val viewModel: SignUpEmailViewModel by viewModels()
 
     override fun initView(inflatedView: View, args: Bundle?) {
-        binding.stSignUp.setLeftActionOnCLickListener { navController.popBackStack() }
+        with(binding) {
+            stSignUpEmail.setLeftActionOnCLickListener { navController.popBackStack() }
+            pbSignUpEmailNext.setOnClickListener {
+                navController.navigateSafe(
+                    SignUpEmailFragmentDirections.actionSignUpFragmentToSignUpNameFragment()
+                )
+            }
+        }
     }
 
     override fun initViewModel() {}
