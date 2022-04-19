@@ -5,4 +5,7 @@
     <color name="transparent">#00000000</color>
     <color name="gray">#8A8A8A</color>
     <color name="st_tropaz">#255A9D</color>
+    <color name="thunderbird">#AF1A1A</color>
+    <color name="athens_gray">#F1F1F3</color>
+    <color name="sauvignon">#FFF4F1</color>
 </resources>
