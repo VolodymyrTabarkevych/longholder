@@ -90,6 +90,7 @@
     <dimen name="corner_radius_0_5">4dp</dimen>
     <dimen name="corner_radius_1">8dp</dimen>
     <dimen name="corner_radius_1_5">12dp</dimen>
+    <dimen name="corner_radius_1_75">14dp</dimen>
     <dimen name="corner_radius_2">16dp</dimen>
     <dimen name="corner_radius_5">40dp</dimen>
     <!-- endregion -->
@@ -102,8 +103,11 @@
     <dimen name="widget_size_2">16dp</dimen>
     <dimen name="widget_size_2_5">20dp</dimen>
     <dimen name="widget_size_5">40dp</dimen>
+    <dimen name="widget_size_7">56dp</dimen>
     <dimen name="widget_size_7_5">60dp</dimen>
     <dimen name="widget_size_10">80dp</dimen>
     <dimen name="widget_size_13">104dp</dimen>
     <dimen name="widget_size_30">240dp</dimen>
+
+    <!-- region ProgressButton dimens -->
 </resources>
