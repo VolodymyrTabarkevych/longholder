@@ -9,7 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import com.traday.longholder.R
-import com.traday.longholder.databinding.ProgressButtonBinding
+import com.traday.longholder.databinding.WidgetProgressButtonBinding
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
 
@@ -19,8 +19,8 @@ class ProgressButton @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val binding: ProgressButtonBinding =
-        ProgressButtonBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: WidgetProgressButtonBinding =
+        WidgetProgressButtonBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         loadAttr(attrs, defStyleAttr)
