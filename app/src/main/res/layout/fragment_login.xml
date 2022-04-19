@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.traday.longholder.presentation.customviews.SimpleToolbar
+        android:id="@+id/stLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/login_email_and_password"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large" />
+
+    <com.traday.longholder.presentation.customviews.AppTextInputLayout
+        android:id="@+id/tilLoginEmail"
+        style="@style/Widget.App.TextInputLayout.FilledBox.Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_3">
+
+        <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+            android:id="@+id/etLoginEmail"
+            style="@style/Widget.App.TextInputEditText.OutlinedBox.Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no" />
+    </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+    <com.traday.longholder.presentation.customviews.AppTextInputLayout
+        android:id="@+id/tilLoginSurname"
+        style="@style/Widget.App.TextInputLayout.FilledBox.Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_2">
+
+        <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+            android:id="@+id/etLoginSurname"
+            style="@style/Widget.App.TextInputEditText.OutlinedBox.Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no" />
+    </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+    <TextView
+        android:id="@+id/tvLoginForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/login_forgot_password"
+        android:textColor="@color/st_tropaz" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.traday.longholder.presentation.customviews.ProgressButton
+        android:id="@+id/pbLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginBottom="@dimen/spacing_5"
+        app:progressButtonText="@string/login" />
+</LinearLayout>

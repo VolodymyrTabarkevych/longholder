@@ -20,4 +20,9 @@
     <string name="sign_up_what_name">What is your name?</string>
     <string name="sign_up_create_password">Create a password.</string>
     <string name="sign_up_create_password_description">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
+
+    <!-- Login screen -->
+    <string name="login_email_and_password">What is your e-mail and password?</string>
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
 </resources>

@@ -9,11 +9,21 @@
         android:id="@+id/welcomeFragment"
         android:name="com.traday.longholder.presentation.welcome.WelcomeFragment"
         android:label="WelcomeFragment"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
     <include app:graph="@navigation/nav_sign_up" />
     <action
         android:id="@+id/action_global_nav_sign_up"
         app:destination="@id/nav_sign_up" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.traday.longholder.presentation.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>

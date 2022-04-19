@@ -16,8 +16,13 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
     override val binding: FragmentWelcomeBinding by viewBinding(FragmentWelcomeBinding::bind)
 
     override fun initView(inflatedView: View, args: Bundle?) {
-        binding.pbWelcomeRegistration.setOnClickListener {
-            navController.navigateSafe(NavMainDirections.actionGlobalNavSignUp())
+        with(binding) {
+            pbWelcomeRegistration.setOnClickListener {
+                navController.navigateSafe(NavMainDirections.actionGlobalNavSignUp())
+            }
+            pbWelcomeLogin.setOnClickListener {
+                navController.navigateSafe(NavMainDirections.)
+            }
         }
     }
 
