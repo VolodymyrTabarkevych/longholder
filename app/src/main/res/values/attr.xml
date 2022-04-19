@@ -12,4 +12,10 @@
             <enum name="emptyWithBorder" value="1" />
         </attr>
     </declare-styleable>
+
+    <!-- Simple toolbar -->
+    <declare-styleable name="SimpleToolbar">
+        <attr name="toolbarRightActionText" format="string" />
+        <attr name="toolbarLeftActionDrawable" format="reference" />
+    </declare-styleable>
 </resources>
