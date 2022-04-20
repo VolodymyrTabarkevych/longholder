@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.traday.longholder.presentation.customviews.SimpleToolbar
-        android:id="@+id/stNotifications"
+        android:id="@+id/stLanguage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -17,16 +17,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_2"
-        android:text="@string/notifications_title" />
+        android:text="@string/language_title" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNotifications"
+    <FrameLayout
+        style="@style/Widget.App.MenuItem"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
-        android:layout_marginTop="@dimen/spacing_3"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_marginTop="@dimen/spacing_3">
+
+        <TextView
+            style="@style/TextAppearance.App.MenuItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="English"
+            app:drawableEndCompat="@drawable/ic_radio_button" />
+    </FrameLayout>
 
 </LinearLayout>

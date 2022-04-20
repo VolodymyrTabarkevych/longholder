@@ -32,7 +32,11 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
                     ProfileFragmentDirections.actionProfileFragmentToNotificationsFragment()
                 )
             }
-            flProfileLanguage.setOnClickListener {}
+            flProfileLanguage.setOnClickListener {
+                navController.navigateSafe(
+                    ProfileFragmentDirections.actionProfileFragmentToLanguageFragment()
+                )
+            }
             flProfileTheme.setOnClickListener {}
             flProfileSubscription.setOnClickListener {}
             flProfileLogout.setOnClickListener {}

@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
-        android:layout_marginTop="@dimen/spacing_3"
+        android:layout_marginTop="@dimen/spacing_2"
         android:text="@string/sign_up_what_name" />
 
     <com.traday.longholder.presentation.customviews.AppTextInputLayout

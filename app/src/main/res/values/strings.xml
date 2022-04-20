@@ -52,4 +52,7 @@
 
     <!-- Notifications -->
     <string name="notifications_title">Notifications</string>
+
+    <!-- Language -->
+    <string name="language_title">Language</string>
 </resources>

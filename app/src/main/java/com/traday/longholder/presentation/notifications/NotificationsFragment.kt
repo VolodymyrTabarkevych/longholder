@@ -25,11 +25,11 @@ class NotificationsFragment :
     private val notificationsAdapter by lazy { NotificationsAdapter() }
 
     override fun initView(inflatedView: View, args: Bundle?) {
-        initActionButton()
+        initActionButtons()
         initNotificationsRecycler()
     }
 
-    private fun initActionButton() {
+    private fun initActionButtons() {
         binding.stNotifications.setLeftActionOnCLickListener { navController.popBackStack() }
     }
 
