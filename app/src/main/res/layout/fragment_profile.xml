@@ -7,14 +7,12 @@
     android:orientation="vertical">
 
     <TextView
+        style="@style/TextAppearance.App.Screen.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
-        android:fontFamily="@font/nunito_bold"
-        android:text="@string/profile_title"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.large" />
+        android:text="@string/profile_title" />
 
     <FrameLayout
         android:id="@+id/flProfileNotifications"

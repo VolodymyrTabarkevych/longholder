@@ -12,14 +12,12 @@
         app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
 
     <TextView
+        style="@style/TextAppearance.App.Screen.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
-        android:fontFamily="@font/nunito_bold"
-        android:text="@string/sign_up_what_email"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.large" />
+        android:text="@string/sign_up_what_email" />
 
     <com.traday.longholder.presentation.customviews.AppTextInputLayout
         android:id="@+id/tilSignUpEmail"
