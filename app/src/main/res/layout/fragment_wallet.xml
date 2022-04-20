@@ -8,29 +8,30 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tvWalletTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/wallet_my_actives"
         android:textColor="@color/black"
         android:textSize="@dimen/text.size.large"
-        app:layout_constraintBottom_toBottomOf="@id/ivWalletAddActives"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ivWalletAddActives" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
         android:id="@+id/ivWalletAddActives"
         style="@style/Widget.App.ActionButton"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/spacing_2"
         android:layout_marginEnd="@dimen/spacing_3"
         android:background="@drawable/background_rectangle_radius_1"
         android:backgroundTint="@color/st_tropaz"
         android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="@id/tvWalletTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvWalletTitle"
         tools:ignore="ContentDescription" />
 
     <TextView

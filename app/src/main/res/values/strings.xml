@@ -38,4 +38,7 @@
     <string name="wallet_have_not_add_actives">You haven’t add any actives yet.</string>
     <string name="wallet_add_your_actives_now">Add your actives and start managing them now!</string>
     <string name="wallet_add_your_actives">+ Add your actives</string>
+
+    <!-- Analytics -->
+    <string name="analytics_title">Analytics</string>
 </resources>

@@ -3,6 +3,7 @@ package com.traday.longholder
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.databinding.ActivityMainBinding
 import com.traday.longholder.extensions.gone
@@ -21,6 +22,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Longholder)
         super.onCreate(savedInstanceState)
+        initBottomTabs()
+    }
+
+    private fun initBottomTabs() {
+        binding.bnvMain.setupWithNavController(navController)
     }
 
     override fun showTabs() {

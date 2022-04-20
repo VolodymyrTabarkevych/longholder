@@ -5,6 +5,21 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/welcomeFragment">
 
+    <include app:graph="@navigation/nav_analytics" />
+    <action
+        android:id="@+id/action_global_nav_analytics"
+        app:destination="@id/nav_analytics" />
+
+    <include app:graph="@navigation/nav_sign_up" />
+    <action
+        android:id="@+id/action_global_nav_sign_up"
+        app:destination="@id/nav_sign_up" />
+
+    <include app:graph="@navigation/nav_wallet" />
+    <action
+        android:id="@+id/action_global_nav_wallet"
+        app:destination="@id/nav_wallet" />
+
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.traday.longholder.presentation.welcome.WelcomeFragment"
@@ -15,16 +30,12 @@
             app:destination="@id/loginFragment" />
     </fragment>
 
-    <include app:graph="@navigation/nav_sign_up" />
-    <action
-        android:id="@+id/action_global_nav_sign_up"
-        app:destination="@id/nav_sign_up" />
-
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.traday.longholder.presentation.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+
     <fragment
         android:id="@+id/onboardingFragment"
         android:name="com.traday.longholder.presentation.onboarding.OnboardingFragment"
@@ -33,9 +44,4 @@
     <action
         android:id="@+id/action_global_onboardingFragment"
         app:destination="@id/onboardingFragment" />
-    <include app:graph="@navigation/nav_wallet" />
-    <action
-        android:id="@+id/action_global_nav_wallet"
-        app:destination="@id/nav_wallet" />
-
 </navigation>
