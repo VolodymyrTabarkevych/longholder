@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="@dimen/spacing_1_25"
+            android:drawablePadding="@dimen/spacing_0_75"
             android:textAppearance="@style/TextAppearance.App.ProgressButton.Primary"
             tools:text="Button text" />
 

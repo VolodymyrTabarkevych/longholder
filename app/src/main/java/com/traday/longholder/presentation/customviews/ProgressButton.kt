@@ -52,7 +52,7 @@ class ProgressButton @JvmOverloads constructor(
 
     fun setIcon(@DrawableRes drawable: Int) {
         if (drawable != 0) {
-            binding.tvProgressButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, drawable)
+            binding.tvProgressButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, drawable, 0)
         }
     }
 
