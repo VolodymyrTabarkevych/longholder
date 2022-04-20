@@ -25,4 +25,7 @@
     <string name="login_email_and_password">What is your e-mail and password?</string>
     <string name="login_forgot_password">Forgot password?</string>
     <string name="login">Login</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_start">Let’s start!</string>
 </resources>
