@@ -33,5 +33,9 @@
     <action
         android:id="@+id/action_global_onboardingFragment"
         app:destination="@id/onboardingFragment" />
+    <include app:graph="@navigation/nav_wallet" />
+    <action
+        android:id="@+id/action_global_nav_wallet"
+        app:destination="@id/nav_wallet" />
 
 </navigation>

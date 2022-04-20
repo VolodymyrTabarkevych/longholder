@@ -26,6 +26,12 @@
     <string name="login_forgot_password">Forgot password?</string>
     <string name="login">Login</string>
 
-    <!-- Onboarding -->
+    <!-- Onboarding screen -->
     <string name="onboarding_start">Let’s start!</string>
+
+    <!-- Wallet screen -->
+    <string name="wallet_my_actives">My crypto actives</string>
+    <string name="wallet_have_not_add_actives">You haven’t add any actives yet.</string>
+    <string name="wallet_add_your_actives_now">Add your actives and start managing them now!</string>
+    <string name="wallet_add_your_actives">+ Add your actives</string>
 </resources>

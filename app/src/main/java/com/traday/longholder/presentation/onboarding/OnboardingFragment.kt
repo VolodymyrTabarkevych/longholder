@@ -7,8 +7,10 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentOnboardingBinding
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 
 class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboardingBinding>(
@@ -33,6 +35,12 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
                 val lastPage = onboardingAdapter.itemCount - 1
                 val nextPage = if (currentPage < lastPage) currentPage + 1 else lastPage
                 vpOnboarding.setCurrentItem(nextPage, true)
+            }
+            pbOnboardingSkip.setOnClickListener {
+                navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
+            }
+            pbOnboardingStart.setOnClickListener {
+                navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
             }
         }
     }
