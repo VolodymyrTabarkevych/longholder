@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/athens_gray"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/profile_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large" />
+
+    <FrameLayout
+        android:id="@+id/flProfileNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3"
+        android:background="@drawable/background_rectangle_radius_1_75"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/spacing_2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/profile_item_notifications"
+            android:textColor="@color/st_tropaz"
+            android:textSize="@dimen/text.size.medium"
+            app:drawableEndCompat="@drawable/ic_arrow_to_right" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flProfileLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:background="@drawable/background_rectangle_radius_1_75"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/spacing_2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/profile_item_language"
+            android:textColor="@color/st_tropaz"
+            android:textSize="@dimen/text.size.medium"
+            app:drawableEndCompat="@drawable/ic_arrow_to_right"
+            app:drawableTint="@color/st_tropaz" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flProfileTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:background="@drawable/background_rectangle_radius_1_75"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/spacing_2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/profile_item_theme"
+            android:textColor="@color/st_tropaz"
+            android:textSize="@dimen/text.size.medium"
+            app:drawableEndCompat="@drawable/ic_arrow_to_right"
+            app:drawableTint="@color/st_tropaz" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flProfileSubscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:background="@drawable/background_rectangle_radius_1_75"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/spacing_2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/profile_item_subscription"
+            android:textColor="@color/st_tropaz"
+            android:textSize="@dimen/text.size.medium"
+            app:drawableEndCompat="@drawable/ic_arrow_to_right"
+            app:drawableTint="@color/st_tropaz" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flProfileLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:background="@drawable/background_rectangle_radius_1_75"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/spacing_2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/profile_item_log_out"
+            android:textColor="@color/thunderbird"
+            android:textSize="@dimen/text.size.medium"
+            app:drawableEndCompat="@drawable/ic_arrow_to_right"
+            app:drawableTint="@color/thunderbird" />
+    </FrameLayout>
+</LinearLayout>

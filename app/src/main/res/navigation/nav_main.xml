@@ -19,6 +19,10 @@
     <action
         android:id="@+id/action_global_nav_wallet"
         app:destination="@id/nav_wallet" />
+    <include app:graph="@navigation/nav_profile" />
+    <action
+        android:id="@+id/action_global_nav_profile"
+        app:destination="@id/nav_profile" />
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -44,4 +48,5 @@
     <action
         android:id="@+id/action_global_onboardingFragment"
         app:destination="@id/onboardingFragment" />
+
 </navigation>
