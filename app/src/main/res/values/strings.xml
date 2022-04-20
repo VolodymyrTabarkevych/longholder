@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">longholder</string>
+    <string name="app_name">LongHolder</string>
 
     <!-- Common messages-->
     <string name="common_ok">Ok</string>
