@@ -1,5 +1,9 @@
 <resources>
+    <!-- Main -->
     <string name="app_name">LongHolder</string>
+    <string name="tab_title_wallet">Wallet</string>
+    <string name="tab_title_analytics">Analytics</string>
+    <string name="tab_title_profile">Profile</string>
 
     <!-- Common messages-->
     <string name="common_ok">Ok</string>

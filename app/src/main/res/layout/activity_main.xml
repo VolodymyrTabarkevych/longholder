@@ -20,5 +20,9 @@
         android:id="@+id/bnvMain"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:itemTextAppearanceActive="@style/TextAppearance.App.Widget.BottomNavigationView"
+        app:itemTextAppearanceInactive="@style/TextAppearance.App.Widget.BottomNavigationView"
+        app:menu="@menu/bottom_nav_menu"
+        tools:visibility="visible" />
 </LinearLayout>
