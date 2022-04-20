@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.StatusBarMode
 import com.traday.longholder.presentation.base.TabBarMode
@@ -26,7 +27,11 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
 
     private fun initActionButtons() {
         with(binding) {
-            flProfileNotifications.setOnClickListener {}
+            flProfileNotifications.setOnClickListener {
+                navController.navigateSafe(
+                    ProfileFragmentDirections.actionProfileFragmentToNotificationsFragment()
+                )
+            }
             flProfileLanguage.setOnClickListener {}
             flProfileTheme.setOnClickListener {}
             flProfileSubscription.setOnClickListener {}
