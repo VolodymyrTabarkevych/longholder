@@ -10,6 +10,7 @@
         <attr name="progressButtonType" format="enum">
             <enum name="primary" value="0" />
             <enum name="emptyWithBorder" value="1" />
+            <enum name="emptyWithBorderRed" value="2" />
         </attr>
     </declare-styleable>
 

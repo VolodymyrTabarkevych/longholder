@@ -110,6 +110,17 @@ class ProgressButton @JvmOverloads constructor(
                         R.style.TextAppearance_App_ProgressButton_EmptyWithStroke
                     )
                 }
+                Type.EMPTY_WITH_BORDER_RED -> {
+                    flProgressButtonMain.background =
+                        ContextCompat.getDrawable(
+                            context,
+                            R.drawable.background_prbtn_empty_with_stroke_red
+                        )
+                    TextViewCompat.setTextAppearance(
+                        tvProgressButton,
+                        R.style.TextAppearance_App_ProgressButton_EmptyWithStrokeRed
+                    )
+                }
             }
         }
     }
@@ -127,6 +138,7 @@ class ProgressButton @JvmOverloads constructor(
 
     enum class Type {
         PRIMARY,
-        EMPTY_WITH_BORDER
+        EMPTY_WITH_BORDER,
+        EMPTY_WITH_BORDER_RED,
     }
 }
