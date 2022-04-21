@@ -9,5 +9,36 @@
         android:id="@+id/walletFragment"
         android:name="com.traday.longholder.presentation.wallet.WalletFragment"
         android:label="WalletFragment"
-        tools:layout="@layout/fragment_wallet" />
+        tools:layout="@layout/fragment_wallet">
+
+        <argument
+            android:name="active"
+            android:defaultValue="@null"
+            app:argType="com.traday.longholder.domain.model.Active"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_walletFragment_to_activeFragment"
+            app:destination="@id/activeFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/activeFragment"
+        android:name="com.traday.longholder.presentation.active.ActiveFragment"
+        android:label="ActiveFragment"
+        tools:layout="@layout/fragment_active">
+
+        <argument
+            android:name="active"
+            android:defaultValue="@null"
+            app:argType="com.traday.longholder.domain.model.Active"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_activeFragment_to_walletFragment"
+            app:destination="@id/walletFragment"
+            app:popUpTo="@id/walletFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

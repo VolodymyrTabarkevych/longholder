@@ -18,7 +18,7 @@ class LanguageFragment : BaseMVVMFragment<LanguageViewModel, FragmentLanguageBin
 
     override val viewModel: LanguageViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
     }
 

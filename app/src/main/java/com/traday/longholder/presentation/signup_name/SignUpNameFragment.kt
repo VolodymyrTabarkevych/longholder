@@ -17,7 +17,7 @@ class SignUpNameFragment : BaseMVVMFragment<SignUpNameViewModel, FragmentSignUpN
 
     override val viewModel: SignUpNameViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         with(binding) {
             stSignUpName.setLeftActionOnCLickListener { navController.popBackStack() }
             stSignUpName.setRightActionOnClickListener {

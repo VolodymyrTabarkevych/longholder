@@ -22,6 +22,26 @@
         <item name="errorTextColor">@color/thunderbird</item>
     </style>
 
+    <style name="Widget.App.TextInputLayout.FilledBox.ExposedDropdownMenu" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputEditText.OutlinedBox
+        </item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.TextInputLayout</item>
+        <item name="boxCollapsedPaddingTop">@dimen/spacing_1</item>
+        <item name="boxBackgroundColor">@color/athens_gray</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_1_75</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_1_75</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_1_75</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_1_75</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.FilledBox.DisabledHint" parent="@style/Widget.App.TextInputLayout.FilledBox">
+        <item name="hintEnabled">false</item>
+    </style>
+
     <style name="TextAppearance.App.TextInputLayout.Error" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:textSize">@dimen/text.size.normal</item>
@@ -80,6 +100,11 @@
     </style>
 
     <!-- Custom edit texts -->
+    <style name="Widget.App.TextInputEditText.OutlinedBox.DisabledHint" parent="Widget.App.TextInputEditText.OutlinedBox">
+        <item name="android:paddingTop">@dimen/spacing_2</item>
+        <item name="android:paddingBottom">@dimen/spacing_2</item>
+    </style>
+
     <style name="Widget.App.TextInputEditText.OutlinedBox.Email" parent="Widget.App.TextInputEditText.OutlinedBox">
         <item name="android:maxLength">@integer/max_email_length</item>
         <item name="android:inputType">textEmailAddress</item>
@@ -90,4 +115,12 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <!-- Parent auto complete -->
+    <style name="Widget.App.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textSize">@dimen/text.size.medium</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingTop">@dimen/spacing_2</item>
+        <item name="android:paddingBottom">@dimen/spacing_2</item>
+    </style>
 </resources>

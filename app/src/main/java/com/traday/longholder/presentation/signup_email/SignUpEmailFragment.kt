@@ -17,7 +17,7 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
 
     override val viewModel: SignUpEmailViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         with(binding) {
             stSignUpEmail.setLeftActionOnCLickListener { navController.popBackStack() }
             pbSignUpEmailNext.setOnClickListener {

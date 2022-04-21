@@ -30,7 +30,7 @@ abstract class BaseFragment<out B : ViewBinding>(
 
     private var isFirstCreate = true
 
-    protected abstract fun initView(inflatedView: View, args: Bundle?)
+    protected abstract fun initView(inflatedView: View, savedInstanceState: Bundle?)
 
     protected abstract fun initViewModel()
 

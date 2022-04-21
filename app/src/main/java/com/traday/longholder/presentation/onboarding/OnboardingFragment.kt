@@ -23,7 +23,7 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
 
     private val onboardingAdapter: OnboardingAdapter by lazy { OnboardingAdapter() }
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
         initViewPager()
     }

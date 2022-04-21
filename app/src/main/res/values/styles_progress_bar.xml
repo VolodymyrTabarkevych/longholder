@@ -12,4 +12,10 @@
         <item name="android:textSize">@dimen/text.size.medium</item>
         <item name="android:textColor">@color/st_tropaz</item>
     </style>
+
+    <style name="TextAppearance.App.ProgressButton.EmptyWithStrokeRed" parent="">
+        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:textSize">@dimen/text.size.medium</item>
+        <item name="android:textColor">@color/thunderbird</item>
+    </style>
 </resources>

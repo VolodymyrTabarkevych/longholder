@@ -19,7 +19,7 @@ class SingUpPasswordFragment :
 
     override val viewModel: SingUpPasswordViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         with(binding) {
             stSignUpPassword.setLeftActionOnCLickListener { navController.popBackStack() }
             pbSignUpPasswordNext.setOnClickListener {

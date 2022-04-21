@@ -13,6 +13,8 @@
     <string name="common_surname">Surname</string>
     <string name="common_next">Next</string>
     <string name="common_skip">Skip</string>
+    <string name="common_dollar">$</string>
+    <string name="common_cancel">Cancel</string>
 
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
@@ -55,4 +57,18 @@
 
     <!-- Language -->
     <string name="language_title">Language</string>
+
+    <!-- Active -->
+    <string name="active_add">Add your Active</string>
+    <string name="active_your">Your Active</string>
+    <string name="active_select_coin">Select your coin</string>
+    <string name="active_enter_amount">Enter amount</string>
+    <string name="active_date_purchase">Date of purchase</string>
+    <string name="active_date_hint">dd.mm.yyyy</string>
+    <string name="active_summary">Summary on the day of purchase</string>
+    <string name="active_summary_today">Summary today</string>
+    <string name="active_profit">Profit if sell now</string>
+    <string name="active_leave_comment">Leave your comment</string>
+    <string name="active_put_on_hold">Put on Hold</string>
+    <string name="active_stop_holding">Stop Holding</string>
 </resources>

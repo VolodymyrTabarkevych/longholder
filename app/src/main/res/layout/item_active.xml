@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rectangle_radius_2"
+    android:backgroundTint="@color/white"
+    android:padding="@dimen/spacing_2">
+
+    <ImageView
+        android:id="@+id/ivActionCoinIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/img_btc" />
+
+    <TextView
+        android:id="@+id/tvActiveCoinName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_1_25"
+        android:fontFamily="@font/nunito_extra_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.medium"
+        app:layout_constraintStart_toEndOf="@id/ivActionCoinIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Bitcoin" />
+
+    <TextView
+        android:id="@+id/tvActiveCoinAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:fontFamily="@font/nunito_extra_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivActionCoinIcon"
+        tools:text="0,924" />
+
+    <TextView
+        android:id="@+id/tvActiveCoinAmountInDollars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_1"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvActiveCoinAmount"
+        app:layout_constraintStart_toEndOf="@id/tvActiveCoinAmount"
+        tools:text="($936 094,43)" />
+
+    <TextView
+        android:id="@+id/tvActiveCoinProfit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:fontFamily="@font/nunito_extra_bold"
+        android:textColor="@color/limeade"
+        android:textSize="@dimen/text.size.medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvActiveCoinAmount"
+        tools:text="+8 323,13 (0,66 %)" />
+
+    <TextView
+        android:id="@+id/tvActiveCoinPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/nunito_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvActiveCoinProfit"
+        tools:text="1 ETH = $3,242.86 " />
+
+    <TextView
+        android:id="@+id/tvActiveCoinHoldFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvActiveCoinPrice"
+        tools:text="On Hold from 22/02/2022" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

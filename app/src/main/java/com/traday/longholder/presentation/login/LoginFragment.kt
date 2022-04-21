@@ -17,7 +17,7 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
 
     override val viewModel: LoginViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         with(binding) {
             stLogin.setLeftActionOnCLickListener { navController.popBackStack() }
             pbLogin.setOnClickListener { navController.navigateSafe(LoginFragmentDirections.actionGlobalOnboardingFragment()) }

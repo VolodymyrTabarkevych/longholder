@@ -21,7 +21,7 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
 
     override val viewModel: ProfileViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
     }
 

@@ -107,6 +107,7 @@
     <dimen name="widget_size_7_5">60dp</dimen>
     <dimen name="widget_size_10">80dp</dimen>
     <dimen name="widget_size_13">104dp</dimen>
+    <dimen name="widget_size_24">192dp</dimen>
     <dimen name="widget_size_30">240dp</dimen>
 
     <!-- region ProgressButton dimens -->

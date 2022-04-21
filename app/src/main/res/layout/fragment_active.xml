@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.traday.longholder.presentation.customviews.SimpleToolbar
+        android:id="@+id/stActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/spacing_2"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvActiveTitle"
+                style="@style/TextAppearance.App.Screen.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/active_add" />
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_3"
+                android:text="@string/active_select_coin" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
+                app:endIconDrawable="@drawable/ic_arrow_to_down"
+                app:startIconDrawable="@drawable/img_btc"
+                app:startIconTint="@null">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvActiveSelectCoin"
+                    style="@style/Widget.App.AutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:text="Bitcoin" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/active_enter_amount" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox.DisabledHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/tietActiveAmount"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.DisabledHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/active_date_purchase" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                android:id="@+id/tilActiveDate"
+                style="@style/Widget.App.TextInputLayout.FilledBox.DisabledHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
+                android:focusable="true">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/tietActiveDate"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.DisabledHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:text="@string/active_date_hint"
+                    android:textColor="@color/gray"
+                    tools:ignore="KeyboardInaccessibleWidget" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/active_summary" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <TextView
+                    android:id="@+id/tvActiveSummaryDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/nunito_medium"
+                    android:text="983 143 523,22"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.xx_medium" />
+
+                <TextView
+                    android:id="@+id/tvActiveSummaryDayCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/background_rectangle_radius_1"
+                    android:backgroundTint="@color/athens_gray"
+                    android:drawablePadding="@dimen/spacing_2"
+                    android:fontFamily="@font/nunito_medium"
+                    android:padding="@dimen/spacing_1_25"
+                    android:text="@string/common_dollar"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.medium"
+                    app:drawableEndCompat="@drawable/ic_arrow_to_down" />
+            </FrameLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/active_summary_today" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <TextView
+                    android:id="@+id/tvActiveSummaryToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/nunito_medium"
+                    android:text="983 143 523,22"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.xx_medium" />
+
+                <TextView
+                    android:id="@+id/tvActiveSummaryTodayCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/background_rectangle_radius_1"
+                    android:backgroundTint="@color/athens_gray"
+                    android:drawablePadding="@dimen/spacing_2"
+                    android:fontFamily="@font/nunito_medium"
+                    android:padding="@dimen/spacing_1_25"
+                    android:text="@string/common_dollar"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.medium"
+                    app:drawableEndCompat="@drawable/ic_arrow_to_down" />
+            </FrameLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/active_profit" />
+
+            <TextView
+                android:id="@+id/tvActiveProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
+                android:fontFamily="@font/nunito_medium"
+                android:text="+8 323,13 (0,66 %) "
+                android:textColor="@color/limeade"
+                android:textSize="@dimen/text.size.xx_medium" />
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:text="@string/active_leave_comment" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox.DisabledHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/tietActiveComment"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.DisabledHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/widget_size_24" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <com.traday.longholder.presentation.customviews.ProgressButton
+                android:id="@+id/pbActiveHoldAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_5"
+                app:progressButtonText="@string/active_put_on_hold" />
+
+            <com.traday.longholder.presentation.customviews.ProgressButton
+                android:id="@+id/pbActiveCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:layout_marginBottom="@dimen/spacing_1_25"
+                app:progressButtonText="@string/common_cancel"
+                app:progressButtonType="emptyWithBorderRed" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

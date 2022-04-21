@@ -17,4 +17,10 @@
         <item name="android:textColor">@color/st_tropaz</item>
         <item name="android:textSize">@dimen/text.size.medium</item>
     </style>
+
+    <style name="TextAppearance.App.Screen.TextInputHeader" parent="">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">@dimen/text.size.medium</item>
+    </style>
 </resources>

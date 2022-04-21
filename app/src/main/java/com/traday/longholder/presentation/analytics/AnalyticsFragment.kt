@@ -20,7 +20,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     override val viewModel: AnalyticsViewModel by viewModels()
 
-    override fun initView(inflatedView: View, args: Bundle?) {}
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {}
 
     override fun initViewModel() {}
 }

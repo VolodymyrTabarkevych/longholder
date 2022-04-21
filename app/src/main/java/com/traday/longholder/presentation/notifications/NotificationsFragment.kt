@@ -24,7 +24,7 @@ class NotificationsFragment :
 
     private val notificationsAdapter by lazy { NotificationsAdapter() }
 
-    override fun initView(inflatedView: View, args: Bundle?) {
+    override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
         initNotificationsRecycler()
     }
