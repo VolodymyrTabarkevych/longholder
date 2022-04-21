@@ -46,7 +46,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     navController.navigateSafe(
                         ActiveFragmentDirections.actionActiveFragmentToWalletFragment(
                             Active(
-                                icon = R.drawable.img_eth,
+                                icon = R.drawable.img_btc,
                                 name = "Bitcoin",
                                 amount = "114,2069",
                                 amountInDollars = "(\$146 094,43)",
