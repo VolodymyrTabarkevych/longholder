@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_sign_up_email">
         <action
             android:id="@+id/action_signUpFragment_to_signUpNameFragment"
-            app:destination="@id/signUpNameFragment" />
+            app:destination="@id/signUpNameFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/signUpNameFragment"
@@ -21,7 +25,11 @@
         tools:layout="@layout/fragment_sign_up_name">
         <action
             android:id="@+id/action_signUpNameFragment_to_singUpPasswordFragment"
-            app:destination="@id/singUpPasswordFragment" />
+            app:destination="@id/singUpPasswordFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/singUpPasswordFragment"

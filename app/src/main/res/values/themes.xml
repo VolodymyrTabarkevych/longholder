@@ -13,7 +13,7 @@
         <!-- Customize your theme here. -->
 
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <style name="Theme.Longholder.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">

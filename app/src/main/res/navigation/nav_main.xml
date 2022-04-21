@@ -8,21 +8,37 @@
     <include app:graph="@navigation/nav_analytics" />
     <action
         android:id="@+id/action_global_nav_analytics"
-        app:destination="@id/nav_analytics" />
+        app:destination="@id/nav_analytics"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left" />
 
     <include app:graph="@navigation/nav_sign_up" />
     <action
         android:id="@+id/action_global_nav_sign_up"
-        app:destination="@id/nav_sign_up" />
+        app:destination="@id/nav_sign_up"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left" />
 
     <include app:graph="@navigation/nav_wallet" />
     <action
         android:id="@+id/action_global_nav_wallet"
-        app:destination="@id/nav_wallet" />
+        app:destination="@id/nav_wallet"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left" />
     <include app:graph="@navigation/nav_profile" />
     <action
         android:id="@+id/action_global_nav_profile"
-        app:destination="@id/nav_profile" />
+        app:destination="@id/nav_profile"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left" />
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -31,13 +47,21 @@
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.traday.longholder.presentation.login.LoginFragment"
         android:label="LoginFragment"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left"
         tools:layout="@layout/fragment_login" />
 
     <fragment
@@ -47,6 +71,10 @@
         tools:layout="@layout/fragment_onboarding" />
     <action
         android:id="@+id/action_global_onboardingFragment"
-        app:destination="@id/onboardingFragment" />
+        app:destination="@id/onboardingFragment"
+        app:enterAnim="@anim/slide_in_left"
+        app:exitAnim="@anim/slide_out_right"
+        app:popEnterAnim="@anim/slide_in_right"
+        app:popExitAnim="@anim/slide_out_left" />
 
 </navigation>
