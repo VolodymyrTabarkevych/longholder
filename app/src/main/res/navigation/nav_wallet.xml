@@ -18,11 +18,7 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_walletFragment_to_activeFragment"
-            app:destination="@id/activeFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:destination="@id/activeFragment" />
     </fragment>
     <fragment
         android:id="@+id/activeFragment"
