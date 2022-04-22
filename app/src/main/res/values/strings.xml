@@ -19,6 +19,7 @@
     <!-- Dialog -->
     <string name="dialog_log_out_title">Do you want to Log out?</string>
     <string name="dialog_log_out">Log Out</string>
+    <string name="dialog_do_you_want_stop_holding">Do you want to stop holding?</string>
     <string name="dialog_if_you_stop_holding">If you stop your holding now, the coin will be removed from your wallet. </string>
 
     <!-- Welcome screen -->

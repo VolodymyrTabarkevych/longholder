@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_height="wrap_content"
+    tools:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/tvSnackbarMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_extra_bold"
+        android:lines="1"
+        android:paddingHorizontal="@dimen/spacing_2"
+        android:paddingVertical="@dimen/spacing_2_25"
+        android:text="Active was successfuly added"
+        android:textColor="@color/limeade"
+        app:drawableEndCompat="@drawable/ic_close" />
+</merge>

@@ -13,6 +13,8 @@ import com.traday.longholder.databinding.FragmentActiveBinding
 import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Coin
 import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.showDialog
+import com.traday.longholder.extensions.showSnackOverBottomNavigationView
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +45,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
         with(binding) {
             if (active == null) {
                 pbActiveHoldAction.setOnClickListener {
+                    showSnackOverBottomNavigationView()
                     navController.navigateSafe(
                         ActiveFragmentDirections.actionActiveFragmentToWalletFragment(
                             Active(
@@ -80,9 +83,17 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 }
             } else {
                 pbActiveHoldAction.setOnClickListener {
-                    navController.navigateSafe(
-                        ActiveFragmentDirections.actionActiveFragmentToWalletFragment(null)
+                    showDialog(
+                        title = getString(R.string.dialog_do_you_want_stop_holding),
+                        message = getString(R.string.dialog_if_you_stop_holding),
+                        positiveButtonText = getString(R.string.active_stop_holding),
+                        onPositiveButtonClicked = {
+                            navController.navigateSafe(
+                                ActiveFragmentDirections.actionActiveFragmentToWalletFragment(null)
+                            )
+                        }
                     )
+
                 }
                 tvActiveTitle.text = getString(R.string.active_your)
                 actvActiveSelectCoin.isEnabled = false
