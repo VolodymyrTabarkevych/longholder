@@ -8,14 +8,14 @@ import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentNotificationsBinding
 import com.traday.longholder.domain.model.Notification
 import com.traday.longholder.presentation.base.BaseMVVMFragment
-import com.traday.longholder.presentation.base.StatusBarMode
+import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.notifications.adapter.NotificationMarginDecoration
 import com.traday.longholder.presentation.notifications.adapter.NotificationsAdapter
 
 class NotificationsFragment :
     BaseMVVMFragment<NotificationsViewModel, FragmentNotificationsBinding>(
         layoutResId = R.layout.fragment_notifications,
-        statusBarMode = StatusBarMode.Secondary
+        windowBackgroundMode = WindowBackgroundMode.Secondary
     ) {
 
     override val binding: FragmentNotificationsBinding by viewBinding(FragmentNotificationsBinding::bind)

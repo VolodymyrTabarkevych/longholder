@@ -5,9 +5,9 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseMVVMFragment<out VM : BaseViewModel, out B : ViewBinding>(
     @LayoutRes layoutResId: Int,
-    statusBarMode: StatusBarMode = StatusBarMode.Primary,
+    windowBackgroundMode: WindowBackgroundMode = WindowBackgroundMode.Primary,
     tabBarMode: TabBarMode = TabBarMode.INVISIBLE
-) : BaseFragment<B>(layoutResId, statusBarMode, tabBarMode) {
+) : BaseFragment<B>(layoutResId, windowBackgroundMode, tabBarMode) {
 
     protected abstract val viewModel: VM
 }

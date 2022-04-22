@@ -14,7 +14,7 @@ import com.traday.longholder.extensions.hideKeyboard
 
 abstract class BaseFragment<out B : ViewBinding>(
     @LayoutRes private val layoutResId: Int,
-    private val statusBarMode: StatusBarMode = StatusBarMode.Primary,
+    private val windowBackgroundMode: WindowBackgroundMode = WindowBackgroundMode.Primary,
     private val tabBarMode: TabBarMode = TabBarMode.INVISIBLE
 ) : BaseInjectFragment() {
 
@@ -54,7 +54,7 @@ abstract class BaseFragment<out B : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        statusBarMode.onFragmentResumed(this)
+        windowBackgroundMode.onFragmentResumed(this, tabBarMode)
 
         if (tabBarMode == TabBarMode.VISIBLE)
             tabBarHandler?.showTabs()

@@ -8,12 +8,12 @@ import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
 import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.presentation.base.BaseMVVMFragment
-import com.traday.longholder.presentation.base.StatusBarMode
 import com.traday.longholder.presentation.base.TabBarMode
+import com.traday.longholder.presentation.base.WindowBackgroundMode
 
 class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBinding>(
     layoutResId = R.layout.fragment_profile,
-    statusBarMode = StatusBarMode.Secondary,
+    windowBackgroundMode = WindowBackgroundMode.Secondary,
     tabBarMode = TabBarMode.VISIBLE
 ) {
 

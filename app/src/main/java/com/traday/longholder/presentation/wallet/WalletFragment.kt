@@ -12,15 +12,15 @@ import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.extensions.show
 import com.traday.longholder.presentation.base.BaseMVVMFragment
-import com.traday.longholder.presentation.base.StatusBarMode
 import com.traday.longholder.presentation.base.TabBarMode
+import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.wallet.adapter.ActiveItemViewHolder
 import com.traday.longholder.presentation.wallet.adapter.ActiveMarginDecoration
 import com.traday.longholder.presentation.wallet.adapter.ActivesAdapter
 
 class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
     layoutResId = R.layout.fragment_wallet,
-    statusBarMode = StatusBarMode.Secondary,
+    windowBackgroundMode = WindowBackgroundMode.Secondary,
     tabBarMode = TabBarMode.VISIBLE
 ), ActiveItemViewHolder.EventListener {
 

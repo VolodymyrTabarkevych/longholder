@@ -7,11 +7,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentLanguageBinding
 import com.traday.longholder.presentation.base.BaseMVVMFragment
-import com.traday.longholder.presentation.base.StatusBarMode
+import com.traday.longholder.presentation.base.WindowBackgroundMode
 
 class LanguageFragment : BaseMVVMFragment<LanguageViewModel, FragmentLanguageBinding>(
     layoutResId = R.layout.fragment_language,
-    statusBarMode = StatusBarMode.Secondary
+    windowBackgroundMode = WindowBackgroundMode.Secondary
 ) {
 
     override val binding: FragmentLanguageBinding by viewBinding(FragmentLanguageBinding::bind)
