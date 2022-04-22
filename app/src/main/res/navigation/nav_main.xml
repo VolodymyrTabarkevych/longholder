@@ -6,23 +6,17 @@
     app:startDestination="@id/welcomeFragment">
 
     <include app:graph="@navigation/nav_analytics" />
-    <action
-        android:id="@+id/action_global_nav_analytics"
-        app:destination="@id/nav_analytics" />
-
     <include app:graph="@navigation/nav_sign_up" />
     <action
         android:id="@+id/action_global_nav_sign_up"
         app:destination="@id/nav_sign_up" />
-
     <include app:graph="@navigation/nav_wallet" />
     <action
         android:id="@+id/action_global_nav_wallet"
-        app:destination="@id/nav_wallet" />
+        app:destination="@id/nav_wallet"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true" />
     <include app:graph="@navigation/nav_profile" />
-    <action
-        android:id="@+id/action_global_nav_profile"
-        app:destination="@id/nav_profile" />
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -47,6 +41,12 @@
         tools:layout="@layout/fragment_onboarding" />
     <action
         android:id="@+id/action_global_onboardingFragment"
-        app:destination="@id/onboardingFragment" />
-
+        app:destination="@id/onboardingFragment"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/action_global_welcomeFragment"
+        app:destination="@id/welcomeFragment"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true" />
 </navigation>

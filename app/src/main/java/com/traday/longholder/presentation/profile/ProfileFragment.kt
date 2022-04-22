@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
 import com.traday.longholder.extensions.navigateSafe
@@ -48,7 +49,8 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
                 showDialog(
                     title = getString(R.string.dialog_log_out_title),
                     message = getString(R.string.dialog_if_you_stop_holding),
-                    positiveButtonText = getString(R.string.dialog_log_out)
+                    positiveButtonText = getString(R.string.dialog_log_out),
+                    onPositiveButtonClicked = { navController.navigateSafe(NavMainDirections.actionGlobalWelcomeFragment()) }
                 )
             }
         }

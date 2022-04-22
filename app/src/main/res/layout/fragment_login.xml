@@ -36,7 +36,7 @@
     </com.traday.longholder.presentation.customviews.AppTextInputLayout>
 
     <com.traday.longholder.presentation.customviews.AppTextInputLayout
-        android:id="@+id/tilLoginSurname"
+        android:id="@+id/tilLoginPassword"
         style="@style/Widget.App.TextInputLayout.FilledBox.Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/sc_spacing_2">
 
         <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
-            android:id="@+id/etLoginSurname"
+            android:id="@+id/etLoginPassword"
             style="@style/Widget.App.TextInputEditText.OutlinedBox.Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,5 +73,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginBottom="@dimen/spacing_5"
+        app:progressButtonEnabled="false"
         app:progressButtonText="@string/login" />
 </LinearLayout>

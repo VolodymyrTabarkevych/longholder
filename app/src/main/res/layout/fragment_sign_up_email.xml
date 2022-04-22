@@ -48,5 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginBottom="@dimen/spacing_5"
+        app:progressButtonEnabled="false"
         app:progressButtonText="@string/common_next" />
 </LinearLayout>
