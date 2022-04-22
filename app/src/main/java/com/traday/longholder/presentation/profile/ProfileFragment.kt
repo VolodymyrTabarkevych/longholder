@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
 import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.base.WindowBackgroundMode
@@ -39,7 +40,13 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
             }
             flProfileTheme.setOnClickListener {}
             flProfileSubscription.setOnClickListener {}
-            flProfileLogout.setOnClickListener {}
+            flProfileLogout.setOnClickListener {
+                showDialog(
+                    title = getString(R.string.dialog_log_out_title),
+                    message = getString(R.string.dialog_if_you_stop_holding),
+                    positiveButtonText = getString(R.string.dialog_log_out)
+                )
+            }
         }
     }
 

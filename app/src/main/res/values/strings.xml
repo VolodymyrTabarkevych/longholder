@@ -16,6 +16,11 @@
     <string name="common_dollar">$</string>
     <string name="common_cancel">Cancel</string>
 
+    <!-- Dialog -->
+    <string name="dialog_log_out_title">Do you want to Log out?</string>
+    <string name="dialog_log_out">Log Out</string>
+    <string name="dialog_if_you_stop_holding">If you stop your holding now, the coin will be removed from your wallet. </string>
+
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
     <string name="welcome_login">Login</string>
