@@ -63,6 +63,9 @@
     <!-- Language -->
     <string name="language_title">Language</string>
 
+    <!-- Theme -->
+    <string name="theme_title">Theme</string>
+
     <!-- Active -->
     <string name="active_add">Add your Active</string>
     <string name="active_your">Your Active</string>

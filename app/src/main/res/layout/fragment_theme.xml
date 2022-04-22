@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.traday.longholder.presentation.customviews.SimpleToolbar
-        android:id="@+id/stLanguage"
+        android:id="@+id/stTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_2"
-        android:text="@string/language_title" />
+        android:text="@string/theme_title" />
 
     <FrameLayout
         style="@style/Widget.App.MenuItem"
@@ -29,7 +29,7 @@
             style="@style/TextAppearance.App.MenuItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="English"
+            android:text="Light"
             app:drawableEndCompat="@drawable/ic_radio_button" />
     </FrameLayout>
 </LinearLayout>

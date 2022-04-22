@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_profileFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
@@ -27,4 +30,9 @@
         android:name="com.traday.longholder.presentation.language.LanguageFragment"
         android:label="LanguageFragment"
         tools:layout="@layout/fragment_language" />
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.traday.longholder.presentation.theme.ThemeFragment"
+        android:label="ThemeFragment"
+        tools:layout="@layout/fragment_theme" />
 </navigation>

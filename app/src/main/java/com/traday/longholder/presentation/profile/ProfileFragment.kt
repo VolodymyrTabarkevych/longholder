@@ -38,7 +38,11 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
                     ProfileFragmentDirections.actionProfileFragmentToLanguageFragment()
                 )
             }
-            flProfileTheme.setOnClickListener {}
+            flProfileTheme.setOnClickListener {
+                navController.navigateSafe(
+                    ProfileFragmentDirections.actionProfileFragmentToThemeFragment()
+                )
+            }
             flProfileSubscription.setOnClickListener {}
             flProfileLogout.setOnClickListener {
                 showDialog(
