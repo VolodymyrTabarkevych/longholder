@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
@@ -50,4 +51,15 @@ fun Fragment.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? =
 
 fun Fragment.getFontCompat(@FontRes fontResId: Int): Typeface? {
     return context?.let { ResourcesCompat.getFont(it, fontResId) }
+}
+
+fun View.setMargin(left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {
+    val params = (layoutParams as? ViewGroup.MarginLayoutParams)
+    params?.setMargins(
+        left ?: params.leftMargin,
+        top ?: params.topMargin,
+        right ?: params.rightMargin,
+        bottom ?: params.bottomMargin
+    )
+    layoutParams = params
 }
