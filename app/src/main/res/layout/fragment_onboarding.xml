@@ -21,7 +21,9 @@
         android:background="@color/transparent"
         app:tabBackground="@drawable/ic_tab_indicator_selector"
         app:tabGravity="center"
-        app:tabIndicatorHeight="0dp" />
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="@dimen/spacing_1"
+        app:tabPaddingStart="@dimen/spacing_0_75" />
 
     <com.traday.longholder.presentation.customviews.ProgressButton
         android:id="@+id/pbOnboardingNext"
