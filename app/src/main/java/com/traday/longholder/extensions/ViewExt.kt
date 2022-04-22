@@ -8,6 +8,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 
 fun View?.show() {
     this?.visibility = View.VISIBLE
@@ -33,5 +34,20 @@ fun View.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = nul
 }
 
 fun View.getFontCompat(@FontRes fontResId: Int): Typeface? {
+    return context?.let { ResourcesCompat.getFont(it, fontResId) }
+}
+
+fun Fragment.getDrawableCompat(
+    @DrawableRes drawableResId: Int,
+    theme: Resources.Theme? = null
+): Drawable? {
+    return ResourcesCompat.getDrawable(resources, drawableResId, theme)
+}
+
+fun Fragment.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = null): Int {
+    return ResourcesCompat.getColor(resources, colorResId, theme)
+}
+
+fun Fragment.getFontCompat(@FontRes fontResId: Int): Typeface? {
     return context?.let { ResourcesCompat.getFont(it, fontResId) }
 }
