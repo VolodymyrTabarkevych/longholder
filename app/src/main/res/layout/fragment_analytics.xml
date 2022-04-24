@@ -1,266 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:overScrollMode="never"
-    android:paddingHorizontal="@dimen/spacing_2"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/llAnalyticsSubscription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <TextView
-            style="@style/TextAppearance.App.Screen.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_3"
-            android:text="@string/analytics_title" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpAnalytics"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-        <com.traday.longholder.presentation.customviews.AppTextInputLayout
-            style="@style/Widget.App.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlAnalytics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_1"
-            app:endIconDrawable="@drawable/ic_arrow_to_down"
-            app:startIconDrawable="@drawable/img_btc"
-            app:startIconTint="@null">
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_2"
+            android:background="@color/transparent"
+            app:tabBackground="@drawable/ic_tab_indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingEnd="@dimen/spacing_1"
+            app:tabPaddingStart="@dimen/spacing_0_75" />
 
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/actvAnalyticsSelectCoin"
-                style="@style/Widget.App.AutoCompleteTextView"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_5"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Starting at $4,99/month"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text.size.normal" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbAnalyticsNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_1_75"
+            android:layout_marginBottom="@dimen/spacing_5"
+            app:progressButtonText="@string/common_next" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbAnalyticsStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_1_75"
+            android:layout_marginBottom="@dimen/spacing_5"
+            android:visibility="gone"
+            app:pbIcon="@drawable/img_rocket"
+            app:progressButtonText="@string/onboarding_start" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/svAnalytics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/spacing_2"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_3"
+                android:text="@string/analytics_title" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
+                app:endIconDrawable="@drawable/ic_arrow_to_down"
+                app:startIconDrawable="@drawable/img_btc"
+                app:startIconTint="@null">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvAnalyticsSelectCoin"
+                    style="@style/Widget.App.AutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_2"
+                    android:inputType="none"
+                    android:text="Bitcoin" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_medium"
+                    android:text="0,924"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.large" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="($936 094,43)"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="from"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sc_spacing_0_25"
+                    android:fontFamily="@font/nunito_extra_bold"
+                    android:text="22/02/2022"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.normal" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
+                android:fontFamily="@font/nunito_medium"
+                android:text="1 BTC = $42,242.86 "
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.size.medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:inputType="none"
-                android:text="Bitcoin" />
-        </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+                android:background="@color/athens_gray" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_5"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_medium"
+                    android:text="0,777"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.large" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_1"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="($602 094,43)"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="from"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text.size.normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sc_spacing_0_25"
+                    android:fontFamily="@font/nunito_extra_bold"
+                    android:text="18/01/2019"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text.size.normal" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_1"
                 android:fontFamily="@font/nunito_medium"
-                android:text="0,924"
+                android:text="1 BTC = $32,242.86 "
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.size.medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:background="@color/athens_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Total Info"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_1"
+                android:layout_marginTop="@dimen/spacing_2"
                 android:fontFamily="@font/nunito_regular"
-                android:text="($936 094,43)"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/text.size.normal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_regular"
-                android:text="from"
+                android:text="Total on hold"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sc_spacing_0_25"
-                android:fontFamily="@font/nunito_extra_bold"
-                android:text="22/02/2022"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text.size.normal" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_1"
-            android:fontFamily="@font/nunito_medium"
-            android:text="1 BTC = $42,242.86 "
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.medium" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:background="@color/athens_gray" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_5"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_medium"
-                android:text="0,777"
+                android:layout_marginTop="@dimen/spacing_0_5"
+                android:fontFamily="@font/nunito_bold"
+                android:text="2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_1"
+                android:layout_marginTop="@dimen/spacing_2"
                 android:fontFamily="@font/nunito_regular"
-                android:text="($602 094,43)"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/text.size.normal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_regular"
-                android:text="from"
+                android:text="Сurrent Exchange rate"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sc_spacing_0_25"
-                android:fontFamily="@font/nunito_extra_bold"
-                android:text="18/01/2019"
+                android:layout_marginTop="@dimen/spacing_0_5"
+                android:fontFamily="@font/nunito_bold"
+                android:text="$44 123.86"
                 android:textColor="@color/black"
+                android:textSize="@dimen/text.size.large" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Total in currency"
+                android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_0_5"
+                android:fontFamily="@font/nunito_bold"
+                android:text="$12 344 123.86"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.size.large" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Profit"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text.size.normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_0_5"
+                android:fontFamily="@font/nunito_bold"
+                android:text="+ $24 123.12"
+                android:textColor="@color/limeade"
+                android:textSize="@dimen/text.size.large" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Raise/Fold in %"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text.size.normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_0_5"
+                android:layout_marginBottom="@dimen/spacing_5"
+                android:fontFamily="@font/nunito_bold"
+                android:text="12%"
+                android:textColor="@color/limeade"
+                android:textSize="@dimen/text.size.large" />
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_1"
-            android:fontFamily="@font/nunito_medium"
-            android:text="1 BTC = $32,242.86 "
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.medium" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:background="@color/athens_gray" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_4"
-            android:fontFamily="@font/nunito_bold"
-            android:text="Total Info"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:fontFamily="@font/nunito_regular"
-            android:text="Total on hold"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text.size.normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_0_5"
-            android:fontFamily="@font/nunito_bold"
-            android:text="2"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:fontFamily="@font/nunito_regular"
-            android:text="Сurrent Exchange rate"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text.size.normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_0_5"
-            android:fontFamily="@font/nunito_bold"
-            android:text="$44 123.86"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:fontFamily="@font/nunito_regular"
-            android:text="Total in currency"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text.size.normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_0_5"
-            android:fontFamily="@font/nunito_bold"
-            android:text="$12 344 123.86"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:fontFamily="@font/nunito_regular"
-            android:text="Profit"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text.size.normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_0_5"
-            android:fontFamily="@font/nunito_bold"
-            android:text="+ $24 123.12"
-            android:textColor="@color/limeade"
-            android:textSize="@dimen/text.size.large" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2"
-            android:fontFamily="@font/nunito_regular"
-            android:text="Raise/Fold in %"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text.size.normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_0_5"
-            android:layout_marginBottom="@dimen/spacing_5"
-            android:fontFamily="@font/nunito_bold"
-            android:text="12%"
-            android:textColor="@color/limeade"
-            android:textSize="@dimen/text.size.large" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</FrameLayout>

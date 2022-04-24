@@ -11,6 +11,9 @@ class AnalyticsViewModel : BaseViewModel() {
     private val _coinsLiveData = MutableLiveData<List<Coin>>()
     val coinsLiveData: LiveData<List<Coin>> get() = _coinsLiveData
 
+    private val _showAnalyticsScreen = MutableLiveData(false)
+    val showAnalyticsScreen: LiveData<Boolean> get() = _showAnalyticsScreen
+
     init {
         getCoins()
     }
@@ -18,6 +21,10 @@ class AnalyticsViewModel : BaseViewModel() {
     private fun getCoins() {
         val coins = getTestDataForCoins()
         _coinsLiveData.postValue(coins)
+    }
+
+    fun makeSubscription() {
+        _showAnalyticsScreen.postValue(true)
     }
 
     private fun getTestDataForCoins(): List<Coin> {
