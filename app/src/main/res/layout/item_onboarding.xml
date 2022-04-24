@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_6"
         android:layout_marginTop="@dimen/spacing_4"
-        android:fontFamily="@font/nunito_medium"
+        android:fontFamily="@font/avenir_medium"
         android:gravity="center"
         android:text="Enter you e-mail. We will send you the link to create a new password."
         android:textColor="@color/black"

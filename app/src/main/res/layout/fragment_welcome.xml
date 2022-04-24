@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_5"
-        android:fontFamily="@font/nunito_medium"
+        android:fontFamily="@font/avenir_medium"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/spacing_0_5"
         android:text="Subtitle text in 2 lines \n Describing the mission of the app"

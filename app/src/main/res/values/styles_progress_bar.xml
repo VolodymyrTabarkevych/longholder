@@ -2,19 +2,19 @@
 <resources>
 
     <style name="TextAppearance.App.ProgressButton.Primary" parent="">
-        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:fontFamily">@font/avenir_medium</item>
         <item name="android:textSize">@dimen/text.size.medium</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextAppearance.App.ProgressButton.EmptyWithStroke" parent="">
-        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:fontFamily">@font/avenir_medium</item>
         <item name="android:textSize">@dimen/text.size.medium</item>
         <item name="android:textColor">@color/st_tropaz</item>
     </style>
 
     <style name="TextAppearance.App.ProgressButton.EmptyWithStrokeRed" parent="">
-        <item name="android:fontFamily">@font/nunito_medium</item>
+        <item name="android:fontFamily">@font/avenir_medium</item>
         <item name="android:textSize">@dimen/text.size.medium</item>
         <item name="android:textColor">@color/thunderbird</item>
     </style>

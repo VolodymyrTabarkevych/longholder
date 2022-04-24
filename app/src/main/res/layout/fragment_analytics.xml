@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/spacing_5"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/avenir_roman_regular"
             android:text="Starting at $4,99/month"
             android:textColor="@color/gray"
             android:textSize="@dimen/text.size.normal" />
@@ -110,7 +110,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_medium"
+                    android:fontFamily="@font/avenir_medium"
                     android:text="0,924"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text.size.large" />
@@ -119,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_1"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/avenir_roman_regular"
                     android:text="($936 094,43)"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text.size.normal" />
@@ -133,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/avenir_roman_regular"
                     android:text="from"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text.size.normal" />
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/sc_spacing_0_25"
-                    android:fontFamily="@font/nunito_extra_bold"
+                    android:fontFamily="@font/avenir_black_extra_bold"
                     android:text="22/02/2022"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text.size.normal" />
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_1"
-                android:fontFamily="@font/nunito_medium"
+                android:fontFamily="@font/avenir_medium"
                 android:text="1 BTC = $42,242.86 "
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.medium" />
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_medium"
+                    android:fontFamily="@font/avenir_medium"
                     android:text="0,777"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text.size.large" />
@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_1"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/avenir_roman_regular"
                     android:text="($602 094,43)"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text.size.normal" />
@@ -195,7 +195,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/avenir_roman_regular"
                     android:text="from"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text.size.normal" />
@@ -204,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/sc_spacing_0_25"
-                    android:fontFamily="@font/nunito_extra_bold"
+                    android:fontFamily="@font/avenir_black_extra_bold"
                     android:text="18/01/2019"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text.size.normal" />
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_1"
-                android:fontFamily="@font/nunito_medium"
+                android:fontFamily="@font/avenir_black_extra_bold"
                 android:text="1 BTC = $32,242.86 "
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.medium" />
@@ -229,7 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_4"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="Total Info"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
@@ -238,7 +238,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/avenir_roman_regular"
                 android:text="Total on hold"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
@@ -247,7 +247,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_0_5"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
@@ -256,7 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/avenir_roman_regular"
                 android:text="Сurrent Exchange rate"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
@@ -265,7 +265,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_0_5"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="$44 123.86"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
@@ -274,7 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/avenir_roman_regular"
                 android:text="Total in currency"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
@@ -283,7 +283,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_0_5"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="$12 344 123.86"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text.size.large" />
@@ -292,7 +292,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/avenir_roman_regular"
                 android:text="Profit"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
@@ -301,7 +301,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_0_5"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="+ $24 123.12"
                 android:textColor="@color/limeade"
                 android:textSize="@dimen/text.size.large" />
@@ -310,7 +310,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_2"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/avenir_roman_regular"
                 android:text="Raise/Fold in %"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text.size.normal" />
@@ -320,7 +320,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_0_5"
                 android:layout_marginBottom="@dimen/spacing_5"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/avenir_heavy_bold"
                 android:text="12%"
                 android:textColor="@color/limeade"
                 android:textSize="@dimen/text.size.large" />

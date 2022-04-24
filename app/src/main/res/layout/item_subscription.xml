@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_6"
         android:layout_marginTop="@dimen/spacing_4"
-        android:fontFamily="@font/nunito_medium"
+        android:fontFamily="@font/avenir_medium"
         android:gravity="center"
         android:text="Why you should get Subscription"
         android:textColor="@color/black"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_1_75"
-        android:fontFamily="@font/nunito_regular"
+        android:fontFamily="@font/avenir_roman_regular"
         android:gravity="center"
         android:text="Password may contain minimum 8 characters, 1 capital letter and 1 number."
         android:textColor="@color/gray" />

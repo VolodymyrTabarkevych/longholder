@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
-        android:fontFamily="@font/nunito_bold"
+        android:fontFamily="@font/avenir_black_extra_bold"
         android:text="@string/login_forgot_password"
         android:textColor="@color/st_tropaz" />
 

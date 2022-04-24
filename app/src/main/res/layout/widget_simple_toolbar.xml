@@ -20,7 +20,7 @@
         android:id="@+id/tvSimpleToolbarRightAction"
         style="@style/Widget.App.ActionButton"
         android:layout_gravity="center"
-        android:fontFamily="@font/nunito_bold"
+        android:fontFamily="@font/avenir_heavy_bold"
         android:textColor="@color/st_tropaz"
         android:textSize="@dimen/text.size.medium"
         tools:text="Skip" />

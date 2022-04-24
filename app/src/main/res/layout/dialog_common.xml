@@ -18,7 +18,7 @@
             android:id="@+id/tvDialogTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_medium"
+            android:fontFamily="@font/avenir_medium"
             android:textColor="@color/black"
             android:textSize="@dimen/text.size.xx_medium"
             tools:text="Do you want to Log out?" />
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2_5"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/avenir_medium"
             android:textColor="@color/gray"
             android:textSize="@dimen/text.size.normal"
             tools:text="If you stop your holding now, the coin will be removed from your wallet. " />

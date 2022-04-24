@@ -9,7 +9,7 @@
         android:id="@+id/tvSnackbarMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_extra_bold"
+        android:fontFamily="@font/avenir_black_extra_bold"
         android:lines="1"
         android:paddingHorizontal="@dimen/spacing_2"
         android:paddingVertical="@dimen/spacing_2_25"

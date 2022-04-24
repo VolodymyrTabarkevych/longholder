@@ -52,7 +52,7 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     val isLastPage = position == onboardingAdapter.itemCount - 1
-                    changeActionButton(isLastPage)
+                    changeActionButtons(isLastPage)
                 }
             })
             TabLayoutMediator(tlOnboarding, vpOnboarding) { tab, _ ->
@@ -63,7 +63,7 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
 
     override fun initViewModel() {}
 
-    private fun changeActionButton(isLastPage: Boolean) {
+    private fun changeActionButtons(isLastPage: Boolean) {
         with(binding) {
             pbOnboardingNext.isVisible = !isLastPage
             pbOnboardingSkip.isVisible = !isLastPage
