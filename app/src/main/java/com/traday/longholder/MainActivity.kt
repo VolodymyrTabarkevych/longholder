@@ -50,16 +50,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     }
 
     private fun initViewModel() {
-        viewModel.userStatus.observe(this) {
-            if (it == null) return@observe
-            val destinationId = when (it) {
-                UserStatus.NOT_AUTHORIZED -> R.id.welcomeFragment
-                UserStatus.NOT_VERIFIED -> R.id.welcomeFragment
-                UserStatus.AUTHORIZED -> R.id.nav_wallet
-                UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.onboardingFragment
-            }
-            setStartDestination(destinationId)
+        viewModel.userStatus.observe(this, ::handleUserStatus)
+    }
+
+    private fun handleUserStatus(userStatus: UserStatus) {
+        val destinationId = when (userStatus) {
+            UserStatus.NOT_AUTHORIZED -> R.id.welcomeFragment
+            UserStatus.NOT_VERIFIED -> R.id.welcomeFragment
+            UserStatus.AUTHORIZED -> R.id.nav_wallet
+            UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.onboardingFragment
         }
+        setStartDestination(destinationId)
     }
 
     private fun setStartDestination(@IdRes destinationId: Int, args: Bundle? = null) {
