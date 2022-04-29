@@ -50,11 +50,16 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
                     title = getString(R.string.dialog_log_out_title),
                     message = getString(R.string.dialog_if_you_stop_holding),
                     positiveButtonText = getString(R.string.dialog_log_out),
-                    onPositiveButtonClicked = { navController.navigateSafe(NavMainDirections.actionGlobalWelcomeFragment()) }
+                    onPositiveButtonClicked = { viewModel.logout() },
+                    negativeButtonText = getString(R.string.common_cancel)
                 )
             }
         }
     }
 
-    override fun initViewModel() {}
+    override fun initViewModel() {
+        viewModel.logoutLiveData.observe(viewLifecycleOwner) {
+            navController.navigateSafe(NavMainDirections.actionGlobalWelcomeFragment())
+        }
+    }
 }

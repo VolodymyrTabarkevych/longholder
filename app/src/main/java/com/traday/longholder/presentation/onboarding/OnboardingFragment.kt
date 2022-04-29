@@ -37,10 +37,10 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
                 vpOnboarding.setCurrentItem(nextPage, true)
             }
             pbOnboardingSkip.setOnClickListener {
-                navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
+                viewModel.notifyOnboardingPassed()
             }
             pbOnboardingStart.setOnClickListener {
-                navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
+                viewModel.notifyOnboardingPassed()
             }
         }
     }
@@ -61,7 +61,11 @@ class OnboardingFragment : BaseMVVMFragment<OnboardingViewModel, FragmentOnboard
         }
     }
 
-    override fun initViewModel() {}
+    override fun initViewModel() {
+        viewModel.setPassedOnboardingLiveData.observe(viewLifecycleOwner) {
+            navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
+        }
+    }
 
     private fun changeActionButtons(isLastPage: Boolean) {
         with(binding) {

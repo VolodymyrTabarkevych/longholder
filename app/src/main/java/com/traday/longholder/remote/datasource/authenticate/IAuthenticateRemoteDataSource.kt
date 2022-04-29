@@ -1,7 +1,7 @@
 package com.traday.longholder.remote.datasource.authenticate
 
 import com.traday.longholder.data.base.Result
-import com.traday.longholder.remote.responsebody.authenticate.LoginResponseBody
+import com.traday.longholder.remote.responsebody.LoginResponseBody
 
 interface IAuthenticateRemoteDataSource {
 

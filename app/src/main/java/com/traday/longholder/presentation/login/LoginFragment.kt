@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentLoginBinding
+import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.extensions.*
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.EmailNotValidException
@@ -30,11 +31,9 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
         with(binding) {
             stLogin.setLeftActionOnCLickListener { navController.popBackStack() }
             pbLogin.setOnClickListener {
-                pbLogin.setLoading(true)
-                mainHandler.postDelayed({
-                    pbLogin.setLoading(false)
-                    navController.navigateSafe(LoginFragmentDirections.actionGlobalOnboardingFragment())
-                }, 2000)
+                val userName = etLoginEmail.text.toString()
+                val password = etLoginPassword.text.toString()
+                viewModel.login(userName, password)
             }
             pbLogin.setClickListenerForDisabledState {
                 clearInputFieldsFocusAndHideKeyboard()
@@ -75,9 +74,28 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
 
     override fun initViewModel() {
         with(viewModel) {
+            loginLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {
+                        setLoginLoading(false)
+                        clearInputFieldsFocusAndHideKeyboard()
+                        setEmailError(getString(R.string.validation_email_not_valid))
+                        setPasswordError(getString(R.string.validation_password_not_valid))
+                    }
+                    is Resource.Loading -> setLoginLoading(true)
+                    is Resource.Success -> {
+                        setLoginLoading(false)
+                        navController.navigateSafe(LoginFragmentDirections.actionGlobalOnboardingFragment())
+                    }
+                }
+            }
             buttonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
             validationErrorsLiveData.observe(viewLifecycleOwner, ::showValidationError)
         }
+    }
+
+    private fun setLoginLoading(isLoading: Boolean) {
+        binding.pbLogin.setLoading(isLoading)
     }
 
     private fun changeButtonState(enabled: Boolean) {

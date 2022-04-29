@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 interface LocalDataSourceModule {
 
     @Binds
-    fun bindAuthenticateLocalDataSource(source: UserLocalDataSource): IUserLocalDataSource
+    fun bindUserLocalDataSource(source: UserLocalDataSource): IUserLocalDataSource
 }

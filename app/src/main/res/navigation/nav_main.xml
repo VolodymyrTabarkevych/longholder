@@ -46,8 +46,12 @@
         app:destination="@id/onboardingFragment" />
     <action
         android:id="@+id/action_global_welcomeFragment"
-        app:destination="@id/welcomeFragment" />
+        app:destination="@id/welcomeFragment"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true" />
     <action
         android:id="@+id/action_global_nav_wallet"
-        app:destination="@id/nav_wallet" />
+        app:destination="@id/nav_wallet"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true" />
 </navigation>

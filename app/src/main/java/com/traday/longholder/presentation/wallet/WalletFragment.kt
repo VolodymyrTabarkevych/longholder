@@ -31,9 +31,14 @@ class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
     private val activesAdapter by lazy { ActivesAdapter(this) }
 
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
+        initStartDestination()
         initActionButtons()
         initActivesRecycler()
         addNewActiveIfExists(args.active)
+    }
+
+    private fun initStartDestination() {
+        navController.graph.setStartDestination(R.id.nav_wallet)
     }
 
     private fun initActionButtons() {

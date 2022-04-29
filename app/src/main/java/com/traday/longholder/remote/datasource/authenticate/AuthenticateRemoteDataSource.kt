@@ -4,9 +4,9 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.extensions.safeApiCall
 import com.traday.longholder.local.preferences.user.IUserPreferences
 import com.traday.longholder.remote.datasource.base.BaseLongHolderDataSource
-import com.traday.longholder.remote.requestbody.authenticate.LoginRequestBody
-import com.traday.longholder.remote.requestbody.authenticate.RegisterRequestBody
-import com.traday.longholder.remote.responsebody.authenticate.LoginResponseBody
+import com.traday.longholder.remote.requestbody.LoginRequestBody
+import com.traday.longholder.remote.requestbody.RegisterRequestBody
+import com.traday.longholder.remote.responsebody.LoginResponseBody
 import com.traday.longholder.remote.rest.IRestBuilder
 import retrofit2.Response
 import retrofit2.http.Body

@@ -1,4 +1,4 @@
-package com.traday.longholder.remote.responsebody.authenticate
+package com.traday.longholder.remote.responsebody
 
 import com.google.gson.annotations.SerializedName
 

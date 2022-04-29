@@ -16,15 +16,9 @@ class AuthenticateRepository @Inject constructor(
     }
 
     override suspend fun login(userName: String, password: String): Result<Unit> {
-        return when (val result = authenticateRemoteDataSource.login(userName, password)) {
-            is Result.Error -> {
-                result
-            }
-            is Result.Success -> {
-                val token = result.data.token
-                userLocalDataSource.setUserToken(token)
-                Result.Success(Unit)
-            }
-        }
+        val loginResult = authenticateRemoteDataSource.login(userName, password)
+        if (loginResult is Result.Error) return loginResult
+        val token = (loginResult as Result.Success).data.token
+        return userLocalDataSource.setUserToken(token)
     }
 }

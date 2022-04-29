@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:checkableBehavior="single">
     <item
-        android:id="@+id/nav_wallet"
+        android:id="@+id/nav_main"
         android:icon="@drawable/ic_wallet"
         android:title="@string/tab_title_wallet" />
     <item
