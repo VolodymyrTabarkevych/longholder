@@ -1,9 +1,9 @@
 package com.traday.longholder.di.module
 
-import com.traday.longholder.remote.datasource.authenticate.AuthenticateRemoteDataSource
-import com.traday.longholder.remote.datasource.authenticate.IAuthenticateRemoteDataSource
-import com.traday.longholder.remote.datasource.user.IUserRemoteDataSource
-import com.traday.longholder.remote.datasource.user.UserRemoteDataSource
+import com.traday.longholder.data.remote.datasource.authenticate.AuthenticateRemoteDataSource
+import com.traday.longholder.data.remote.datasource.authenticate.IAuthenticateRemoteDataSource
+import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
+import com.traday.longholder.data.remote.datasource.user.UserRemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,7 +1,7 @@
 package com.traday.longholder.di.module
 
 import android.content.Context
-import com.traday.longholder.local.database.AppDatabase
+import com.traday.longholder.data.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
 package com.traday.longholder.data.mapper
 
+import com.traday.longholder.data.local.entity.MessageEntity
+import com.traday.longholder.data.remote.dto.MessageDto
 import com.traday.longholder.domain.model.Message
-import com.traday.longholder.local.entity.MessageEntity
-import com.traday.longholder.remote.dto.MessageDto
 import com.traday.longholder.utils.EMPTY_STRING
 
 fun MessageDto.toEntity() = MessageEntity(

@@ -1,15 +1,17 @@
-package com.traday.longholder.domain.repository
+package com.traday.longholder.data.local.datasource.user
 
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.entity.UserEntity
 
-interface IUserRepository {
+interface IUserLocalDataSource {
 
-    suspend fun getUser(sync: Boolean): Result<UserEntity>
+    suspend fun setUserToken(userToken: String?): Result<Unit>
 
     suspend fun getUserToken(): Result<String>
 
-    suspend fun logout(): Result<Unit>
+    suspend fun setUser(userEntity: UserEntity?): Result<Unit>
+
+    suspend fun getUser(): Result<UserEntity>
 
     suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit>
 

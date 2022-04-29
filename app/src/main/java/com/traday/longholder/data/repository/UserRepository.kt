@@ -1,11 +1,11 @@
 package com.traday.longholder.data.repository
 
 import com.traday.longholder.data.base.Result
+import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
+import com.traday.longholder.data.local.entity.UserEntity
 import com.traday.longholder.data.mapper.toEntity
+import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
 import com.traday.longholder.domain.repository.IUserRepository
-import com.traday.longholder.local.datasource.user.IUserLocalDataSource
-import com.traday.longholder.local.entity.UserEntity
-import com.traday.longholder.remote.datasource.user.IUserRemoteDataSource
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(

@@ -4,8 +4,8 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.error.converteres.ExceptionConvertor
 import com.traday.longholder.data.error.converteres.IExceptionConvertor
 import com.traday.longholder.data.error.exceptions.BaseException
-import com.traday.longholder.local.datasource.base.BaseLocalDataSource
-import com.traday.longholder.remote.datasource.base.BaseRemoteDataSource
+import com.traday.longholder.data.local.datasource.base.BaseLocalDataSource
+import com.traday.longholder.data.remote.datasource.base.BaseRemoteDataSource
 import retrofit2.Response
 
 private const val REMOTE_DATA_SOURCE = "REMOTE_DATA_SOURCE"

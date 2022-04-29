@@ -1,6 +1,6 @@
 package com.traday.longholder.domain.repository
 
-import com.traday.longholder.remote.dto.CryptoDto
+import com.traday.longholder.data.remote.dto.CryptoDto
 
 interface ICryptosRepository {
 

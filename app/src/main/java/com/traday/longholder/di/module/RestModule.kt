@@ -1,7 +1,7 @@
 package com.traday.longholder.di.module
 
-import com.traday.longholder.remote.rest.IRestBuilder
-import com.traday.longholder.remote.rest.RestBuilder
+import com.traday.longholder.data.remote.rest.IRestBuilder
+import com.traday.longholder.data.remote.rest.RestBuilder
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

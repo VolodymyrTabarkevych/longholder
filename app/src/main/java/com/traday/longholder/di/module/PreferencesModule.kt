@@ -1,7 +1,7 @@
 package com.traday.longholder.di.module
 
-import com.traday.longholder.local.preferences.user.IUserPreferences
-import com.traday.longholder.local.preferences.user.UserPreferences
+import com.traday.longholder.data.local.preferences.user.IUserPreferences
+import com.traday.longholder.data.local.preferences.user.UserPreferences
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

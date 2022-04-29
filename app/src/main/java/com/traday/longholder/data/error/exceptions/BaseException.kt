@@ -1,6 +1,6 @@
 package com.traday.longholder.data.error.exceptions
 
-import com.traday.longholder.remote.responsebody.base.ErrorResponse
+import com.traday.longholder.data.remote.responsebody.base.ErrorResponse
 import java.io.IOException
 
 object BaseException {

@@ -1,8 +1,8 @@
 package com.traday.longholder.data.mapper
 
+import com.traday.longholder.data.local.entity.CryptoEntity
+import com.traday.longholder.data.remote.dto.CryptoDto
 import com.traday.longholder.domain.model.Crypto
-import com.traday.longholder.local.entity.CryptoEntity
-import com.traday.longholder.remote.dto.CryptoDto
 import com.traday.longholder.utils.EMPTY_STRING
 
 fun CryptoDto.toEntity() = CryptoEntity(

@@ -1,8 +1,8 @@
 package com.traday.longholder.data.mapper
 
+import com.traday.longholder.data.local.entity.ReportEntity
+import com.traday.longholder.data.remote.dto.ReportDto
 import com.traday.longholder.domain.model.Report
-import com.traday.longholder.local.entity.ReportEntity
-import com.traday.longholder.remote.dto.ReportDto
 import com.traday.longholder.utils.EMPTY_STRING
 
 fun ReportDto.toEntity() = ReportEntity(

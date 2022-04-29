@@ -1,7 +1,7 @@
 package com.traday.longholder.di.module
 
-import com.traday.longholder.local.datasource.user.IUserLocalDataSource
-import com.traday.longholder.local.datasource.user.UserLocalDataSource
+import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
+import com.traday.longholder.data.local.datasource.user.UserLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

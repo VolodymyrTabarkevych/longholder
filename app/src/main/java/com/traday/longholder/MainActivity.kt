@@ -37,18 +37,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
         binding.bnvMain.setupWithNavController(navController)
     }
 
-    override fun showTabs() {
-        binding.bnvMain.show()
-    }
-
-    override fun hideTabs() {
-        binding.bnvMain.gone()
-    }
-
-    override fun getBottomNavigationView(): BottomNavigationView {
-        return binding.bnvMain
-    }
-
     private fun initViewModel() {
         viewModel.userStatus.observe(this, ::handleUserStatus)
     }
@@ -71,4 +59,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
             navController.graph = rootGraph
         }
     }
+
+    override fun showTabs() {
+        binding.bnvMain.show()
+    }
+
+    override fun hideTabs() {
+        binding.bnvMain.gone()
+    }
+
+    override fun getBottomNavigationView(): BottomNavigationView {
+        return binding.bnvMain
+    }
+
 }
