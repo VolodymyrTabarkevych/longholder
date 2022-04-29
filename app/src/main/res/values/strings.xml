@@ -5,7 +5,7 @@
     <string name="tab_title_analytics">Analytics</string>
     <string name="tab_title_profile">Profile</string>
 
-    <!-- Common messages-->
+    <!-- Common messages -->
     <string name="common_ok">Ok</string>
     <string name="common_your_email">Your e-mail</string>
     <string name="common_password">Password</string>
@@ -22,7 +22,8 @@
     <string name="dialog_do_you_want_stop_holding">Do you want to stop holding?</string>
     <string name="dialog_if_you_stop_holding">If you stop your holding now, the coin will be removed from your wallet. </string>
 
-    <!-- Validator messages-->
+    <!-- Validator messages -->
+    <string name="allowed_symbols_for_password">-+_~!@#$%^&amp;*?\\/().:;\"\'[]{}|,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="validation_email_not_valid">Invalid email address, please try again</string>
     <string name="validation_password_not_valid">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
 

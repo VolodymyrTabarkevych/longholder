@@ -113,6 +113,7 @@
     <style name="Widget.App.TextInputEditText.OutlinedBox.Password" parent="Widget.App.TextInputEditText.OutlinedBox">
         <item name="android:inputType">textPassword</item>
         <item name="android:singleLine">true</item>
+        <item name="android:digits">@string/allowed_symbols_for_password</item>
     </style>
 
     <!-- Parent auto complete -->
