@@ -11,26 +11,59 @@ plugins {
 android {
     compileSdk 31
 
+    def trueValue = "true"
+    def falseValue = "false"
+
+    def ENABLE_LOGS = "ENABLE_LOGS"
+    def ENABLE_CRASH_LOGS = "ENABLE_CRASH_LOGS"
+    def HOST = "HOST"
+
+    def Boolean = "Boolean"
+    def String = "String"
+
+    def devHost = '"https://longholder.azurewebsites.net/"'
+    def prodHost = '"https://longholder.azurewebsites.net/"'
+
     defaultConfig {
         applicationId "com.traday.longholder"
         minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField String, HOST, devHost
+            buildConfigField Boolean, ENABLE_LOGS, trueValue
         }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField String, HOST, prodHost
+            buildConfigField Boolean, ENABLE_LOGS, falseValue
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            buildConfigField String, HOST, devHost
+            buildConfigField Boolean, ENABLE_LOGS, trueValue
+            buildConfigField Boolean, ENABLE_CRASH_LOGS, falseValue
+        }
+
+        production {
+            buildConfigField String, HOST, prodHost
+            buildConfigField Boolean, ENABLE_LOGS, falseValue
+            buildConfigField Boolean, ENABLE_CRASH_LOGS, trueValue
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -70,4 +103,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_loggin_version"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_adapter_version"
+
+    //datastore
+    implementation "androidx.datastore:datastore-core:$datastore_version"
+    implementation "androidx.datastore:datastore-preferences:$datastore_version"
 }
