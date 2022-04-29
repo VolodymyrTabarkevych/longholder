@@ -9,6 +9,7 @@ buildscript {
         retrofit_adapter_version = '0.9.2'
         okhttp_loggin_version = '5.0.0-alpha.2'
         datastore_version = '1.0.0'
+        room_version = "2.5.0-alpha01"
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
