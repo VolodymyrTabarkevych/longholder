@@ -36,10 +36,15 @@ fun Fragment.showDialog(
             }
         }
         pbDialogNegativeButton.let {
-            it.setText(negativeButtonText ?: getString(R.string.common_cancel))
-            it.setOnClickListener {
-                onNegativeButtonClicked.invoke()
-                dialog.dismiss()
+            val showButton = negativeButtonText != null
+            if (showButton) {
+                it.setText(negativeButtonText)
+                it.setOnClickListener {
+                    onNegativeButtonClicked.invoke()
+                    dialog.dismiss()
+                }
+            } else {
+                it.gone()
             }
         }
         onCustomize(binding, dialog)
