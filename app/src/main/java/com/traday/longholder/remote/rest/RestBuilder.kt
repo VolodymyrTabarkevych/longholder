@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.traday.longholder.remote.interceptors.NetworkConnectionInterceptor
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -47,6 +48,7 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
                 chain.proceed(request.build())
             }
             .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
+            .addInterceptor(NetworkConnectionInterceptor(context))
             .build()
 
     companion object {
