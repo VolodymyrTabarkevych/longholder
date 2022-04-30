@@ -2,7 +2,7 @@ package com.traday.longholder.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class MessageDto(
+data class NotificationDto(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String,
     @SerializedName("valueOfMessage") val valueOfMessage: String?,

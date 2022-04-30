@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/st_tropaz</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorAccent">@color/st_tropaz</item>
         <item name="background">@color/athens_gray</item>
         <item name="colorOnBackground">@color/st_tropaz</item>
         <item name="android:colorBackground">@color/athens_gray</item>

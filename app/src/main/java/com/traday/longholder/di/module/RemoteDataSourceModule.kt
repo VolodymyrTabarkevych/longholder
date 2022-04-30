@@ -2,6 +2,8 @@ package com.traday.longholder.di.module
 
 import com.traday.longholder.data.remote.datasource.authenticate.AuthenticateRemoteDataSource
 import com.traday.longholder.data.remote.datasource.authenticate.IAuthenticateRemoteDataSource
+import com.traday.longholder.data.remote.datasource.notification.INotificationRemoteDataSource
+import com.traday.longholder.data.remote.datasource.notification.NotificationRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.UserRemoteDataSource
 import dagger.Binds
@@ -18,4 +20,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindUserRemoteDataSource(source: UserRemoteDataSource): IUserRemoteDataSource
+
+    @Binds
+    fun bindNotificationRemoteDataSource(source: NotificationRemoteDataSource): INotificationRemoteDataSource
 }

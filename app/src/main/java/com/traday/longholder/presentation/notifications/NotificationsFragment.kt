@@ -2,11 +2,14 @@ package com.traday.longholder.presentation.notifications
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentNotificationsBinding
+import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Notification
+import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.notifications.adapter.NotificationMarginDecoration
@@ -41,30 +44,26 @@ class NotificationsFragment :
     }
 
     override fun initViewModel() {
-        val testData = getTestDataForRecycler()
-        setNotifications(testData)
+        viewModel.getNotificationsLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> showDialog(it.error.msg)
+                is Resource.Loading -> setNotificationsLoading(true)
+                is Resource.Success -> {
+                    setNotificationsLoading(false)
+                    setNotifications(it.data)
+                }
+            }
+        }
+    }
+
+    private fun setNotificationsLoading(isLoading: Boolean) {
+        with(binding) {
+            pbNotifications.isVisible = isLoading
+            rvNotifications.isVisible = !isLoading
+        }
     }
 
     private fun setNotifications(notifications: List<Notification>) {
         notificationsAdapter.submitList(notifications)
-    }
-
-    private fun getTestDataForRecycler(): List<Notification> {
-        return listOf(
-            Notification(
-                icon = R.drawable.img_btc,
-                cryptoName = "Bitcoin",
-                status = "Your holding has ended. You have earned:",
-                earned = "+8 323,13 (\$1 225,60)",
-                date = "22/02/2022"
-            ),
-            Notification(
-                icon = R.drawable.img_eth,
-                cryptoName = "Ethereum",
-                status = "Your holding has ended. You have earned:",
-                earned = "+1 323,13 (\$225,60)",
-                date = "22/02/2022"
-            )
-        )
     }
 }

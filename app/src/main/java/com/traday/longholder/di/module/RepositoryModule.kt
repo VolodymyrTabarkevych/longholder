@@ -1,8 +1,10 @@
 package com.traday.longholder.di.module
 
 import com.traday.longholder.data.repository.AuthenticateRepository
+import com.traday.longholder.data.repository.NotificationRepository
 import com.traday.longholder.data.repository.UserRepository
 import com.traday.longholder.domain.repository.IAuthenticateRepository
+import com.traday.longholder.domain.repository.INotificationRepository
 import com.traday.longholder.domain.repository.IUserRepository
 import dagger.Binds
 import dagger.Module
@@ -18,4 +20,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindUserRepository(repository: UserRepository): IUserRepository
+
+    @Binds
+    fun bindNotificationRepository(repository: NotificationRepository): INotificationRepository
 }

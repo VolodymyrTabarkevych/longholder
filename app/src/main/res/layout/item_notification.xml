@@ -41,7 +41,7 @@
         tools:text="22/02/2022" />
 
     <TextView
-        android:id="@+id/tvNotificationStatus"
+        android:id="@+id/tvNotificationDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_1"
@@ -61,6 +61,6 @@
         android:textColor="@color/limeade"
         android:textSize="@dimen/text.size.medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNotificationStatus"
+        app:layout_constraintTop_toBottomOf="@id/tvNotificationDescription"
         tools:text="+8 323,13 ($1 225,60)" />
 </androidx.constraintlayout.widget.ConstraintLayout>

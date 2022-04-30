@@ -7,6 +7,6 @@ data class UserDto(
     @SerializedName("email") val email: String?,
     @SerializedName("currencyCode") val currencyCode: String?,
     @SerializedName("cryptos") val cryptos: List<CryptoDto>,
-    @SerializedName("messages") val messages: List<MessageDto>,
+    @SerializedName("messages") val notifications: List<NotificationDto>,
     @SerializedName("reports") val reports: List<ReportDto>
 )
