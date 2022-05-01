@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.traday.longholder.data.local.database.dao.CryptoDao
 import com.traday.longholder.data.local.database.dao.NotificationDao
 import com.traday.longholder.data.local.database.dao.UserDao
 import com.traday.longholder.data.local.entity.CryptoEntity
@@ -61,4 +62,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     abstract fun notificationDao(): NotificationDao
+
+    abstract fun cryptoDao(): CryptoDao
 }

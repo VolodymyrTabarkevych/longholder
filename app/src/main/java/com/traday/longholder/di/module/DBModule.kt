@@ -26,4 +26,8 @@ class DBModule {
     @Provides
     @Singleton
     fun provideNotificationDao(db: AppDatabase) = db.notificationDao()
+
+    @Provides
+    @Singleton
+    fun provideCryptoDao(db: AppDatabase) = db.cryptoDao()
 }

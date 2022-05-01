@@ -10,9 +10,12 @@ data class CryptoDto(
     @SerializedName("cryptoPriceOnEnd") val cryptoPriceOnEnd: Double,
     @SerializedName("priceInOtherCurrencyOnStart") val priceInOtherCurrencyOnStart: Double,
     @SerializedName("priceInOtherCurrencyOnEnd") val priceInOtherCurrencyOnEnd: Double,
-    @SerializedName("currencyPrice") val currencyPrice: Double,
+    @SerializedName("currentCurrencyPrice") val currentCurrencyPrice: Double,
     @SerializedName("nameOfCurrency") val nameOfCurrency: String?,
     @SerializedName("dateOfStart") val dateOfStart: String,
     @SerializedName("dateOfEnd") val dateOfEnd: String,
-    @SerializedName("comment") val comment: String?
+    @SerializedName("comment") val comment: String?,
+    @SerializedName("linkToImage") val linkToImage: String?,
+    @SerializedName("earnedMoney") val earnedMoney: Double,
+    @SerializedName("percents") val percents: Double
 )
