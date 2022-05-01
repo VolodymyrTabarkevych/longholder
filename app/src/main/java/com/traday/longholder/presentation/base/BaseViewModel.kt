@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.traday.longholder.domain.base.BaseUseCase
 import com.traday.longholder.domain.base.EmptyParams
+import com.traday.longholder.domain.base.FlowUseCase
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.error.entities.BaseError
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import okhttp3.internal.toImmutableList
 
@@ -48,6 +51,17 @@ open class BaseViewModel : ViewModel() {
                     }
                     else -> onResult(it)
                 }
+            }
+        }
+    }
+
+    fun <P : EmptyParams, R : Any> executeFlowUseCase(
+        useCase: FlowUseCase<P, R>,
+        params: P
+    ): Flow<Resource<R>> {
+        return useCase.execute(params).onEach {
+            if (it is Resource.Error && it.error is BaseError.NetworkConnectionError) {
+                _noInternetConnectionLiveData.postValue(true)
             }
         }
     }
