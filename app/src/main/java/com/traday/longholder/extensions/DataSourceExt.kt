@@ -4,8 +4,6 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.error.converteres.ExceptionConvertor
 import com.traday.longholder.data.error.converteres.IExceptionConvertor
 import com.traday.longholder.data.error.exceptions.BaseException
-import com.traday.longholder.data.local.datasource.base.BaseLocalDataSource
-import com.traday.longholder.data.remote.datasource.base.BaseRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -14,7 +12,7 @@ import retrofit2.Response
 private const val REMOTE_DATA_SOURCE = "REMOTE_DATA_SOURCE"
 private const val LOCAL_DATA_SOURCE = "LOCAL_DATA_SOURCE"
 
-suspend fun <T, S : Any> BaseRemoteDataSource<T>.safeApiCall(
+suspend fun <S : Any> safeApiCall(
     converter: IExceptionConvertor = ExceptionConvertor(),
     call: suspend () -> Response<S>?
 ): Result<S> =
@@ -27,7 +25,7 @@ suspend fun <T, S : Any> BaseRemoteDataSource<T>.safeApiCall(
         Result.Error(converter.getException(e))
     }
 
-suspend fun <T : Any> BaseLocalDataSource.safeOperation(
+suspend fun <T : Any> safeOperation(
     operation: suspend () -> T?
 ): Result<T> =
     try {
@@ -37,7 +35,7 @@ suspend fun <T : Any> BaseLocalDataSource.safeOperation(
         Result.Error(e)
     }
 
-fun <T : Any> BaseLocalDataSource.safeFlow(
+fun <T : Any> safeFlow(
     converter: IExceptionConvertor = ExceptionConvertor(),
     operation: () -> Flow<T?>
 ): Flow<Result<T>> = operation.invoke()
