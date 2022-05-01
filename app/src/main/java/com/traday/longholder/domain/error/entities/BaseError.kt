@@ -6,7 +6,7 @@ sealed class BaseError(val msg: String) {
 
     class SomethingWentWrongError(msg: String) : BaseError(msg)
 
-    class IncorrectTokenError(msg: String) : BaseError(msg)
+    class UnauthorizedError(msg: String) : BaseError(msg)
 
     class UserAlreadyExistsError(msg: String) : BaseError(msg)
 }

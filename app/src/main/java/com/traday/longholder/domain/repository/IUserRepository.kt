@@ -9,8 +9,6 @@ interface IUserRepository {
 
     suspend fun getUserToken(): Result<String>
 
-    suspend fun logout(): Result<Unit>
-
     suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit>
 
     suspend fun isOnboardingPassed(): Result<Boolean>

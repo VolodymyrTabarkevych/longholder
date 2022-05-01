@@ -4,8 +4,11 @@ import android.content.Context
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.traday.longholder.data.error.exceptions.BaseException
 import com.traday.longholder.data.remote.interceptors.NetworkConnectionInterceptor
+import com.traday.longholder.data.remote.responsebody.base.ErrorResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
@@ -48,8 +51,22 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
                 chain.proceed(request.build())
             }
             .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
+            .addInterceptor(errorHandlingInterceptor)
             .addInterceptor(NetworkConnectionInterceptor(context))
             .build()
+
+    private val errorHandlingInterceptor by lazy {
+        Interceptor { chain ->
+            val response = chain.proceed(chain.request().newBuilder().build())
+            if (!response.isSuccessful) {
+                val errorDto = ErrorResponse(response.code, response.message)
+                throw BaseException.NetworkRequestException(errorDto)
+            } else if (response.body == null) {
+                throw BaseException.NoResponseContentException()
+            }
+            response
+        }
+    }
 
     companion object {
 

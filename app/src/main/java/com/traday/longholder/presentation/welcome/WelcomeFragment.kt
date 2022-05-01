@@ -2,6 +2,7 @@ package com.traday.longholder.presentation.welcome
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
@@ -15,6 +16,8 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
 
     override val binding: FragmentWelcomeBinding by viewBinding(FragmentWelcomeBinding::bind)
 
+    private val viewModel: WelcomeViewModel by viewModels()
+
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         with(binding) {
             pbWelcomeRegistration.setOnClickListener {
@@ -26,6 +29,8 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
         }
     }
 
-    override fun initViewModel() {}
+    override fun initViewModel() {
+        viewModel.handleLogout()
+    }
 
 }

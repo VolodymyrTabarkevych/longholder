@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     private fun handleUserStatus(userStatus: UserStatus) {
         val destinationId = when (userStatus) {
             UserStatus.NOT_AUTHORIZED -> R.id.welcomeFragment
-            UserStatus.NOT_VERIFIED -> R.id.welcomeFragment
+            UserStatus.NOT_VERIFIED -> TODO()
             UserStatus.AUTHORIZED -> R.id.nav_wallet
             UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.onboardingFragment
         }

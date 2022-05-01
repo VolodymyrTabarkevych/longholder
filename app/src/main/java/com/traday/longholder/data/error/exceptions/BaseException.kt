@@ -14,7 +14,7 @@ object BaseException {
     class SomethingWentWrongException(error: ErrorResponse) :
         NetworkRequestException(error)
 
-    class IncorrectTokenException(error: ErrorResponse) :
+    class UnauthorizedException(error: ErrorResponse) :
         NetworkRequestException(error)
 
     class UserAlreadyExistsException(error: ErrorResponse) :

@@ -1,7 +1,6 @@
 package com.traday.longholder.data.repository
 
 import com.traday.longholder.data.base.Result
-import com.traday.longholder.data.local.datasource.notification.INotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
 import com.traday.longholder.data.local.entity.UserEntity
 import com.traday.longholder.data.mapper.toEntity
@@ -11,8 +10,7 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val userRemoteDataSource: IUserRemoteDataSource,
-    private val userLocalDataSource: IUserLocalDataSource,
-    private val notificationLocalDataSource: INotificationLocalDataSource
+    private val userLocalDataSource: IUserLocalDataSource
 ) : IUserRepository {
 
     override suspend fun getUser(sync: Boolean): Result<UserEntity> {
@@ -27,14 +25,6 @@ class UserRepository @Inject constructor(
 
     override suspend fun getUserToken(): Result<String> {
         return userLocalDataSource.getUserToken()
-    }
-
-    override suspend fun logout(): Result<Unit> {
-        userLocalDataSource.setUser(null)
-        userLocalDataSource.setOnboardingPassed(false)
-        userLocalDataSource.setUserToken(null)
-        notificationLocalDataSource.deleteNotifications()
-        return Result.Success(Unit)
     }
 
     override suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit> {

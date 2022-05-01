@@ -8,6 +8,7 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
     override fun getException(e: Exception): Exception = when (e) {
         is BaseException.NetworkRequestException -> {
             when (e.error.code) {
+                UNAUTHORIZED_ERROR_CODE_401 -> BaseException.UnauthorizedException(e.error)
                 else -> BaseException.SomethingWentWrongException(e.error)
             }
         }

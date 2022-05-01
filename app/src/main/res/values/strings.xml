@@ -5,6 +5,11 @@
     <string name="tab_title_analytics">Analytics</string>
     <string name="tab_title_profile">Profile</string>
 
+    <!-- Common errors -->
+    <string name="error_no_internet_connection">No internet connection</string>
+    <string name="error_make_sure_device_is_connected">Make sure your device is connected to the internet</string>
+    <string name="error_unknown">Internal Server Error, please try again later</string>
+
     <!-- Common messages -->
     <string name="common_ok">Ok</string>
     <string name="common_your_email">Your e-mail</string>
@@ -14,6 +19,9 @@
     <string name="common_next">Next</string>
     <string name="common_skip">Skip</string>
     <string name="common_dollar">$</string>
+    <string name="common_dollar_value_with_brackets">($%s)</string>
+    <string name="common_earned_crypto_with_percent">+%1$s (%2$s %%)</string>
+    <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Cancel</string>
 
     <!-- Dialog -->
@@ -51,6 +59,7 @@
     <string name="wallet_have_not_add_actives">You haven’t add any actives yet.</string>
     <string name="wallet_add_your_actives_now">Add your actives and start managing them now!</string>
     <string name="wallet_add_your_actives">+ Add your actives</string>
+    <string name="wallet_on_hold_from">On Hold from %s</string>
 
     <!-- Analytics -->
     <string name="analytics_title">Analytics</string>

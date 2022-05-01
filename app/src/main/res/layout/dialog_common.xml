@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/tvDialogTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/avenir_medium"
             android:textColor="@color/black"
@@ -27,7 +27,7 @@
             android:id="@+id/tvDialogMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_2_5"
+            android:layout_marginTop="@dimen/spacing_2"
             android:fontFamily="@font/avenir_medium"
             android:textColor="@color/gray"
             android:textSize="@dimen/text.size.normal"

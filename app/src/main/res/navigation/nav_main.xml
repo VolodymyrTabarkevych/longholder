@@ -25,6 +25,10 @@
         android:name="com.traday.longholder.presentation.welcome.WelcomeFragment"
         android:label="WelcomeFragment"
         tools:layout="@layout/fragment_welcome">
+        <argument
+            android:name="needLogout"
+            android:defaultValue="false"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
