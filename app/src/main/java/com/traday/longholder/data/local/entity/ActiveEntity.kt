@@ -3,9 +3,10 @@ package com.traday.longholder.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.traday.longholder.data.local.entity.ActiveEntity.Companion.TABLE_NAME
 
-@Entity(tableName = "crypto")
-data class CryptoEntity(
+@Entity(tableName = TABLE_NAME)
+data class ActiveEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String?,
@@ -26,6 +27,6 @@ data class CryptoEntity(
 
     companion object {
 
-        const val TABLE_NAME = "crypto"
+        const val TABLE_NAME = "active"
     }
 }

@@ -1,18 +1,28 @@
 package com.traday.longholder.domain.model
 
 import android.os.Parcelable
-import androidx.annotation.DrawableRes
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Active(
-    @DrawableRes val icon: Int,
-    val name: String,
-    val amount: String,
-    val amountInDollars: String,
-    val date: String,
-    val summaryDayOfPurchase: String,
-    val summaryToday: String,
-    val profit: String,
-    val cryptoPrice: String
+    val id: Int,
+    val name: String?,
+    val valueOfCrypto: Double,
+    val valueOfCryptoFormatted: String,
+    val cryptoPriceOnStart: Double,
+    val cryptoPriceOnEnd: Double,
+    val priceInOtherCurrencyOnStart: Double,
+    val priceInOtherCurrencyOnStartFormatted: String,
+    val priceInOtherCurrencyOnEnd: Double,
+    val currentCurrencyPrice: Double,
+    val currentCurrencyPriceFormatted: String,
+    val nameOfCurrency: String?,
+    val dateOfStart: String,
+    val dateOfEnd: String,
+    val comment: String?,
+    val linkToImage: String?,
+    val earnedMoney: Double,
+    val earnedMoneyFormatted: String,
+    val percents: Double,
+    val percentsFormatted: String
 ) : Parcelable

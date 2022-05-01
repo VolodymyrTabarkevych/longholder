@@ -1,7 +1,7 @@
 package com.traday.longholder.di.module
 
-import com.traday.longholder.data.local.datasource.crypto.CryptoLocalDataSource
-import com.traday.longholder.data.local.datasource.crypto.ICryptoLocalDataSource
+import com.traday.longholder.data.local.datasource.active.ActiveLocalDataSource
+import com.traday.longholder.data.local.datasource.active.IActiveLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.INotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.NotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
@@ -22,5 +22,5 @@ interface LocalDataSourceModule {
     fun bindNotificationLocalDataSource(source: NotificationLocalDataSource): INotificationLocalDataSource
 
     @Binds
-    fun bindCryptoLocalDataSource(source: CryptoLocalDataSource): ICryptoLocalDataSource
+    fun bindActiveLocalDataSource(source: ActiveLocalDataSource): IActiveLocalDataSource
 }

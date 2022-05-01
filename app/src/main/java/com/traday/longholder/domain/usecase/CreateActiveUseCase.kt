@@ -6,18 +6,18 @@ import com.traday.longholder.domain.base.BaseUseCase
 import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.error.handlers.IErrorHandler
-import com.traday.longholder.domain.model.Crypto
-import com.traday.longholder.domain.repository.ICryptoRepository
+import com.traday.longholder.domain.model.Active
+import com.traday.longholder.domain.repository.IActiveRepository
 import javax.inject.Inject
 
-class CreateCryptoUseCase @Inject constructor(
-    private val cryptoRepository: ICryptoRepository,
+class CreateActiveUseCase @Inject constructor(
+    private val activeRepository: IActiveRepository,
     private val errorHandler: IErrorHandler
-) : BaseUseCase<CreateCryptoUseCase.Params, Unit>() {
+) : BaseUseCase<CreateActiveUseCase.Params, Unit>() {
 
     override suspend fun run(params: Params): Resource<Unit> {
-        return cryptoRepository.createCrypto(params.crypto.toDto()).toResource(errorHandler)
+        return activeRepository.createActive(params.active.toDto()).toResource(errorHandler)
     }
 
-    class Params(val crypto: Crypto) : EmptyParams()
+    class Params(val active: Active) : EmptyParams()
 }

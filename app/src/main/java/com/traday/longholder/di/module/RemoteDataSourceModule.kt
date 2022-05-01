@@ -1,9 +1,9 @@
 package com.traday.longholder.di.module
 
+import com.traday.longholder.data.remote.datasource.active.ActiveRemoteDataSource
+import com.traday.longholder.data.remote.datasource.active.IActiveRemoteDataSource
 import com.traday.longholder.data.remote.datasource.authenticate.AuthenticateRemoteDataSource
 import com.traday.longholder.data.remote.datasource.authenticate.IAuthenticateRemoteDataSource
-import com.traday.longholder.data.remote.datasource.crypto.CryptoRemoteDataSource
-import com.traday.longholder.data.remote.datasource.crypto.ICryptoRemoteDataSource
 import com.traday.longholder.data.remote.datasource.notification.INotificationRemoteDataSource
 import com.traday.longholder.data.remote.datasource.notification.NotificationRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
@@ -27,5 +27,5 @@ interface RemoteDataSourceModule {
     fun bindNotificationRemoteDataSource(source: NotificationRemoteDataSource): INotificationRemoteDataSource
 
     @Binds
-    fun bindCryptoRemoteDataSource(source: CryptoRemoteDataSource): ICryptoRemoteDataSource
+    fun bindActiveRemoteDataSource(source: ActiveRemoteDataSource): IActiveRemoteDataSource
 }

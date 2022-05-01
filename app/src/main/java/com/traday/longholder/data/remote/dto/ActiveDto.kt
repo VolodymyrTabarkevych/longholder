@@ -2,7 +2,7 @@ package com.traday.longholder.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class CryptoDto(
+data class ActiveDto(
     @SerializedName("id") val id: Int,
     @SerializedName("name") val name: String?,
     @SerializedName("valueOfCrypto") val valueOfCrypto: Double,

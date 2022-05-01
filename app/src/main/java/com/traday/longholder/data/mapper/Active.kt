@@ -1,12 +1,12 @@
 package com.traday.longholder.data.mapper
 
-import com.traday.longholder.data.local.entity.CryptoEntity
-import com.traday.longholder.data.remote.dto.CryptoDto
-import com.traday.longholder.domain.model.Crypto
+import com.traday.longholder.data.local.entity.ActiveEntity
+import com.traday.longholder.data.remote.dto.ActiveDto
+import com.traday.longholder.domain.model.Active
 import com.traday.longholder.extensions.formatDateServerFormatToClientFormatOrEmpty
 import com.traday.longholder.extensions.replaceDotWithComma
 
-fun CryptoDto.toEntity() = CryptoEntity(
+fun ActiveDto.toEntity() = ActiveEntity(
     id = id,
     name = name,
     valueOfCrypto = valueOfCrypto,
@@ -24,7 +24,7 @@ fun CryptoDto.toEntity() = CryptoEntity(
     percents = percents
 )
 
-fun CryptoEntity.toDomain() = Crypto(
+fun ActiveEntity.toDomain() = Active(
     id = id,
     name = name,
     valueOfCrypto = valueOfCrypto,
@@ -47,7 +47,7 @@ fun CryptoEntity.toDomain() = Crypto(
     percentsFormatted = percents.replaceDotWithComma()
 )
 
-fun Crypto.toDto() = CryptoDto(
+fun Active.toDto() = ActiveDto(
     id = id,
     name = name,
     valueOfCrypto = valueOfCrypto,

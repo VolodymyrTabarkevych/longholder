@@ -29,5 +29,5 @@ class DBModule {
 
     @Provides
     @Singleton
-    fun provideCryptoDao(db: AppDatabase) = db.cryptoDao()
+    fun provideActiveDao(db: AppDatabase) = db.activeDao()
 }

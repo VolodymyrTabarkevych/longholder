@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.traday.longholder.data.local.database.dao.CryptoDao
+import com.traday.longholder.data.local.database.dao.ActiveDao
 import com.traday.longholder.data.local.database.dao.NotificationDao
 import com.traday.longholder.data.local.database.dao.UserDao
-import com.traday.longholder.data.local.entity.CryptoEntity
+import com.traday.longholder.data.local.entity.ActiveEntity
 import com.traday.longholder.data.local.entity.NotificationEntity
 import com.traday.longholder.data.local.entity.ReportEntity
 import com.traday.longholder.data.local.entity.UserEntity
@@ -16,7 +16,7 @@ import com.traday.longholder.data.local.entity.UserEntity
 @Database(
     entities = [
         UserEntity::class,
-        CryptoEntity::class,
+        ActiveEntity::class,
         NotificationEntity::class,
         ReportEntity::class
     ],
@@ -63,5 +63,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun notificationDao(): NotificationDao
 
-    abstract fun cryptoDao(): CryptoDao
+    abstract fun activeDao(): ActiveDao
 }
