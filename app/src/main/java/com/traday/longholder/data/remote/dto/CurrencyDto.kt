@@ -6,5 +6,7 @@ data class CurrencyDto(
     @SerializedName("id") val id: Int,
     @SerializedName("linkToPhoto") val linkToPhoto: String?,
     @SerializedName("name") val name: String?,
-    @SerializedName("indexOnExchange") val indexOnExchange: Int
+    @SerializedName("indexOnExchange") val indexOnExchange: String,
+    @SerializedName("price") val price: Double,
+    @SerializedName("dateOfUpdate") val dateOfUpdate: String
 )

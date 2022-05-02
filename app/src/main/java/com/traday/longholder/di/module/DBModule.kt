@@ -30,4 +30,8 @@ class DBModule {
     @Provides
     @Singleton
     fun provideActiveDao(db: AppDatabase) = db.activeDao()
+
+    @Provides
+    @Singleton
+    fun provideCurrencyDao(db: AppDatabase) = db.currencyDao()
 }

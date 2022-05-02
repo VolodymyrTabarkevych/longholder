@@ -2,6 +2,8 @@ package com.traday.longholder.di.module
 
 import com.traday.longholder.data.local.datasource.active.ActiveLocalDataSource
 import com.traday.longholder.data.local.datasource.active.IActiveLocalDataSource
+import com.traday.longholder.data.local.datasource.currency.CurrencyLocalDataSource
+import com.traday.longholder.data.local.datasource.currency.ICurrencyLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.INotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.NotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
@@ -23,4 +25,7 @@ interface LocalDataSourceModule {
 
     @Binds
     fun bindActiveLocalDataSource(source: ActiveLocalDataSource): IActiveLocalDataSource
+
+    @Binds
+    fun bindCurrencyLocalDataSource(source: CurrencyLocalDataSource): ICurrencyLocalDataSource
 }
