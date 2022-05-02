@@ -10,12 +10,6 @@
         android:name="com.traday.longholder.presentation.wallet.WalletFragment"
         android:label="WalletFragment"
         tools:layout="@layout/fragment_wallet">
-
-        <argument
-            android:name="active"
-            android:defaultValue="@null"
-            app:argType="com.traday.longholder.domain.model.Active"
-            app:nullable="true" />
         <action
             android:id="@+id/action_walletFragment_to_activeFragment"
             app:destination="@id/activeFragment" />
@@ -25,12 +19,9 @@
         android:name="com.traday.longholder.presentation.active.ActiveFragment"
         android:label="ActiveFragment"
         tools:layout="@layout/fragment_active">
-
         <argument
-            android:name="active"
-            android:defaultValue="@null"
-            app:argType="com.traday.longholder.domain.model.Active"
-            app:nullable="true" />
+            android:name="mode"
+            app:argType="com.traday.longholder.presentation.active.ActiveScreenMode" />
         <action
             android:id="@+id/action_activeFragment_to_walletFragment"
             app:destination="@id/walletFragment"

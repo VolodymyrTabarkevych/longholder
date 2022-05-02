@@ -4,6 +4,7 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.ActiveDto
+import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
 import com.traday.longholder.extensions.safeApiCall
 import retrofit2.Response
@@ -22,7 +23,7 @@ class ActiveRemoteDataSource @Inject constructor(
     override suspend fun getActives(): Result<List<ActiveDto>> =
         safeApiCall { api.getActives() }
 
-    override suspend fun createActive(active: ActiveDto): Result<Unit> =
+    override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> =
         safeApiCall { api.createActive(active) }
 
     override suspend fun updateActive(active: ActiveDto): Result<Unit> =
@@ -37,7 +38,7 @@ class ActiveRemoteDataSource @Inject constructor(
         suspend fun getActives(): Response<List<ActiveDto>>
 
         @POST("User/createCrypto")
-        suspend fun createActive(@Body active: ActiveDto): Response<Unit>
+        suspend fun createActive(@Body active: CreateActiveRequestBody): Response<Unit>
 
         @PUT("User/updateCryptos")
         suspend fun updateActive(@Body active: ActiveDto): Response<Unit>

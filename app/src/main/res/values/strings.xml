@@ -34,6 +34,7 @@
     <string name="allowed_symbols_for_password">-+_~!@#$%^&amp;*?\\/().:;\"\'[]{}|,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="validation_email_not_valid">Invalid email address, please try again</string>
     <string name="validation_password_not_valid">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
+    <string name="validation_crypto_amount_not_valid">Please enter a value bigger than 1</string>
 
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
@@ -85,9 +86,11 @@
     <string name="active_add">Add your Active</string>
     <string name="active_your">Your Active</string>
     <string name="active_select_coin">Select your coin</string>
+    <string name="active_your_coin">Your coin</string>
     <string name="active_enter_amount">Enter amount</string>
-    <string name="active_date_purchase">Date of purchase</string>
-    <string name="active_date_hint">dd.mm.yyyy</string>
+    <string name="active_amount">Amount</string>
+    <string name="active_date_end_hold">Date of stop of hold</string>
+    <string name="active_date_hint">dd/mm/yyyy</string>
     <string name="active_summary">Summary on the day of purchase</string>
     <string name="active_summary_today">Summary today</string>
     <string name="active_profit">Profit if sell now</string>

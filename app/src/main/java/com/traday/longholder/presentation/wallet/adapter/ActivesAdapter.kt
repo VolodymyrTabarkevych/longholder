@@ -26,7 +26,7 @@ class ActivesAdapter(
     private class DiffCallback : DiffUtil.ItemCallback<Active>() {
 
         override fun areItemsTheSame(oldItem: Active, newItem: Active): Boolean =
-            oldItem.hashCode() == newItem.hashCode()
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: Active, newItem: Active): Boolean =
             oldItem == newItem

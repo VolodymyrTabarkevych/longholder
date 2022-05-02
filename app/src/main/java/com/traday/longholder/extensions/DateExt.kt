@@ -12,3 +12,9 @@ fun String.formatDateServerFormatToClientFormatOrEmpty(): String {
         ?: return EMPTY_STRING
     return SimpleDateFormat(CLIENT_DATE_FORMAT_PATTERN, Locale.getDefault()).format(serverDate)
 }
+
+fun String.formatDateClientFormatToServerFormatOrEmpty(): String {
+    val serverDate = SimpleDateFormat(CLIENT_DATE_FORMAT_PATTERN, Locale.getDefault()).parse(this)
+        ?: return EMPTY_STRING
+    return SimpleDateFormat(SERVER_DATE_FORMAT_PATTERN, Locale.getDefault()).format(serverDate)
+}

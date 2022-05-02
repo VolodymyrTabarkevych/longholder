@@ -6,6 +6,7 @@ import com.traday.longholder.data.local.entity.ActiveEntity
 import com.traday.longholder.data.mapper.toEntity
 import com.traday.longholder.data.remote.datasource.active.IActiveRemoteDataSource
 import com.traday.longholder.data.remote.dto.ActiveDto
+import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.domain.repository.IActiveRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
@@ -19,20 +20,26 @@ class ActiveRepository @Inject constructor(
     override fun getActives(): Flow<Result<List<ActiveEntity>>> {
         return activeLocalDataSource.getActives()
             .onStart {
-                val remoteActiveResult = activeRemoteDataSource.getActives()
-                if (remoteActiveResult is Result.Success) {
-                    val mappedActives = remoteActiveResult.data.map { it.toEntity() }
-                    activeLocalDataSource.saveOrUpdateActive(mappedActives)
-                } else if (remoteActiveResult is Result.Error) {
-                    emit(remoteActiveResult)
+                val remoteResult = activeRemoteDataSource.getActives()
+                if (remoteResult is Result.Success) {
+                    val mappedItems = remoteResult.data.map { it.toEntity() }
+                    activeLocalDataSource.saveOrUpdateActive(mappedItems)
+                } else if (remoteResult is Result.Error) {
+                    emit(remoteResult)
                 }
             }
     }
 
-    override suspend fun createActive(active: ActiveDto): Result<Unit> {
+    override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> {
         val createRemoteActiveResult = activeRemoteDataSource.createActive(active)
         return if (createRemoteActiveResult is Result.Success) {
-            activeLocalDataSource.saveOrUpdateActive(active.toEntity())
+            val remoteActivesResult = activeRemoteDataSource.getActives()
+            if (remoteActivesResult is Result.Success) {
+                val mappedItems = remoteActivesResult.data.map { it.toEntity() }
+                activeLocalDataSource.saveOrUpdateActive(mappedItems)
+            } else {
+                createRemoteActiveResult
+            }
         } else {
             createRemoteActiveResult
         }

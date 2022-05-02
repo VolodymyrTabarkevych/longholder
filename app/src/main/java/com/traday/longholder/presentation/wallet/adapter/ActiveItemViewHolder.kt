@@ -1,9 +1,10 @@
 package com.traday.longholder.presentation.wallet.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.traday.longholder.R
 import com.traday.longholder.databinding.ItemActiveBinding
 import com.traday.longholder.domain.model.Active
-import com.traday.longholder.extensions.getDrawableCompat
+import com.traday.longholder.extensions.loadWithGlide
 
 class ActiveItemViewHolder(
     private val binding: ItemActiveBinding,
@@ -13,13 +14,35 @@ class ActiveItemViewHolder(
     fun bind(item: Active) {
         with(binding) {
             root.setOnClickListener { eventListener.onActiveClicked(item) }
-            ivActionCoinIcon.apply { setImageDrawable(getDrawableCompat(item.icon)) }
-            tvActiveCoinName.text = item.name
-            tvActiveCoinAmount.text = item.amount
-            tvActiveCoinAmountInDollars.text = item.amountInDollars
-            tvActiveCoinProfit.text = item.profit
-            tvActiveCoinPrice.text = item.cryptoPrice
-            tvActiveCoinHoldFrom.text = item.date
+            ivActiveCryptoIcon.loadWithGlide(item.linkToImage)
+            tvActiveCryptoName.text = item.name
+            tvActiveCryptoValue.text = item.valueOfCryptoFormatted
+            tvActiveCryptoPriceInOtherCurrency.apply {
+                text = resources.getString(
+                    R.string.common_dollar_value_with_brackets,
+                    item.priceInOtherCurrencyOnStartFormatted
+                )
+            }
+            tvActiveCryptoEarnedMoney.apply {
+                text = resources.getString(
+                    R.string.common_earned_crypto_with_percent,
+                    item.earnedMoneyFormatted,
+                    item.percentsFormatted
+                )
+            }
+            tvActiveCryptoCurrentPrice.apply {
+                text = resources.getString(
+                    R.string.common_crypto_price_in_other_currency,
+                    item.nameOfCurrency,
+                    item.currentCurrencyPriceFormatted
+                )
+            }
+            tvActiveDate.apply {
+                text = resources.getString(
+                    R.string.wallet_on_hold_from,
+                    item.dateOfStart
+                )
+            }
         }
     }
 

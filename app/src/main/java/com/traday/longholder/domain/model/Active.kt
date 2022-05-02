@@ -14,6 +14,7 @@ data class Active(
     val priceInOtherCurrencyOnStart: Double,
     val priceInOtherCurrencyOnStartFormatted: String,
     val priceInOtherCurrencyOnEnd: Double,
+    val priceInOtherCurrencyOnEndFormatted: String,
     val currentCurrencyPrice: Double,
     val currentCurrencyPriceFormatted: String,
     val nameOfCurrency: String?,

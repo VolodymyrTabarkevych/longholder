@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageView
         android:id="@+id/ivWalletAddActives"
         style="@style/Widget.App.ActionButton"
@@ -37,47 +36,68 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/spacing_2"
+        android:paddingTop="@dimen/spacing_0_5"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivWalletAddActives" />
 
-    <TextView
-        android:id="@+id/tvWalletNoActivesTitle"
+    <ProgressBar
+        android:id="@+id/pbWalletActives"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_medium"
-        android:text="@string/wallet_have_not_add_actives"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.xx_medium"
-        app:layout_constraintBottom_toTopOf="@id/tvWalletNoActivesDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivWalletAddActives"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/tvWalletNoActivesDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_1"
-        android:fontFamily="@font/avenir_medium"
-        android:text="@string/wallet_add_your_actives_now"
-        android:textColor="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/pbWalletAddActives"
-        app:layout_constraintEnd_toEndOf="@id/tvWalletNoActivesTitle"
-        app:layout_constraintStart_toStartOf="@id/tvWalletNoActivesTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvWalletNoActivesTitle" />
-
-    <com.traday.longholder.presentation.customviews.ProgressButton
-        android:id="@+id/pbWalletAddActives"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_2"
-        android:layout_marginBottom="@dimen/spacing_5"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:progressButtonText="@string/wallet_add_your_actives" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
+    <LinearLayout
+        android:id="@+id/llWalletNoActives"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivWalletAddActives"
+        tools:visibility="visible">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvWalletNoActivesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_medium"
+            android:text="@string/wallet_have_not_add_actives"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text.size.xx_medium" />
+
+        <TextView
+            android:id="@+id/tvWalletNoActivesDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_1"
+            android:fontFamily="@font/avenir_medium"
+            android:text="@string/wallet_add_your_actives_now"
+            android:textColor="@color/gray" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbWalletAddActives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginBottom="@dimen/spacing_5"
+            app:progressButtonText="@string/wallet_add_your_actives" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

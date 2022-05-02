@@ -18,6 +18,9 @@ class GetActivesUseCase @Inject constructor(
 
     override fun run(params: EmptyParams): Flow<Resource<List<Active>>> {
         return activeRepository.getActives()
-            .toResource(errorHandler) { cryptos -> cryptos.map { it.toDomain() } }
+            .toResource(errorHandler) { cryptos ->
+                val mappedActives = cryptos.map { it.toDomain() }
+                mappedActives.asReversed()
+            }
     }
 }

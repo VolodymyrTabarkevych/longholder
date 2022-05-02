@@ -34,6 +34,7 @@ fun ActiveEntity.toDomain() = Active(
     priceInOtherCurrencyOnStart = priceInOtherCurrencyOnStart,
     priceInOtherCurrencyOnStartFormatted = priceInOtherCurrencyOnStart.replaceDotWithComma(),
     priceInOtherCurrencyOnEnd = priceInOtherCurrencyOnEnd,
+    priceInOtherCurrencyOnEndFormatted = priceInOtherCurrencyOnEnd.replaceDotWithComma(),
     currentCurrencyPrice = currentCurrencyPrice,
     currentCurrencyPriceFormatted = currentCurrencyPrice.replaceDotWithComma(),
     nameOfCurrency = nameOfCurrency,
