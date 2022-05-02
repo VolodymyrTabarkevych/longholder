@@ -10,8 +10,9 @@ data class NotificationEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "valueOfMessage") val valueOfMessage: String,
-    @ColumnInfo(name = "linkToTheImage") val linkToTheImage: String,
+    @ColumnInfo(name = "valueOfMessage") val valueOfMessage: String?,
+    @ColumnInfo(name = "earnedMoney") val earnedMoney: Double,
+    @ColumnInfo(name = "linkToTheImage") val linkToTheImage: String?,
     @ColumnInfo(name = "dateOfSent") val dateOfSent: String,
     @ColumnInfo(name = "dateOfStart") val dateOfStart: String,
     @ColumnInfo(name = "isRead") val isRead: Boolean

@@ -13,8 +13,9 @@
         android:layout_width="@dimen/widget_size_2_5"
         android:layout_height="@dimen/widget_size_2_5"
         android:src="@drawable/img_btc"
+        app:layout_constraintBottom_toBottomOf="@id/tvNotificationTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvNotificationTitle"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -36,8 +37,8 @@
         android:fontFamily="@font/avenir_roman_regular"
         android:textColor="@color/gray"
         android:textSize="@dimen/text.size.normal"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvNotificationTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="22/02/2022" />
 
     <TextView
