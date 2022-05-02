@@ -5,7 +5,7 @@ import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.CurrencyDto
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.safeApiCall
+import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class CurrencyRemoteDataSource @Inject constructor(
     override val apiInterface: Class<API>
         get() = API::class.java
 
-    override suspend fun getCurrencies(): Result<List<CurrencyDto>> = safeApiCall {
+    override suspend fun getCurrencies(): Result<List<CurrencyDto>> = apiResult {
         api.getCurrencies()
     }
 

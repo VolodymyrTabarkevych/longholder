@@ -7,7 +7,7 @@ import com.traday.longholder.data.remote.requestbody.LoginRequestBody
 import com.traday.longholder.data.remote.requestbody.RegisterRequestBody
 import com.traday.longholder.data.remote.responsebody.LoginResponseBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.safeApiCall
+import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -23,7 +23,7 @@ class AuthenticateRemoteDataSource @Inject constructor(
         get() = API::class.java
 
     override suspend fun register(userName: String, email: String, password: String): Result<Unit> =
-        safeApiCall {
+        apiResult {
             api.register(
                 RegisterRequestBody(
                     userName = userName,
@@ -34,7 +34,7 @@ class AuthenticateRemoteDataSource @Inject constructor(
         }
 
     override suspend fun login(userName: String, password: String): Result<LoginResponseBody> =
-        safeApiCall {
+        apiResult {
             api.login(LoginRequestBody(userName = userName, password = password))
         }
 

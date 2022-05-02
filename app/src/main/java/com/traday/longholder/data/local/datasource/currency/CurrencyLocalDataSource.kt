@@ -3,8 +3,8 @@ package com.traday.longholder.data.local.datasource.currency
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.database.dao.CurrencyDao
 import com.traday.longholder.data.local.entity.CurrencyEntity
-import com.traday.longholder.extensions.safeFlow
-import com.traday.longholder.extensions.safeOperation
+import com.traday.longholder.extensions.flowResult
+import com.traday.longholder.extensions.result
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -13,18 +13,14 @@ class CurrencyLocalDataSource @Inject constructor(
 ) : ICurrencyLocalDataSource {
 
     override suspend fun saveOrUpdateCurrencies(vararg: CurrencyEntity): Result<Unit> =
-        safeOperation {
-            currencyDao.insertData(vararg)
-        }
+        result { currencyDao.insertData(vararg) }
 
     override suspend fun saveOrUpdateCurrencies(currencies: List<CurrencyEntity>): Result<Unit> =
-        safeOperation {
-            currencyDao.insertData(currencies)
-        }
+        result { currencyDao.insertData(currencies) }
 
     override fun getCurrencies(): Flow<Result<List<CurrencyEntity>>> =
-        safeFlow { currencyDao.getCurrencies() }
+        flowResult { currencyDao.getCurrencies() }
 
     override suspend fun deleteCurrencies(): Result<Unit> =
-        safeOperation { currencyDao.deleteCurrencies() }
+        result { currencyDao.deleteCurrencies() }
 }

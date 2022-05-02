@@ -6,7 +6,7 @@ import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSourc
 import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.safeApiCall
+import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.*
 import javax.inject.Inject
@@ -21,16 +21,16 @@ class ActiveRemoteDataSource @Inject constructor(
         get() = API::class.java
 
     override suspend fun getActives(): Result<List<ActiveDto>> =
-        safeApiCall { api.getActives() }
+        apiResult { api.getActives() }
 
     override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> =
-        safeApiCall { api.createActive(active) }
+        apiResult { api.createActive(active) }
 
     override suspend fun updateActive(active: ActiveDto): Result<Unit> =
-        safeApiCall { api.updateActive(active) }
+        apiResult { api.updateActive(active) }
 
     override suspend fun deleteActive(id: Int): Result<Unit> =
-        safeApiCall { api.deleteActive(id) }
+        apiResult { api.deleteActive(id) }
 
     interface API {
 

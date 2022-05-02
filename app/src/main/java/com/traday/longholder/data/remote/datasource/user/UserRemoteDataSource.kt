@@ -5,7 +5,7 @@ import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.UserDto
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.safeApiCall
+import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class UserRemoteDataSource @Inject constructor(
     override val apiInterface: Class<API>
         get() = API::class.java
 
-    override suspend fun getUser(): Result<UserDto> = safeApiCall {
+    override suspend fun getUser(): Result<UserDto> = apiResult {
         api.getUser()
     }
 

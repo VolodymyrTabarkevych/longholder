@@ -4,8 +4,8 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.database.dao.ActiveDao
 import com.traday.longholder.data.local.datasource.base.BaseLocalDataSource
 import com.traday.longholder.data.local.entity.ActiveEntity
-import com.traday.longholder.extensions.safeFlow
-import com.traday.longholder.extensions.safeOperation
+import com.traday.longholder.extensions.flowResult
+import com.traday.longholder.extensions.result
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -14,17 +14,17 @@ class ActiveLocalDataSource @Inject constructor(
 ) : BaseLocalDataSource(), IActiveLocalDataSource {
 
     override suspend fun saveOrUpdateActive(vararg: ActiveEntity): Result<Unit> =
-        safeOperation { activeDao.insertData(vararg) }
+        result { activeDao.insertData(vararg) }
 
     override suspend fun saveOrUpdateActive(actives: List<ActiveEntity>): Result<Unit> =
-        safeOperation { activeDao.insertData(actives) }
+        result { activeDao.insertData(actives) }
 
     override fun getActives(): Flow<Result<List<ActiveEntity>>> =
-        safeFlow { activeDao.getActives() }
+        flowResult { activeDao.getActives() }
 
     override suspend fun deleteActive(id: Int): Result<Unit> =
-        safeOperation { activeDao.deleteActiveById(id) }
+        result { activeDao.deleteActiveById(id) }
 
     override suspend fun deleteActive(): Result<Unit> =
-        safeOperation { activeDao.deleteActive() }
+        result { activeDao.deleteActive() }
 }

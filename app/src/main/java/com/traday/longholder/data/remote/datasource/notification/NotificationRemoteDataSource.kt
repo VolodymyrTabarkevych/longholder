@@ -5,7 +5,7 @@ import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.NotificationDto
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.safeApiCall
+import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class NotificationRemoteDataSource @Inject constructor(
         get() = API::class.java
 
     override suspend fun getNotifications(): Result<List<NotificationDto>> =
-        safeApiCall { api.getNotifications() }
+        apiResult { api.getNotifications() }
 
     interface API {
 
