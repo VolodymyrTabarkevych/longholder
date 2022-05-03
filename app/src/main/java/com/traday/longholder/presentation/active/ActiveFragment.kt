@@ -13,8 +13,8 @@ import com.traday.longholder.databinding.FragmentActiveBinding
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.extensions.*
-import com.traday.longholder.presentation.active.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.base.BaseMVVMFragment
+import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import com.traday.longholder.utils.CALENDAR_FORMAT_PATTERN
 import java.text.SimpleDateFormat
@@ -63,6 +63,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                         setText(active.valueOfCrypto.toString())
                     }
                     tietActiveDate.setText(active.dateOfStart)
+                    tietActiveDate.setTextColor(getColorCompat(R.color.black))
                     tietActiveComment.apply {
                         isEnabled = false
                         setText(active.comment)
@@ -135,6 +136,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                                     )
                                     val formattedDate: String = format.format(timeInMillis)
                                     tietActiveDate.setText(formattedDate)
+                                    tietActiveDate.setTextColor(getColorCompat(R.color.black))
                                     validateFields()
                                 }
                                 it.show(childFragmentManager, TAG)
@@ -147,7 +149,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
 
     override fun initViewModel() {
         with(viewModel) {
-            selectedCurrency.observe(viewLifecycleOwner, ::setCurrency)
+            selectedCurrencyLiveData.observe(viewLifecycleOwner, ::setCurrency)
             buttonStateLiveData.observe(viewLifecycleOwner, ::setButtonState)
             validationErrorsLiveData.observe(viewLifecycleOwner, ::setValidationError)
             getCurrenciesLiveData.observe(viewLifecycleOwner) {
@@ -172,6 +174,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     is Resource.Loading -> setCreateDeleteActiveLoading(true)
                     is Resource.Success -> {
                         setCreateDeleteActiveLoading(false)
+                        showSnackOverBottomNavigationView()
                         navController.popBackStack()
                     }
                 }
@@ -202,7 +205,9 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
     private fun setCurrencies(currencies: List<Currency>) {
         with(binding) {
             (actvActiveSelectCurrency as? AutoCompleteTextView)?.apply {
-                setInitialCurrency(currencies.first())
+                if (text.toString().isEmpty()) {
+                    setInitialCurrency(currencies.first())
+                }
                 val adapter = CurrencyAdapter(requireContext(), currencies)
                 setAdapter(adapter)
                 setOnItemClickListener { _, _, i, _ ->

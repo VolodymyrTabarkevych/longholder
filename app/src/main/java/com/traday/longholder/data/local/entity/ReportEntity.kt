@@ -17,6 +17,6 @@ data class ReportEntity(
     @ColumnInfo(name = "percents") val percents: Double,
     @ColumnInfo(name = "priceNow") val priceNow: Double,
     @ColumnInfo(name = "coinName") val coinName: String,
-    @Embedded(prefix = "crypto") val cryptoMoney: CryptoEntity,
+    @Embedded(prefix = "crypto") val activeMoney: ActiveEntity,
     @ColumnInfo(name = "dateOfReport") val dateOfReport: String
 )

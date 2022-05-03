@@ -1,34 +1,23 @@
 package com.traday.longholder.data.mapper
 
-import com.traday.longholder.data.local.entity.ReportEntity
 import com.traday.longholder.data.remote.dto.ReportDto
 import com.traday.longholder.domain.model.Report
-import com.traday.longholder.utils.EMPTY_STRING
+import com.traday.longholder.extensions.replaceDotWithComma
 
-fun ReportDto.toEntity() = ReportEntity(
-    id = id,
-    name = name ?: EMPTY_STRING,
-    currencyCode = currencyCode ?: EMPTY_STRING,
-    profit = profit,
-    allMoney = allMoney,
-    countOfCrypto = countOfCrypto,
-    percents = percents,
-    priceNow = priceNow,
-    coinName = coinName ?: EMPTY_STRING,
-    cryptoMoney = cryptoMoney.toEntity(),
-    dateOfReport = dateOfReport
-)
-
-fun ReportEntity.toDomain() = Report(
+fun ReportDto.toDomain() = Report(
     id = id,
     name = name,
     currencyCode = currencyCode,
     profit = profit,
+    profitFormatted = profit.replaceDotWithComma(),
     allMoney = allMoney,
+    allMoneyFormatted = allMoney.replaceDotWithComma(),
     countOfCrypto = countOfCrypto,
+    countOfCryptoFormatted = countOfCrypto.toString(),
     percents = percents,
     priceNow = priceNow,
+    priceNowFormatted = priceNow.replaceDotWithComma(),
     coinName = coinName,
-    cryptoMoney = cryptoMoney.toDomain(),
+    actives = actives?.map { it.toDomain() } ?: emptyList(),
     dateOfReport = dateOfReport
 )

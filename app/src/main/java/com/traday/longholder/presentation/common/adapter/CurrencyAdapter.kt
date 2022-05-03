@@ -1,4 +1,4 @@
-package com.traday.longholder.presentation.active.adapter
+package com.traday.longholder.presentation.common.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

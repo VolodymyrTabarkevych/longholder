@@ -21,6 +21,8 @@
     <string name="common_dollar">$</string>
     <string name="common_dollar_value_with_brackets">($%s)</string>
     <string name="common_earned_crypto_with_percent">+%1$s (%2$s %%)</string>
+    <string name="common_earned_crypto">+%1$s</string>
+    <string name="common_value_with_percent">%.2f%%</string>
     <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Cancel</string>
 
@@ -64,6 +66,12 @@
 
     <!-- Analytics -->
     <string name="analytics_title">Analytics</string>
+    <string name="analytics_total_info">Total Info</string>
+    <string name="analytics_total_on_hold">Total on hold</string>
+    <string name="analytics_current_exchange_rate">Сurrent Exchange rate</string>
+    <string name="analytics_total_in_currnecy">Total in currency</string>
+    <string name="analytics_profit">Profit</string>
+    <string name="analytics_raise_fold">Raise/Fold in %</string>
 
     <!-- Profile -->
     <string name="profile_title">Profile</string>

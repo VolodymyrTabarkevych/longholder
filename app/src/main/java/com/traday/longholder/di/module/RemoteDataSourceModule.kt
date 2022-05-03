@@ -8,6 +8,8 @@ import com.traday.longholder.data.remote.datasource.currency.CurrencyRemoteDataS
 import com.traday.longholder.data.remote.datasource.currency.ICurrencyRemoteDataSource
 import com.traday.longholder.data.remote.datasource.notification.INotificationRemoteDataSource
 import com.traday.longholder.data.remote.datasource.notification.NotificationRemoteDataSource
+import com.traday.longholder.data.remote.datasource.report.IReportRemoteDataSource
+import com.traday.longholder.data.remote.datasource.report.ReportRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.UserRemoteDataSource
 import dagger.Binds
@@ -33,4 +35,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindCurrencyRemoteDataSource(source: CurrencyRemoteDataSource): ICurrencyRemoteDataSource
+
+    @Binds
+    fun bindReportRemoteDataSource(source: ReportRemoteDataSource): IReportRemoteDataSource
 }

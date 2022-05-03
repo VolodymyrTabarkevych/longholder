@@ -12,6 +12,6 @@ data class ReportDto(
     @SerializedName("percents") val percents: Double,
     @SerializedName("priceNow") val priceNow: Double,
     @SerializedName("coinName") val coinName: String?,
-    @SerializedName("cryptoMoney") val cryptoMoney: CryptoDto,
+    @SerializedName("cryptoMoney") val actives: List<ActiveDto>?,
     @SerializedName("dateOfReport") val dateOfReport: String
 )

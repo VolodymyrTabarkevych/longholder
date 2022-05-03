@@ -48,6 +48,30 @@ fun ActiveEntity.toDomain() = Active(
     percentsFormatted = percents.replaceDotWithComma()
 )
 
+fun ActiveDto.toDomain() = Active(
+    id = id,
+    name = name,
+    valueOfCrypto = valueOfCrypto,
+    valueOfCryptoFormatted = valueOfCrypto.replaceDotWithComma(),
+    cryptoPriceOnStart = cryptoPriceOnStart,
+    cryptoPriceOnEnd = cryptoPriceOnEnd,
+    priceInOtherCurrencyOnStart = priceInOtherCurrencyOnStart,
+    priceInOtherCurrencyOnStartFormatted = priceInOtherCurrencyOnStart.replaceDotWithComma(),
+    priceInOtherCurrencyOnEnd = priceInOtherCurrencyOnEnd,
+    priceInOtherCurrencyOnEndFormatted = priceInOtherCurrencyOnEnd.replaceDotWithComma(),
+    currentCurrencyPrice = currentCurrencyPrice,
+    currentCurrencyPriceFormatted = currentCurrencyPrice.replaceDotWithComma(),
+    nameOfCurrency = nameOfCurrency,
+    dateOfStart = dateOfStart.formatDateServerFormatToClientFormatOrEmpty(),
+    dateOfEnd = dateOfEnd.formatDateServerFormatToClientFormatOrEmpty(),
+    comment = comment,
+    linkToImage = linkToImage,
+    earnedMoney = earnedMoney,
+    earnedMoneyFormatted = earnedMoney.replaceDotWithComma(),
+    percents = percents,
+    percentsFormatted = percents.replaceDotWithComma()
+)
+
 fun Active.toDto() = ActiveDto(
     id = id,
     name = name,

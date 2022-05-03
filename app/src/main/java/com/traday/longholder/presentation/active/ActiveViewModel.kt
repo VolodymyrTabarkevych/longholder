@@ -29,8 +29,8 @@ class ActiveViewModel @Inject constructor(
     private val mode: ActiveScreenMode =
         ActiveFragmentArgs.fromSavedStateHandle(state).mode
 
-    private val _selectedCurrency = MutableLiveData<Currency>()
-    val selectedCurrency: LiveData<Currency> get() = _selectedCurrency
+    private val _selectedCurrencyLiveData = MutableLiveData<Currency>()
+    val selectedCurrencyLiveData: LiveData<Currency> get() = _selectedCurrencyLiveData
 
     private val _buttonStateLiveData = MutableLiveData<Boolean>()
     val buttonStateLiveData: LiveData<Boolean> get() = _buttonStateLiveData
@@ -67,7 +67,7 @@ class ActiveViewModel @Inject constructor(
     }
 
     fun selectCurrency(currency: Currency) {
-        _selectedCurrency.postValue(currency)
+        _selectedCurrencyLiveData.postValue(currency)
     }
 
     fun createActive(
@@ -75,7 +75,7 @@ class ActiveViewModel @Inject constructor(
         dateOfEnd: String,
         comment: String?
     ) {
-        val selectedCurrency = _selectedCurrency.value ?: return
+        val selectedCurrency = _selectedCurrencyLiveData.value ?: return
         executeUseCase(
             createActiveUseCase, CreateActiveUseCase.Params(
                 name = selectedCurrency.name,

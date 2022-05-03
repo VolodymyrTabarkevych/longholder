@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvAnalyticsActiveAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0,777" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsActivePriceInOtherCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_1"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvAnalyticsActiveAmount"
+        app:layout_constraintStart_toEndOf="@id/tvAnalyticsActiveAmount"
+        tools:text="($602 094,43)" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsActiveFromTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAnalyticsActiveAmount"
+        tools:text="from" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsActiveStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sc_spacing_0_5"
+        android:fontFamily="@font/avenir_black_extra_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.normal"
+        app:layout_constraintBaseline_toBaselineOf="@id/tvAnalyticsActiveFromTitle"
+        app:layout_constraintStart_toEndOf="@id/tvAnalyticsActiveFromTitle"
+        tools:text="18/01/2019" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsCurrentPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_1"
+        android:fontFamily="@font/avenir_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAnalyticsActiveFromTitle"
+        tools:text="1 BTC = $32,242.86 " />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:background="@color/athens_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAnalyticsCurrentPrice" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,7 +121,7 @@
                         android:clickable="true"
                         android:focusable="false"
                         android:text="@string/active_date_hint"
-                        android:textColor="@color/black"
+                        android:textColor="@color/gray"
                         tools:ignore="KeyboardInaccessibleWidget" />
                 </com.traday.longholder.presentation.customviews.AppTextInputLayout>
 
@@ -188,7 +188,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/avenir_medium"
-                            android:text="983 143 523,22"
+                            tools:text="983 143 523,22"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text.size.xx_medium" />
 
@@ -221,9 +221,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_1"
                         android:fontFamily="@font/avenir_medium"
-                        android:text="+8 323,13 (0,66 %) "
                         android:textColor="@color/limeade"
-                        android:textSize="@dimen/text.size.xx_medium" />
+                        android:textSize="@dimen/text.size.xx_medium"
+                        tools:text="+8 323,13 (0,66 %) " />
                 </LinearLayout>
 
                 <TextView

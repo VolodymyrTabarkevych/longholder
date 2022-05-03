@@ -25,4 +25,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindCurrencyRepository(repository: CurrencyRepository): ICurrencyRepository
+
+    @Binds
+    fun bindReportRepository(repository: ReportRepository): IReportRepository
 }

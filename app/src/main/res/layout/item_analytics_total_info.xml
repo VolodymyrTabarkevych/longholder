@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:text="@string/analytics_total_info"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:text="@string/analytics_total_on_hold"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsTotalInfoCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_0_5"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large"
+        tools:text="2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:text="@string/analytics_current_exchange_rate"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsTotalInfoPriceNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_0_5"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large"
+        tools:text="$44 123.86" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:text="@string/analytics_total_in_currnecy"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsTotalInfoPriceTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_0_5"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.large"
+        tools:text="$12 344 123.86" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:text="@string/analytics_profit"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsTotalInfoEarned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_0_5"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:textColor="@color/limeade"
+        android:textSize="@dimen/text.size.large"
+        tools:text="+ $24 123.12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:fontFamily="@font/avenir_roman_regular"
+        android:text="@string/analytics_raise_fold"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text.size.normal" />
+
+    <TextView
+        android:id="@+id/tvAnalyticsTotalInfoEarnedInPercents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_0_5"
+        android:layout_marginBottom="@dimen/spacing_5"
+        android:drawablePadding="@dimen/spacing_1"
+        android:fontFamily="@font/avenir_heavy_bold"
+        android:textColor="@color/limeade"
+        android:textSize="@dimen/text.size.large"
+        app:drawableEndCompat="@drawable/ic_arrow_to_top"
+        app:drawableTint="@color/limeade"
+        tools:text="12" />
+</LinearLayout>
