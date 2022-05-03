@@ -174,7 +174,7 @@
                         style="@style/TextAppearance.App.Screen.TextInputHeader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_4"
+                        android:layout_marginTop="@dimen/spacing_3"
                         android:text="@string/active_summary_today" />
 
                     <FrameLayout
@@ -212,7 +212,7 @@
                         style="@style/TextAppearance.App.Screen.TextInputHeader"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/spacing_4"
+                        android:layout_marginTop="@dimen/spacing_3"
                         android:text="@string/active_profit" />
 
                     <TextView

@@ -37,6 +37,10 @@ fun ActiveEntity.toDomain() = Active(
     priceInOtherCurrencyOnEndFormatted = priceInOtherCurrencyOnEnd.replaceDotWithComma(),
     currentCurrencyPrice = currentCurrencyPrice,
     currentCurrencyPriceFormatted = currentCurrencyPrice.replaceDotWithComma(),
+    currentCurrencyPriceSummaryFormatted = calculateCurrentCurrencyPriceSummary(
+        valueOfCrypto = valueOfCrypto,
+        currentCurrencyPrice = currentCurrencyPrice
+    ).replaceDotWithComma(),
     nameOfCurrency = nameOfCurrency,
     dateOfStart = dateOfStart,
     dateOfEnd = dateOfEnd,
@@ -61,6 +65,10 @@ fun ActiveDto.toDomain() = Active(
     priceInOtherCurrencyOnEndFormatted = priceInOtherCurrencyOnEnd.replaceDotWithComma(),
     currentCurrencyPrice = currentCurrencyPrice,
     currentCurrencyPriceFormatted = currentCurrencyPrice.replaceDotWithComma(),
+    currentCurrencyPriceSummaryFormatted = calculateCurrentCurrencyPriceSummary(
+        valueOfCrypto = valueOfCrypto,
+        currentCurrencyPrice = currentCurrencyPrice
+    ).replaceDotWithComma(),
     nameOfCurrency = nameOfCurrency,
     dateOfStart = dateOfStart.formatDateServerFormatToClientFormatOrEmpty(),
     dateOfEnd = dateOfEnd.formatDateServerFormatToClientFormatOrEmpty(),
@@ -89,3 +97,10 @@ fun Active.toDto() = ActiveDto(
     earnedMoney = earnedMoney,
     percents = percents
 )
+
+private fun calculateCurrentCurrencyPriceSummary(
+    valueOfCrypto: Double,
+    currentCurrencyPrice: Double
+): Double {
+    return valueOfCrypto * currentCurrencyPrice
+}

@@ -70,7 +70,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     }
                     llActiveInfo.show()
                     tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
-                    tvActiveSummaryToday.text = active.priceInOtherCurrencyOnEndFormatted
+                    tvActiveSummaryToday.text = active.currentCurrencyPriceSummaryFormatted
                     tvActiveEarned.text = getString(
                         R.string.common_earned_crypto_with_percent,
                         active.earnedMoneyFormatted,
