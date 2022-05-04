@@ -12,6 +12,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -59,7 +60,10 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
         Interceptor { chain ->
             val response = chain.proceed(chain.request().newBuilder().build())
             if (!response.isSuccessful) {
-                val errorDto = ErrorResponse(response.code, response.message)
+                val jsonObject = JSONObject(response.body?.string()!!)
+                val status = jsonObject.getString(ERROR_RESPONSE_NAME_STATUS)
+                val message = jsonObject.getString(ERROR_RESPONSE_NAME_MESSAGE)
+                val errorDto = ErrorResponse(response.code, message)
                 throw BaseException.NetworkRequestException(errorDto)
             } else if (response.body == null) {
                 throw BaseException.NoResponseContentException()
@@ -76,5 +80,7 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
 
         const val CONTENT_TYPE_HEADER = "Content-Type"
         const val CONTENT_TYPE_HEADER_VALUE = "application/json"
+        private const val ERROR_RESPONSE_NAME_STATUS = "status"
+        private const val ERROR_RESPONSE_NAME_MESSAGE = "message"
     }
 }
