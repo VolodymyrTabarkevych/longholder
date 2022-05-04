@@ -23,7 +23,7 @@ abstract class BaseMVVMFragment<out VM : BaseViewModel, out B : ViewBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.unauthorizedLiveData.observe(viewLifecycleOwner) {
-            findNavController().navigateSafe(NavMainDirections.actionGlobalWelcomeFragment(true))
+            findNavController().navigateSafe(NavMainDirections.actionGlobalNavStart(true))
         }
         viewModel.noInternetConnectionLiveData.observe(viewLifecycleOwner) {
             showDialog(

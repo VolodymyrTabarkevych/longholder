@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     private val rootGraph by lazy { navController.navInflater.inflate(R.navigation.nav_main) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_Longholder)
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         initBottomTabs()
         initViewModel()
@@ -43,10 +44,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
 
     private fun handleUserStatus(userStatus: UserStatus) {
         val destinationId = when (userStatus) {
-            UserStatus.NOT_AUTHORIZED -> R.id.welcomeFragment
+            UserStatus.NOT_AUTHORIZED -> R.id.nav_start
             UserStatus.NOT_VERIFIED -> TODO()
             UserStatus.AUTHORIZED -> R.id.nav_wallet
-            UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.onboardingFragment
+            UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.nav_wallet
         }
         setStartDestination(destinationId)
     }

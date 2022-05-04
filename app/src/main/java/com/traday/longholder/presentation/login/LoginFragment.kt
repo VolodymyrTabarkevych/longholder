@@ -13,6 +13,7 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.EmailNotValidException
 import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
+import com.traday.longholder.utils.ViewUtils
 
 class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
     R.layout.fragment_login
@@ -37,6 +38,12 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
             }
             pbLogin.setClickListenerForDisabledState {
                 clearInputFieldsFocusAndHideKeyboard()
+            }
+            tvLoginForgotPassword.apply {
+                ViewUtils.accessibleTouchTarget(this)
+                setOnClickListener {
+                    navController.navigateSafe(LoginFragmentDirections.actionLoginFragmentToResetPasswordFragment())
+                }
             }
         }
     }
@@ -85,7 +92,7 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
                     is Resource.Loading -> setLoginLoading(true)
                     is Resource.Success -> {
                         setLoginLoading(false)
-                        navController.navigateSafe(LoginFragmentDirections.actionGlobalOnboardingFragment())
+                        navController.navigateSafe(LoginFragmentDirections.actionLoginFragmentToOnboardingFragment())
                     }
                 }
             }

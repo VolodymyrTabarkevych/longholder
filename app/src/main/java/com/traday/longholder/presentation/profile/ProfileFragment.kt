@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
 import com.traday.longholder.extensions.navigateSafe
@@ -59,9 +58,5 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
         }
     }
 
-    override fun initViewModel() {
-        viewModel.logoutLiveData.observe(viewLifecycleOwner) {
-            navController.navigateSafe(NavMainDirections.actionGlobalWelcomeFragment())
-        }
-    }
+    override fun initViewModel() {}
 }

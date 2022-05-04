@@ -109,4 +109,8 @@
     <!-- Subscription -->
     <string name="subscription_title">Subscription</string>
     <string name="subscription_cancel_subscription">Cancel subscription</string>
+
+    <!-- Reset password -->
+    <string name="reset_password_enter_email">Enter you e-mail. We will send you the link to create a new password.</string>
+    <string name="reset_password">Reset password</string>
 </resources>

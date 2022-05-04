@@ -5,7 +5,6 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpPasswordBinding
 import com.traday.longholder.extensions.*
@@ -13,14 +12,14 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 
-class SingUpPasswordFragment :
-    BaseMVVMFragment<SingUpPasswordViewModel, FragmentSignUpPasswordBinding>(
+class SignUpPasswordFragment :
+    BaseMVVMFragment<SignUpPasswordViewModel, FragmentSignUpPasswordBinding>(
         R.layout.fragment_sign_up_password
     ) {
 
     override val binding: FragmentSignUpPasswordBinding by viewBinding(FragmentSignUpPasswordBinding::bind)
 
-    override val viewModel: SingUpPasswordViewModel by viewModels()
+    override val viewModel: SignUpPasswordViewModel by viewModels()
 
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
@@ -34,7 +33,7 @@ class SingUpPasswordFragment :
                 pbSignUpPasswordNext.setLoading(true)
                 mainHandler.postDelayed({
                     pbSignUpPasswordNext.setLoading(false)
-                    navController.navigateSafe(NavMainDirections.actionGlobalOnboardingFragment())
+                    navController.navigateSafe(SignUpPasswordFragmentDirections.actionSingUpPasswordFragmentToOnboardingFragment())
                 }, 2000)
             }
             pbSignUpPasswordNext.setClickListenerForDisabledState {

@@ -6,7 +6,7 @@ import com.traday.longholder.presentation.base.BaseValidationViewModel
 import com.traday.longholder.presentation.validation.validator.CredentialValidator
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 
-class SingUpPasswordViewModel : BaseValidationViewModel() {
+class SignUpPasswordViewModel : BaseValidationViewModel() {
 
     private val _buttonStateLiveData = MutableLiveData<Boolean>()
     val buttonStateLiveData: LiveData<Boolean> get() = _buttonStateLiveData
