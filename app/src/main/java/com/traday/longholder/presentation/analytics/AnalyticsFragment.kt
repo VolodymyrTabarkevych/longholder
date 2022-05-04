@@ -22,6 +22,7 @@ import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
+import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
 
 class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalyticsBinding>(
     layoutResId = R.layout.fragment_analytics,

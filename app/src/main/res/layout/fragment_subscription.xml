@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.traday.longholder.presentation.customviews.SimpleToolbar
+        android:id="@+id/stSubscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        style="@style/TextAppearance.App.Screen.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:text="@string/subscription_title" />
+
+    <LinearLayout
+        android:id="@+id/llSubscriptionOnboarding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpSubscription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlSubscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_2"
+            android:background="@color/transparent"
+            app:tabBackground="@drawable/ic_tab_indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabPaddingEnd="@dimen/spacing_1"
+            app:tabPaddingStart="@dimen/spacing_0_75" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_5"
+            android:fontFamily="@font/avenir_roman_regular"
+            android:text="Starting at $4,99/month"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text.size.normal" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbSubscriptionNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_1_75"
+            android:layout_marginBottom="@dimen/spacing_5"
+            app:progressButtonText="@string/common_next" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbSubscriptionStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/spacing_1_75"
+            android:layout_marginBottom="@dimen/spacing_5"
+            android:visibility="gone"
+            app:pbIcon="@drawable/img_rocket"
+            app:progressButtonText="@string/onboarding_start" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSubscription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_medium"
+            android:text="Your subscription legit due to:"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text.size.xx_medium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_1"
+            android:fontFamily="@font/avenir_black_extra_bold"
+            android:text="22/02/2022"
+            android:textColor="@color/st_tropaz"
+            android:textSize="@dimen/text.size.large" />
+
+        <com.traday.longholder.presentation.customviews.ProgressButton
+            android:id="@+id/pbSubscriptionCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_3"
+            app:progressButtonText="@string/subscription_cancel_subscription"
+            app:progressButtonType="emptyWithBorderRed" />
+    </LinearLayout>
+</LinearLayout>

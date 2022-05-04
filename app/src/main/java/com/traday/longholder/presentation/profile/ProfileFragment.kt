@@ -44,7 +44,9 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
                     ProfileFragmentDirections.actionProfileFragmentToThemeFragment()
                 )
             }
-            flProfileSubscription.setOnClickListener {}
+            flProfileSubscription.setOnClickListener {
+                navController.navigateSafe(ProfileFragmentDirections.actionProfileFragmentToSubscriptionFragment())
+            }
             flProfileLogout.setOnClickListener {
                 showDialog(
                     title = getString(R.string.dialog_log_out_title),

@@ -105,4 +105,8 @@
     <string name="active_leave_comment">Leave your comment</string>
     <string name="active_put_on_hold">Put on Hold</string>
     <string name="active_stop_holding">Stop Holding</string>
+
+    <!-- Subscription -->
+    <string name="subscription_title">Subscription</string>
+    <string name="subscription_cancel_subscription">Cancel subscription</string>
 </resources>

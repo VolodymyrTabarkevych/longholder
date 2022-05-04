@@ -1,4 +1,4 @@
-package com.traday.longholder.presentation.analytics
+package com.traday.longholder.presentation.common.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
