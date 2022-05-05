@@ -39,8 +39,8 @@ class ActiveViewModel @Inject constructor(
         executeUseCase(getCurrenciesUseCase, EmptyParams())
     } else {
         emptyFlow()
-    }.asLiveData()
-    val getCurrenciesLiveData: LiveData<Resource<List<Currency>>> get() = _getCurrenciesLiveData
+    }
+    val getCurrenciesLiveData: LiveData<Resource<List<Currency>>> get() = _getCurrenciesLiveData.asLiveData()
 
     private val _createActiveLiveData = MutableLiveData<Resource<Unit>>()
     val createActiveLiveData: LiveData<Resource<Unit>> get() = _createActiveLiveData

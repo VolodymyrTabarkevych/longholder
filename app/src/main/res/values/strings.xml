@@ -25,6 +25,7 @@
     <string name="common_value_with_percent">%.2f%%</string>
     <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Cancel</string>
+    <string name="common_percent_sign">%</string>
 
     <!-- Dialog -->
     <string name="dialog_log_out_title">Do you want to Log out?</string>
@@ -113,4 +114,10 @@
     <!-- Reset password -->
     <string name="reset_password_enter_email">Enter you e-mail. We will send you the link to create a new password.</string>
     <string name="reset_password">Reset password</string>
+
+    <!-- Calculator -->
+    <string name="calculator_title">Calculator</string>
+    <string name="calculator_from_number">from number</string>
+    <string name="calculator_result">Result</string>
+    <string name="calculator_number">Number</string>
 </resources>

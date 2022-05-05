@@ -26,9 +26,9 @@ class AnalyticsViewModel @Inject constructor(
     val makeSubscriptionLiveData: LiveData<Boolean> get() = _makeSubscriptionLiveData
 
     private val _getCurrenciesLiveData =
-        executeUseCase(getCurrenciesUseCase, EmptyParams()).asLiveData()
+        executeUseCase(getCurrenciesUseCase, EmptyParams())
     val getCurrenciesLiveData: LiveData<Resource<List<Currency>>>
-        get() = _getCurrenciesLiveData
+        get() = _getCurrenciesLiveData.asLiveData()
 
     private val _selectedCurrencyLiveData = MutableLiveData<Currency>()
     val selectedCurrencyLiveData: LiveData<Currency> get() = _selectedCurrencyLiveData

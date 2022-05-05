@@ -17,6 +17,7 @@ import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.model.Report
+import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.extensions.setStartIconWithGlide
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
@@ -41,6 +42,11 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     private fun initActionButtons() {
         with(binding) {
+            ivAnalyticsCalculate.setOnClickListener {
+                navController.navigateSafe(
+                    AnalyticsFragmentDirections.actionAnalyticsFragmentToCalculatorFragment()
+                )
+            }
             pbAnalyticsNext.setOnClickListener {
                 val currentPage = vpAnalytics.currentItem
                 val lastPage = subscriptionAdapter.itemCount.dec()
@@ -115,7 +121,6 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     private fun setCurrenciesLoading(isLoading: Boolean) {
         with(binding) {
-            tilAnalyticsSelectCurrency.isVisible = !isLoading
             pbAnalytics.isVisible = isLoading
         }
     }

@@ -9,5 +9,14 @@
         android:id="@+id/analyticsFragment"
         android:name="com.traday.longholder.presentation.analytics.AnalyticsFragment"
         android:label="AnalyticsFragment"
-        tools:layout="@layout/fragment_analytics" />
+        tools:layout="@layout/fragment_analytics">
+        <action
+            android:id="@+id/action_analyticsFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.traday.longholder.presentation.calculator.CalculatorFragment"
+        android:label="CalculatorFragment"
+        tools:layout="@layout/fragment_calculator" />
 </navigation>

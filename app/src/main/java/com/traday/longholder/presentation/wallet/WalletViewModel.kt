@@ -17,7 +17,7 @@ class WalletViewModel @Inject constructor(
     private val createActiveUseCase: CreateActiveUseCase
 ) : BaseViewModel() {
 
-    private val _getCryptosLiveData = executeUseCase(getActivesUseCase, EmptyParams()).asLiveData()
-    val getCryptosLiveData: LiveData<Resource<List<Active>>> get() = _getCryptosLiveData
+    private val _getCryptosLiveData = executeUseCase(getActivesUseCase, EmptyParams())
+    val getCryptosLiveData: LiveData<Resource<List<Active>>> get() = _getCryptosLiveData.asLiveData()
 
 }

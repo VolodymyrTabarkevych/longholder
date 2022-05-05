@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:background="@color/white"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.traday.longholder.presentation.customviews.SimpleToolbar
+            android:id="@+id/stCalculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/calculator_title" />
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                android:text="@string/common_percent_sign"
+                android:textSize="@dimen/text.size.medium" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                android:text="@string/calculator_from_number"
+                android:textSize="@dimen/text.size.medium" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1"
+                app:endIconDrawable="@drawable/ic_curved_arrow"
+                app:endIconMode="custom">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                android:text="@string/calculator_result"
+                android:textSize="@dimen/text.size.medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1"
+                android:fontFamily="@font/avenir_medium"
+                android:text="983 143 523,22"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.size.xx_medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:background="@color/athens_gray" />
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_6"
+                android:text="@string/calculator_number"
+                android:textSize="@dimen/text.size.medium" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                android:text="@string/calculator_from_number"
+                android:textSize="@dimen/text.size.medium" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                style="@style/Widget.App.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1"
+                app:endIconDrawable="@drawable/ic_curved_arrow"
+                app:endIconMode="custom">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.TextInputHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                android:text="@string/calculator_result"
+                android:textSize="@dimen/text.size.medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_1"
+                android:fontFamily="@font/avenir_medium"
+                android:text="983 143 523,22"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text.size.xx_medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/widget_size"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginVertical="@dimen/spacing_2"
+                android:background="@color/athens_gray" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
