@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -14,12 +15,13 @@ import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
 import com.traday.longholder.presentation.base.BottomNavigationViewProvider
+import com.traday.longholder.presentation.base.StartDestinationHandler
 import com.traday.longholder.presentation.base.TabBarHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
-    BottomNavigationViewProvider {
+    BottomNavigationViewProvider, StartDestinationHandler {
 
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
     private val viewModel: MainViewModel by viewModels()
@@ -47,18 +49,32 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
             UserStatus.NOT_AUTHORIZED -> R.id.nav_start
             UserStatus.NOT_VERIFIED -> TODO()
             UserStatus.AUTHORIZED -> R.id.nav_wallet
-            UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> R.id.nav_wallet
+            UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> {
+                setStartDestinationForNestedGraph(
+                    graphId = R.id.nav_start,
+                    destinationId = R.id.onboardingFragment
+                )
+                R.id.nav_start
+            }
         }
         setStartDestination(destinationId)
     }
 
-    private fun setStartDestination(@IdRes destinationId: Int, args: Bundle? = null) {
+    override fun setStartDestination(
+        @IdRes destinationId: Int,
+        args: Bundle?
+    ) {
         rootGraph.setStartDestination(destinationId)
         args?.let {
             navController.setGraph(rootGraph, it)
         } ?: run {
             navController.graph = rootGraph
         }
+    }
+
+    override fun setStartDestinationForNestedGraph(@IdRes graphId: Int, @IdRes destinationId: Int) {
+        val graph = rootGraph.findNode(graphId) as NavGraph
+        graph.setStartDestination(destinationId)
     }
 
     override fun showTabs() {

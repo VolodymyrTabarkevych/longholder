@@ -1,5 +1,6 @@
 package com.traday.longholder.extensions
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
@@ -23,34 +24,49 @@ fun View?.gone() {
     this?.visibility = View.GONE
 }
 
-fun View.getDrawableCompat(
-    @DrawableRes drawableResId: Int,
-    theme: Resources.Theme? = null
-): Drawable? {
-    return ResourcesCompat.getDrawable(resources, drawableResId, theme)
-}
-
-fun View.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = null): Int {
-    return ResourcesCompat.getColor(resources, colorResId, theme)
-}
-
-fun View.getFontCompat(@FontRes fontResId: Int): Typeface? {
-    return context?.let { ResourcesCompat.getFont(it, fontResId) }
-}
-
 fun Fragment.getDrawableCompat(
     @DrawableRes drawableResId: Int,
     theme: Resources.Theme? = null
 ): Drawable? {
-    return ResourcesCompat.getDrawable(resources, drawableResId, theme)
+    return context?.getDrawableCompat(drawableResId, theme)
 }
 
 fun Fragment.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = null): Int {
-    return ResourcesCompat.getColor(resources, colorResId, theme)
+    return requireContext().getColorCompat(colorResId, theme)
 }
 
 fun Fragment.getFontCompat(@FontRes fontResId: Int): Typeface? {
-    return context?.let { ResourcesCompat.getFont(it, fontResId) }
+    return requireContext().getFontCompat(fontResId)
+}
+
+fun View.getDrawableCompat(
+    @DrawableRes drawableResId: Int,
+    theme: Resources.Theme? = null
+): Drawable? {
+    return context.getDrawableCompat(drawableResId, theme)
+}
+
+fun View.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = null): Int {
+    return context.getColorCompat(colorResId, theme)
+}
+
+fun View.getFontCompat(@FontRes fontResId: Int): Typeface? {
+    return context.getFontCompat(fontResId)
+}
+
+fun Context.getDrawableCompat(
+    @DrawableRes drawableResId: Int,
+    theme: Resources.Theme? = null
+): Drawable? {
+    return ResourcesCompat.getDrawable(resources, drawableResId, theme)
+}
+
+fun Context.getColorCompat(@ColorRes colorResId: Int, theme: Resources.Theme? = null): Int {
+    return ResourcesCompat.getColor(resources, colorResId, theme)
+}
+
+fun Context.getFontCompat(@FontRes fontResId: Int): Typeface? {
+    return ResourcesCompat.getFont(this, fontResId)
 }
 
 fun View.setMargin(left: Int? = null, top: Int? = null, right: Int? = null, bottom: Int? = null) {

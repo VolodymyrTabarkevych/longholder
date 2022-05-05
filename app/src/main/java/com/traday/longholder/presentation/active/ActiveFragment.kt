@@ -17,6 +17,7 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import com.traday.longholder.utils.CALENDAR_FORMAT_PATTERN
+import com.traday.longholder.utils.showDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -154,10 +155,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             validationErrorsLiveData.observe(viewLifecycleOwner, ::setValidationError)
             getCurrenciesLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> {
-                        setCurrenciesLoading(false)
-                        showDialog(it.error.msg)
-                    }
+                    is Resource.Error -> setCurrenciesLoading(false)
                     is Resource.Loading -> setCurrenciesLoading(true)
                     is Resource.Success -> {
                         setCurrenciesLoading(false)
@@ -167,10 +165,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             }
             createActiveLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> {
-                        setCreateDeleteActiveLoading(false)
-                        showDialog(it.error.msg)
-                    }
+                    is Resource.Error -> setCreateDeleteActiveLoading(false)
                     is Resource.Loading -> setCreateDeleteActiveLoading(true)
                     is Resource.Success -> {
                         setCreateDeleteActiveLoading(false)
@@ -181,10 +176,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             }
             deleteActiveLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> {
-                        setCreateDeleteActiveLoading(false)
-                        showDialog(it.error.msg)
-                    }
+                    is Resource.Error -> setCreateDeleteActiveLoading(false)
                     is Resource.Loading -> setCreateDeleteActiveLoading(true)
                     is Resource.Success -> {
                         setCreateDeleteActiveLoading(false)

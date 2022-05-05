@@ -24,7 +24,9 @@
     <include app:graph="@navigation/nav_start" />
     <action
         android:id="@+id/action_global_nav_start"
-        app:destination="@id/nav_start">
+        app:destination="@id/nav_start"
+        app:popUpTo="@id/nav_main"
+        app:popUpToInclusive="true">
         <argument
             android:name="needLogout"
             android:defaultValue="false"

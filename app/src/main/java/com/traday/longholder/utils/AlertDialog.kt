@@ -1,14 +1,23 @@
-package com.traday.longholder.extensions
+package com.traday.longholder.utils
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.traday.longholder.R
 import com.traday.longholder.databinding.DialogCommonBinding
+import com.traday.longholder.extensions.getDrawableCompat
+import com.traday.longholder.extensions.gone
 
-fun Fragment.showDialog(
+interface AlertDialogProvider {
+
+    val alertDialogContext: Context
+
+    var isAlertDialogShowing: Boolean
+}
+
+fun AlertDialogProvider.showDialog(
     title: String,
     message: String? = null,
     positiveButtonText: String? = null,
@@ -17,9 +26,10 @@ fun Fragment.showDialog(
     onNegativeButtonClicked: () -> Unit = {},
     onCustomize: (DialogCommonBinding, AlertDialog) -> Unit = { _, _ -> }
 ) {
-    val binding = DialogCommonBinding.inflate(LayoutInflater.from(requireContext()))
-    val dialog = MaterialAlertDialogBuilder(requireContext())
-        .setBackground(getDrawableCompat(R.drawable.background_transparent))
+    if (isAlertDialogShowing) return
+    val binding = DialogCommonBinding.inflate(LayoutInflater.from(alertDialogContext))
+    val dialog = MaterialAlertDialogBuilder(alertDialogContext)
+        .setBackground(alertDialogContext.getDrawableCompat(R.drawable.background_transparent))
         .setView(binding.root)
         .create()
 
@@ -29,7 +39,7 @@ fun Fragment.showDialog(
             tvDialogMessage.text = message
         } ?: run { tvDialogMessage.visibility = View.GONE }
         pbDialogPositiveButton.let {
-            it.setText(positiveButtonText ?: getString(R.string.common_ok))
+            it.setText(positiveButtonText ?: alertDialogContext.getString(R.string.common_ok))
             it.setOnClickListener {
                 onPositiveButtonClicked.invoke()
                 dialog.dismiss()
@@ -48,6 +58,7 @@ fun Fragment.showDialog(
             }
         }
         onCustomize(binding, dialog)
-        dialog.show()
+        dialog.setOnDismissListener { isAlertDialogShowing = false }
+        dialog.show().also { isAlertDialogShowing = true }
     }
 }

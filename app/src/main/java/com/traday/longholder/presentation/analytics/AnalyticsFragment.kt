@@ -18,7 +18,6 @@ import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.model.Report
 import com.traday.longholder.extensions.setStartIconWithGlide
-import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
@@ -78,10 +77,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
             selectedCurrencyLiveData.observe(viewLifecycleOwner, ::setCurrency)
             getCurrenciesLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> {
-                        setCurrenciesLoading(false)
-                        showDialog(it.error.msg)
-                    }
+                    is Resource.Error -> setCurrenciesLoading(false)
                     is Resource.Loading -> setCurrenciesLoading(true)
                     is Resource.Success -> {
                         setCurrenciesLoading(false)
@@ -91,10 +87,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
             }
             getReportLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> {
-                        setReportLoading(false)
-                        showDialog(it.error.msg)
-                    }
+                    is Resource.Error -> setReportLoading(false)
                     is Resource.Loading -> setReportLoading(true)
                     is Resource.Success -> {
                         setReportLoading(false)

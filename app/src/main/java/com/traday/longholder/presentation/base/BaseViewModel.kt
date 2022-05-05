@@ -20,12 +20,16 @@ open class BaseViewModel : ViewModel() {
     private val _noInternetConnectionLiveData = EventLiveData<Unit>()
     val noInternetConnectionLiveData: LiveData<Unit> get() = _noInternetConnectionLiveData
 
+    private val _showAlertDialogErrorLiveData = EventLiveData<Resource.Error>()
+    val showAlertDialogErrorLiveData: LiveData<Resource.Error> get() = _showAlertDialogErrorLiveData
+
     protected val _unauthorizedLiveData = EventLiveData<Resource<Unit>>()
     val unauthorizedLiveData: LiveData<Resource<Unit>> get() = _unauthorizedLiveData
 
     fun <P : EmptyParams, R : Any> executeUseCase(
         useCase: BaseUseCase<P, R>,
         params: P,
+        showDialogOnError: Boolean = true,
         onResult: suspend (Resource<R>) -> Unit = {}
     ) {
         viewModelScope.launch {
@@ -37,17 +41,21 @@ open class BaseViewModel : ViewModel() {
                                 executeUseCase(
                                     useCase,
                                     params,
+                                    false,
                                     onResult
                                 )
                             }
                             _noInternetConnectionLiveData.postValue(Unit)
-                            onResult(Resource.Loading)
+                            onResult(it)
                         }
                         is BaseError.UnauthorizedError -> {
                             _unauthorizedLiveData.postValue(it)
-                            onResult(Resource.Loading)
+                            onResult(it)
                         }
-                        else -> onResult(it)
+                        else -> {
+                            if (showDialogOnError) _showAlertDialogErrorLiveData.postValue(it)
+                            onResult(it)
+                        }
                     }
                 } else {
                     onResult(it)
@@ -58,20 +66,24 @@ open class BaseViewModel : ViewModel() {
 
     fun <P : EmptyParams, R : Any> executeUseCase(
         useCase: FlowUseCase<P, R>,
-        params: P
+        params: P,
+        showDialogOnError: Boolean = true
     ): Flow<Resource<R>> {
         return useCase.execute(params).map {
             return@map if (it is Resource.Error) {
                 when (it.error) {
                     is BaseError.NetworkConnectionError -> {
                         _noInternetConnectionLiveData.postValue(Unit)
-                        Resource.Loading
+                        it
                     }
                     is BaseError.UnauthorizedError -> {
                         _unauthorizedLiveData.postValue(it)
-                        Resource.Loading
+                        it
                     }
-                    else -> it
+                    else -> {
+                        if (showDialogOnError) _showAlertDialogErrorLiveData.postValue(it)
+                        it
+                    }
                 }
             } else {
                 it

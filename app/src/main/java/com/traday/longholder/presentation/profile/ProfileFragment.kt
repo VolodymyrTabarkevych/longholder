@@ -7,10 +7,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentProfileBinding
 import com.traday.longholder.extensions.navigateSafe
-import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.base.WindowBackgroundMode
+import com.traday.longholder.utils.showDialog
 
 class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBinding>(
     layoutResId = R.layout.fragment_profile,

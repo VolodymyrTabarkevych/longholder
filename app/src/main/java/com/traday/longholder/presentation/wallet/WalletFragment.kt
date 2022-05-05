@@ -10,7 +10,6 @@ import com.traday.longholder.databinding.FragmentWalletBinding
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Active
 import com.traday.longholder.extensions.navigateSafe
-import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.active.ActiveScreenMode
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
@@ -66,10 +65,7 @@ class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
     override fun initViewModel() {
         viewModel.getCryptosLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Error -> {
-                    setCryptosLoading(true)
-                    showDialog(it.error.msg)
-                }
+                is Resource.Error -> setCryptosLoading(true)
                 is Resource.Loading -> setCryptosLoading(true)
                 is Resource.Success -> {
                     setCryptosLoading(false)

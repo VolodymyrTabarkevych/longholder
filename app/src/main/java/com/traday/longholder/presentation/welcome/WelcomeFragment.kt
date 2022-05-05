@@ -31,5 +31,4 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
     override fun initViewModel() {
         viewModel.handleLogout()
     }
-
 }

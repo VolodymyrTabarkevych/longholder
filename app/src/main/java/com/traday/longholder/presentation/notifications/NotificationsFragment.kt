@@ -9,7 +9,6 @@ import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentNotificationsBinding
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Notification
-import com.traday.longholder.extensions.showDialog
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.notifications.adapter.NotificationMarginDecoration
@@ -46,7 +45,7 @@ class NotificationsFragment :
     override fun initViewModel() {
         viewModel.getNotificationsLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Error -> showDialog(it.error.msg)
+                is Resource.Error -> {}
                 is Resource.Loading -> setNotificationsLoading(true)
                 is Resource.Success -> {
                     setNotificationsLoading(false)
