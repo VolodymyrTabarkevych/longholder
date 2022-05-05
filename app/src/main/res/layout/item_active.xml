@@ -1,91 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_rectangle_radius_2"
-    android:backgroundTint="@color/white"
-    android:padding="@dimen/spacing_2">
+    android:foreground="?android:selectableItemBackground"
+    app:cardCornerRadius="@dimen/corner_radius_2"
+    app:cardElevation="@dimen/elevation_0_5">
 
-    <ImageView
-        android:id="@+id/ivActiveCryptoIcon"
-        android:layout_width="@dimen/widget_size_2_5"
-        android:layout_height="@dimen/widget_size_2_5"
-        app:layout_constraintBottom_toBottomOf="@id/tvActiveCryptoName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvActiveCryptoName"
-        tools:ignore="ContentDescription"
-        tools:src="@drawable/img_btc" />
-
-    <TextView
-        android:id="@+id/tvActiveCryptoName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_1"
-        android:fontFamily="@font/avenir_black_extra_bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.medium"
-        app:layout_constraintStart_toEndOf="@id/ivActiveCryptoIcon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Bitcoin" />
+        android:padding="@dimen/spacing_2">
 
-    <TextView
-        android:id="@+id/tvActiveCryptoValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_black_extra_bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.large"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoName"
-        tools:text="0,924" />
+        <ImageView
+            android:id="@+id/ivActiveCryptoIcon"
+            android:layout_width="@dimen/widget_size_2_5"
+            android:layout_height="@dimen/widget_size_2_5"
+            app:layout_constraintBottom_toBottomOf="@id/tvActiveCryptoName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvActiveCryptoName"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_btc" />
 
-    <TextView
-        android:id="@+id/tvActiveCryptoPriceInOtherCurrency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_1"
-        android:fontFamily="@font/avenir_roman_regular"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/text.size.normal"
-        app:layout_constraintBaseline_toBaselineOf="@id/tvActiveCryptoValue"
-        app:layout_constraintStart_toEndOf="@id/tvActiveCryptoValue"
-        tools:text="($936 094,43)" />
+        <TextView
+            android:id="@+id/tvActiveCryptoName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_1"
+            android:fontFamily="@font/avenir_black_extra_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text.size.medium"
+            app:layout_constraintStart_toEndOf="@id/ivActiveCryptoIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Bitcoin" />
 
-    <TextView
-        android:id="@+id/tvActiveCryptoEarnedMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_0_5"
-        android:fontFamily="@font/avenir_black_extra_bold"
-        android:textColor="@color/limeade"
-        android:textSize="@dimen/text.size.medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoValue"
-        tools:text="+8 323,13 (0,66 %)" />
+        <TextView
+            android:id="@+id/tvActiveCryptoValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_black_extra_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text.size.large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoName"
+            tools:text="0,924" />
 
-    <TextView
-        android:id="@+id/tvActiveCryptoCurrentPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_1"
-        android:fontFamily="@font/avenir_medium"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text.size.medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoEarnedMoney"
-        tools:text="1 ETH = $3,242.86 " />
+        <TextView
+            android:id="@+id/tvActiveCryptoPriceInOtherCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_1"
+            android:fontFamily="@font/avenir_roman_regular"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text.size.normal"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvActiveCryptoValue"
+            app:layout_constraintStart_toEndOf="@id/tvActiveCryptoValue"
+            tools:text="($936 094,43)" />
 
-    <TextView
-        android:id="@+id/tvActiveDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_roman_regular"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/text.size.normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoCurrentPrice"
-        tools:text="On Hold from 22/02/2022" />
+        <TextView
+            android:id="@+id/tvActiveCryptoEarnedMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_0_5"
+            android:fontFamily="@font/avenir_black_extra_bold"
+            android:textColor="@color/limeade"
+            android:textSize="@dimen/text.size.medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoValue"
+            tools:text="+8 323,13 (0,66 %)" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvActiveCryptoCurrentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_1"
+            android:fontFamily="@font/avenir_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text.size.medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoEarnedMoney"
+            tools:text="1 ETH = $3,242.86 " />
+
+        <TextView
+            android:id="@+id/tvActiveDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_roman_regular"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text.size.normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvActiveCryptoCurrentPrice"
+            tools:text="On Hold from 22/02/2022" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

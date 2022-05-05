@@ -28,10 +28,10 @@
         android:id="@+id/rvNotifications"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:paddingHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
         android:layout_weight="1"
+        android:clipToPadding="false"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
 </LinearLayout>

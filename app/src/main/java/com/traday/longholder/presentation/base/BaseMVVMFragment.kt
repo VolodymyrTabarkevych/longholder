@@ -24,6 +24,7 @@ abstract class BaseMVVMFragment<out VM : BaseViewModel, out B : ViewBinding>(
     private var startDestinationHandler: StartDestinationHandler? = null
 
     override val alertDialogContext: Context get() = requireContext()
+
     override var isAlertDialogShowing: Boolean = false
 
     override fun onAttach(context: Context) {
