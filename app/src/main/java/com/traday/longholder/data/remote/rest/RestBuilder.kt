@@ -60,17 +60,14 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
         Interceptor { chain ->
             val response = chain.proceed(chain.request().newBuilder().build())
             if (!response.isSuccessful) {
-                val responseBody = response.body
-                if (responseBody != null && responseBody.toString().isNotEmpty()) {
-                    val jsonObject = JSONObject(responseBody.string())
-                    val status = jsonObject.getString(ERROR_RESPONSE_NAME_STATUS)
+                val errorDto: ErrorResponse = try {
+                    val jsonObject = JSONObject(response.body!!.string())
                     val message = jsonObject.getString(ERROR_RESPONSE_NAME_MESSAGE)
-                    val errorDto = ErrorResponse(response.code, message)
-                    throw BaseException.NetworkRequestException(errorDto)
-                } else {
-                    val errorDto = ErrorResponse(response.code, response.message)
-                    throw BaseException.NetworkRequestException(errorDto)
+                    ErrorResponse(response.code, message)
+                } catch (e: Exception) {
+                    ErrorResponse(response.code, response.message)
                 }
+                throw BaseException.NetworkRequestException(errorDto)
             } else if (response.body == null) {
                 throw BaseException.NoResponseContentException()
             }
