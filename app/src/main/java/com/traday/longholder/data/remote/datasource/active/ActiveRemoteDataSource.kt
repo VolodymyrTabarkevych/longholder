@@ -5,6 +5,7 @@ import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
+import com.traday.longholder.data.remote.responsebody.GetActivesResponseBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
 import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
@@ -20,7 +21,7 @@ class ActiveRemoteDataSource @Inject constructor(
     override val apiInterface: Class<API>
         get() = API::class.java
 
-    override suspend fun getActives(): Result<List<ActiveDto>> =
+    override suspend fun getActives(): Result<GetActivesResponseBody> =
         apiResult { api.getActives() }
 
     override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> =
@@ -35,7 +36,7 @@ class ActiveRemoteDataSource @Inject constructor(
     interface API {
 
         @GET("User/getActiveCryptos")
-        suspend fun getActives(): Response<List<ActiveDto>>
+        suspend fun getActives(): Response<GetActivesResponseBody>
 
         @POST("User/createCrypto")
         suspend fun createActive(@Body active: CreateActiveRequestBody): Response<Unit>

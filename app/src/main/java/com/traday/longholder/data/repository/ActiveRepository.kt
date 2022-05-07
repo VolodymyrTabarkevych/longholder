@@ -22,7 +22,7 @@ class ActiveRepository @Inject constructor(
             .onStart {
                 val remoteResult = activeRemoteDataSource.getActives()
                 if (remoteResult is Result.Success) {
-                    val mappedItems = remoteResult.data.map { it.toEntity() }
+                    val mappedItems = remoteResult.data.actives.map { it.toEntity() }
                     activeLocalDataSource.saveOrUpdateActive(mappedItems)
                 } else if (remoteResult is Result.Error) {
                     emit(remoteResult)
@@ -35,7 +35,7 @@ class ActiveRepository @Inject constructor(
         return if (createRemoteActiveResult is Result.Success) {
             val remoteActivesResult = activeRemoteDataSource.getActives()
             if (remoteActivesResult is Result.Success) {
-                val mappedItems = remoteActivesResult.data.map { it.toEntity() }
+                val mappedItems = remoteActivesResult.data.actives.map { it.toEntity() }
                 activeLocalDataSource.saveOrUpdateActive(mappedItems)
             } else {
                 createRemoteActiveResult
