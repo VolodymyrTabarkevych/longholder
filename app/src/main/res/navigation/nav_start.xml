@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.traday.longholder.presentation.signup_email.SignUpEmailFragment"
+        android:name="com.traday.longholder.presentation.signup.SignUpEmailFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up_email">
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpNameFragment"
-        android:name="com.traday.longholder.presentation.signup_name.SignUpNameFragment"
+        android:name="com.traday.longholder.presentation.signup.SignUpNameFragment"
         android:label="SignUpNameFragment"
         tools:layout="@layout/fragment_sign_up_name">
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/singUpPasswordFragment"
-        android:name="com.traday.longholder.presentation.signup_password.SignUpPasswordFragment"
+        android:name="com.traday.longholder.presentation.signup.SignUpPasswordFragment"
         android:label="SingUpPasswordFragment"
         tools:layout="@layout/fragment_sign_up_password">
 

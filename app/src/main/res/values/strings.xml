@@ -36,8 +36,11 @@
     <!-- Validator messages -->
     <string name="allowed_symbols_for_password">-+_~!@#$%^&amp;*?\\/().:;\"\'[]{}|,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="validation_email_not_valid">Invalid email address, please try again</string>
+    <string name="validation_name_not_valid">Name can\'t be blank</string>
+    <string name="validation_surename_not_valid">Surename can\'t be blank</string>
     <string name="validation_password_not_valid">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
     <string name="validation_crypto_amount_not_valid">Please enter a value bigger than 1</string>
+    <string name="validation_password_match">Both passwords must match</string>
 
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
@@ -48,6 +51,7 @@
     <string name="sign_up_policy">Policy term refers to the period for which your term insurance policy will remain active. This term is determined at the time of purchasing the insurance plan.</string>
     <string name="sign_up_what_name">What is your name?</string>
     <string name="sign_up_create_password">Create a password.</string>
+    <string name="sign_up_confirm_password">Confirm password</string>
     <string name="sign_up_create_password_description">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
 
     <!-- Login screen -->

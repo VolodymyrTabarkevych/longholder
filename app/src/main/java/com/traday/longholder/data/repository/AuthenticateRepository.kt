@@ -12,7 +12,7 @@ class AuthenticateRepository @Inject constructor(
 ) : IAuthenticateRepository {
 
     override suspend fun register(userName: String, email: String, password: String): Result<Unit> {
-        return Result.Success(Unit)
+        return authenticateRemoteDataSource.register(userName, email, password)
     }
 
     override suspend fun login(userName: String, password: String): Result<Unit> {

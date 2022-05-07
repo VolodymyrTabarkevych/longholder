@@ -28,7 +28,8 @@ class AuthenticateRemoteDataSource @Inject constructor(
                 RegisterRequestBody(
                     userName = userName,
                     email = email,
-                    password = password
+                    password = password,
+                    confirmPassword = password
                 )
             )
         }

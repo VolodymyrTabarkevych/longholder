@@ -1,9 +1,9 @@
-package com.traday.longholder.presentation.signup_email
+package com.traday.longholder.presentation.signup
 
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpEmailBinding
@@ -12,13 +12,13 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.EmailNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 
-class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignUpEmailBinding>(
+class SignUpEmailFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpEmailBinding>(
     R.layout.fragment_sign_up_email
 ) {
 
     override val binding: FragmentSignUpEmailBinding by viewBinding(FragmentSignUpEmailBinding::bind)
 
-    override val viewModel: SignUpEmailViewModel by viewModels()
+    override val viewModel: SignUpViewModel by activityViewModels()
 
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
@@ -29,13 +29,11 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
         with(binding) {
             stSignUpEmail.setLeftActionOnCLickListener { navController.popBackStack() }
             pbSignUpEmailNext.setOnClickListener {
-                pbSignUpEmailNext.setLoading(true)
-                mainHandler.postDelayed({
-                    pbSignUpEmailNext.setLoading(false)
-                    navController.navigateSafe(
-                        SignUpEmailFragmentDirections.actionSignUpFragmentToSignUpNameFragment()
-                    )
-                }, 2000)
+                val email: String = etSignUpEmail.text.toString()
+                viewModel.saveEmail(email)
+                navController.navigateSafe(
+                    SignUpEmailFragmentDirections.actionSignUpFragmentToSignUpNameFragment()
+                )
             }
             pbSignUpEmailNext.setClickListenerForDisabledState {
                 clearInputFieldsFocusAndHideKeyboard()
@@ -66,7 +64,7 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
 
     override fun initViewModel() {
         with(viewModel) {
-            buttonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
+            emailButtonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
             validationErrorsLiveData.observe(viewLifecycleOwner, ::showValidationError)
         }
     }
@@ -94,7 +92,7 @@ class SignUpEmailFragment : BaseMVVMFragment<SignUpEmailViewModel, FragmentSignU
     private fun validateFields() {
         with(binding) {
             val email: String = etSignUpEmail.text.toString()
-            viewModel.validateFields(email)
+            viewModel.validateEmail(email)
         }
     }
 
