@@ -2,13 +2,15 @@ package com.traday.longholder.presentation.signup
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpPasswordBinding
 import com.traday.longholder.domain.base.Resource
-import com.traday.longholder.extensions.*
+import com.traday.longholder.extensions.hideKeyboard
+import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
+import com.traday.longholder.extensions.setupWithDefaultConfiguration
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.PasswordMatchException
 import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
@@ -42,39 +44,14 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
 
     private fun initFieldsListeners() {
         with(binding) {
-            tilSignUpPasswrod.setupWithErrorClearListener()
-            etSignUpPassword.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etSignUpPassword.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-            etSignUpPassword.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearInputFieldsFocusAndHideKeyboard()
-                    return@setOnEditorActionListener false
-                }
-                return@setOnEditorActionListener true
-            }
-
-            tilSignUpConfirmPasswrod.setupWithErrorClearListener()
-            etSignUpConfirmPassword.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etSignUpConfirmPassword.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-            etSignUpConfirmPassword.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearInputFieldsFocusAndHideKeyboard()
-                    return@setOnEditorActionListener false
-                }
-                return@setOnEditorActionListener true
-            }
+            tilSignUpPasswrod.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
+            tilSignUpConfirmPasswrod.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
         }
     }
 
@@ -122,21 +99,11 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
     }
 
     private fun setPasswordError(errorMsg: String?) {
-        with(binding) {
-            if (!etSignUpPassword.hasFocus() && etSignUpPassword.text.toString().isNotEmpty()) {
-                tilSignUpPasswrod.error = errorMsg
-            }
-        }
+        binding.tilSignUpPasswrod.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun setConfirmPasswordError(errorMsg: String?) {
-        with(binding) {
-            if (!etSignUpConfirmPassword.hasFocus() &&
-                etSignUpConfirmPassword.text.toString().isNotEmpty()
-            ) {
-                tilSignUpConfirmPasswrod.error = errorMsg
-            }
-        }
+        binding.tilSignUpConfirmPasswrod.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun validateFields() {

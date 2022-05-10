@@ -2,13 +2,15 @@ package com.traday.longholder.presentation.login
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentLoginBinding
 import com.traday.longholder.domain.base.Resource
-import com.traday.longholder.extensions.*
+import com.traday.longholder.extensions.hideKeyboard
+import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
+import com.traday.longholder.extensions.setupWithDefaultConfiguration
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.EmailNotValidException
 import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
@@ -50,32 +52,14 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
 
     private fun initFieldsListeners() {
         with(binding) {
-            tilLoginEmail.setupWithErrorClearListener()
-            etLoginEmail.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etLoginEmail.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-
-            tilLoginPassword.setupWithErrorClearListener()
-            etLoginPassword.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etLoginPassword.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-            etLoginPassword.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearInputFieldsFocusAndHideKeyboard()
-                    return@setOnEditorActionListener false
-                }
-                return@setOnEditorActionListener true
-            }
+            tilLoginEmail.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
+            tilLoginPassword.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
         }
     }
 
@@ -119,19 +103,11 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
     }
 
     private fun setEmailError(errorMsg: String?) {
-        with(binding) {
-            if (!etLoginEmail.hasFocus() && etLoginEmail.text.toString().isNotEmpty()) {
-                tilLoginEmail.error = errorMsg
-            }
-        }
+        binding.tilLoginEmail.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun setPasswordError(errorMsg: String?) {
-        with(binding) {
-            if (!etLoginPassword.hasFocus() && etLoginPassword.text.toString().isNotEmpty()) {
-                tilLoginPassword.error = errorMsg
-            }
-        }
+        binding.tilLoginPassword.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun validateFields() {

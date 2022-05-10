@@ -94,18 +94,8 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     }
                 }
                 else -> {
-                    tilActiveAmount.setupWithErrorClearListener()
-                    tietActiveAmount.apply {
-                        isEnabled = true
-                        setOnFocusChangeListener { _, _ ->
-                            validateFields()
-                        }
-                        setOnTextChangedListener(object : OnTextChangedListener {
-                            override fun onTextChanged(viewId: Int?) {
-                                validateFields()
-                            }
-                        })
-                    }
+                    tilActiveAmount.isEnabled = true
+                    tilActiveAmount.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
 
                     tvActiveTitle.text = getString(R.string.active_add)
                     tvActiveSelectCurrencyTitle.text = getString(R.string.active_select_coin)

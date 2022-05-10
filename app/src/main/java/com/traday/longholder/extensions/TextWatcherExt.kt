@@ -2,6 +2,7 @@ package com.traday.longholder.extensions
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.annotation.IdRes
 import com.google.android.material.textfield.TextInputLayout
@@ -27,6 +28,32 @@ fun TextView.setTextWatcher(
     })
 }
 
+fun TextInputLayout.setupWithDefaultConfiguration(
+    onStateChanged: () -> Unit = {},
+    onActionDone: () -> Unit = {}
+) {
+    this.editText?.let { editText ->
+        editText.setOnTextChangedListener(object : OnTextChangedListener {
+            override fun onTextChanged(viewId: Int?) {
+                if (editText.hasFocus() || endIconMode == TextInputLayout.END_ICON_CLEAR_TEXT) {
+                    this@setupWithDefaultConfiguration.isErrorEnabled = false
+                }
+                onStateChanged.invoke()
+            }
+        })
+        editText.setOnFocusChangeListener { _, _ ->
+            onStateChanged.invoke()
+        }
+        editText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                onActionDone.invoke()
+                return@setOnEditorActionListener false
+            }
+            return@setOnEditorActionListener true
+        }
+    }
+}
+
 fun TextInputLayout.setupWithErrorClearListener() {
     this.editText?.let { editText ->
         editText.setOnTextChangedListener(object : OnTextChangedListener {
@@ -36,6 +63,14 @@ fun TextInputLayout.setupWithErrorClearListener() {
                 }
             }
         })
+    }
+}
+
+fun TextInputLayout.setErrorIfOnFocusAndNotEmpty(errorMsg: String?) {
+    this.editText?.let { editText ->
+        if (!editText.hasFocus() && editText.text.toString().isNotEmpty()) {
+            this.error = errorMsg
+        }
     }
 }
 

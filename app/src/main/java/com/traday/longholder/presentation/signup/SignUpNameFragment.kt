@@ -2,12 +2,14 @@ package com.traday.longholder.presentation.signup
 
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpNameBinding
-import com.traday.longholder.extensions.*
+import com.traday.longholder.extensions.hideKeyboard
+import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
+import com.traday.longholder.extensions.setupWithDefaultConfiguration
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.NameNotValidException
 import com.traday.longholder.presentation.validation.exception.SurenameNotValidException
@@ -47,39 +49,14 @@ class SignUpNameFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpNameB
 
     private fun initFieldsListeners() {
         with(binding) {
-            tilSignUpName.setupWithErrorClearListener()
-            etSignUpName.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etSignUpName.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-            etSignUpName.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearInputFieldsFocusAndHideKeyboard()
-                    return@setOnEditorActionListener false
-                }
-                return@setOnEditorActionListener true
-            }
-
-            tilSignUpSurname.setupWithErrorClearListener()
-            etSignUpSurname.setOnFocusChangeListener { _, _ ->
-                validateFields()
-            }
-            etSignUpSurname.setOnTextChangedListener(object : OnTextChangedListener {
-                override fun onTextChanged(viewId: Int?) {
-                    validateFields()
-                }
-            })
-            etSignUpSurname.setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearInputFieldsFocusAndHideKeyboard()
-                    return@setOnEditorActionListener false
-                }
-                return@setOnEditorActionListener true
-            }
+            tilSignUpName.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
+            tilSignUpSurname.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
         }
     }
 
@@ -104,19 +81,11 @@ class SignUpNameFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpNameB
     }
 
     private fun setNameError(errorMsg: String?) {
-        with(binding) {
-            if (!etSignUpName.hasFocus() && etSignUpName.text.toString().isNotEmpty()) {
-                tilSignUpName.error = errorMsg
-            }
-        }
+        binding.tilSignUpName.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun setSurenameError(errorMsg: String?) {
-        with(binding) {
-            if (!etSignUpSurname.hasFocus() && etSignUpSurname.text.toString().isNotEmpty()) {
-                tilSignUpSurname.error = errorMsg
-            }
-        }
+        binding.tilSignUpSurname.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun validateFields() {
