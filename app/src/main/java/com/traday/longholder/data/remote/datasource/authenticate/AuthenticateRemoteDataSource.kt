@@ -22,11 +22,10 @@ class AuthenticateRemoteDataSource @Inject constructor(
     override val apiInterface: Class<API>
         get() = API::class.java
 
-    override suspend fun register(userName: String, email: String, password: String): Result<Unit> =
+    override suspend fun register(email: String, password: String): Result<Unit> =
         apiResult {
             api.register(
                 RegisterRequestBody(
-                    userName = userName,
                     email = email,
                     password = password,
                     confirmPassword = password
@@ -34,9 +33,9 @@ class AuthenticateRemoteDataSource @Inject constructor(
             )
         }
 
-    override suspend fun login(userName: String, password: String): Result<LoginResponseBody> =
+    override suspend fun login(email: String, password: String): Result<LoginResponseBody> =
         apiResult {
-            api.login(LoginRequestBody(userName = userName, password = password))
+            api.login(LoginRequestBody(email = email, password = password))
         }
 
     interface API {

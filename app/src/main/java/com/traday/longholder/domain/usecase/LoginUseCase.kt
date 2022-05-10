@@ -20,12 +20,12 @@ class LoginUseCase @Inject constructor(
 
     override suspend fun run(params: Params): Resource<User> {
         val result = authenticateRepository.login(
-            userName = params.userName,
+            email = params.email,
             password = params.password
         )
         if (result is Result.Error) return result.toResource(errorHandler)
         return userRepository.getUser(true).toResource(errorHandler) { it.toDomain() }
     }
 
-    class Params(val userName: String, val password: String) : EmptyParams()
+    class Params(val email: String, val password: String) : EmptyParams()
 }

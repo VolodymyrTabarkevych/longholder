@@ -7,7 +7,9 @@ import com.traday.longholder.domain.model.User
 import com.traday.longholder.domain.usecase.LoginUseCase
 import com.traday.longholder.domain.usecase.RegisterUseCase
 import com.traday.longholder.presentation.base.BaseValidationViewModel
-import com.traday.longholder.presentation.validation.exception.*
+import com.traday.longholder.presentation.validation.exception.EmailNotValidException
+import com.traday.longholder.presentation.validation.exception.PasswordMatchException
+import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
 import com.traday.longholder.presentation.validation.validator.CredentialValidator
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,9 +24,6 @@ class SignUpViewModel @Inject constructor(
     private val _emailButtonStateLiveData = MutableLiveData<Boolean>()
     val emailButtonStateLiveData: LiveData<Boolean> get() = _emailButtonStateLiveData
 
-    private val _fullNameButtonStateLiveData = MutableLiveData<Boolean>()
-    val fullNameButtonStateLiveData: LiveData<Boolean> get() = _fullNameButtonStateLiveData
-
     private val _passwordButtonStateLiveData = MutableLiveData<Boolean>()
     val passwordButtonStateLiveData: LiveData<Boolean> get() = _passwordButtonStateLiveData
 
@@ -35,18 +34,9 @@ class SignUpViewModel @Inject constructor(
     val loginLiveData: LiveData<Resource<User>> get() = _loginLiveData
 
     private lateinit var email: String
-    private lateinit var name: String
 
     fun validateEmail(email: String) {
         onValidateFields(::onEmailValidationSuccess, CredentialValidator.Email.validate(email))
-    }
-
-    fun validateFullName(name: String, surename: String) {
-        onValidateFields(
-            ::onFullNameValidationSuccess,
-            CredentialValidator.Name.validate(name),
-            CredentialValidator.Surename.validate(surename)
-        )
     }
 
     fun validatePassword(password: String, confirmPassword: String) {
@@ -61,10 +51,6 @@ class SignUpViewModel @Inject constructor(
         _emailButtonStateLiveData.postValue(true)
     }
 
-    private fun onFullNameValidationSuccess() {
-        _fullNameButtonStateLiveData.postValue(true)
-    }
-
     private fun onPasswordValidationSuccess() {
         _passwordButtonStateLiveData.postValue(true)
     }
@@ -74,8 +60,6 @@ class SignUpViewModel @Inject constructor(
         errorList.forEach {
             when (it.exception) {
                 is EmailNotValidException -> _emailButtonStateLiveData.postValue(false)
-                is NameNotValidException -> _fullNameButtonStateLiveData.postValue(false)
-                is SurenameNotValidException -> _fullNameButtonStateLiveData.postValue(false)
                 is PasswordNotValidException -> _passwordButtonStateLiveData.postValue(false)
                 is PasswordMatchException -> _passwordButtonStateLiveData.postValue(false)
             }
@@ -86,21 +70,17 @@ class SignUpViewModel @Inject constructor(
         this.email = email
     }
 
-    fun saveName(name: String) {
-        this.name = name
-    }
-
     fun register(password: String) {
         executeUseCase(
             registerUseCase,
-            RegisterUseCase.Params(userName = name, email = email, password = password)
+            RegisterUseCase.Params(email = email, password = password)
         ) {
             _registerLiveData.postValue(it)
         }
     }
 
     fun login(password: String) {
-        executeUseCase(loginUseCase, LoginUseCase.Params(userName = name, password)) {
+        executeUseCase(loginUseCase, LoginUseCase.Params(email = email, password = password)) {
             _loginLiveData.postValue(it)
         }
     }

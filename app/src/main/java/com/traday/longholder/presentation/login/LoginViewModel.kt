@@ -39,11 +39,11 @@ class LoginViewModel @Inject constructor(
         _buttonStateLiveData.postValue(false)
     }
 
-    fun login(userName: String, password: String) {
+    fun login(email: String, password: String) {
         executeUseCase(
             useCase = loginUseCase,
             showDialogOnError = false,
-            params = LoginUseCase.Params(userName, password)
+            params = LoginUseCase.Params(email, password)
         ) {
             _loginLiveData.postValue(it)
         }

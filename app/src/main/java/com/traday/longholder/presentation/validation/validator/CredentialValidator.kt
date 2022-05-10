@@ -33,16 +33,11 @@ sealed class CredentialValidator<T> : Validator<T>, CommonLoginValidator() {
     object Email : CredentialValidator<String?>() {
 
         override fun validate(value: String?): ValidateResult =
-            if (!value.isNullOrBlank()) {
+            if (!value.isNullOrBlank() && validateEmail(value)) {
                 ValidateResult.Success
             } else {
                 ValidateResult.Error(EmailNotValidException(R.string.validation_email_not_valid))
             }
-/*            if (!value.isNullOrBlank() && validateEmail(value)) {
-                ValidateResult.Success
-            } else {
-                ValidateResult.Error(EmailNotValidException(R.string.validation_email_not_valid))
-            }*/
     }
 
     object Password : CredentialValidator<String?>() {

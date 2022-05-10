@@ -15,11 +15,10 @@ class RegisterUseCase @Inject constructor(
 
     override suspend fun run(params: Params): Resource<Unit> {
         return authenticateRepository.register(
-            userName = params.userName,
             email = params.email,
             password = params.password
         ).toResource(errorHandler)
     }
 
-    class Params(val userName: String, val email: String, val password: String) : EmptyParams()
+    class Params(val email: String, val password: String) : EmptyParams()
 }

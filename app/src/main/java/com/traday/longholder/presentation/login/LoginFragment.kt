@@ -34,9 +34,9 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
         with(binding) {
             stLogin.setLeftActionOnCLickListener { navController.popBackStack() }
             pbLogin.setOnClickListener {
-                val userName = etLoginEmail.text.toString()
+                val email = etLoginEmail.text.toString()
                 val password = etLoginPassword.text.toString()
-                viewModel.login(userName, password)
+                viewModel.login(email, password)
             }
             pbLogin.setClickListenerForDisabledState {
                 clearInputFieldsFocusAndHideKeyboard()

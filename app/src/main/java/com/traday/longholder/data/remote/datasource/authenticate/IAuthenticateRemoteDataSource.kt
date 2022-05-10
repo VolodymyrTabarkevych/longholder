@@ -5,7 +5,7 @@ import com.traday.longholder.data.remote.responsebody.LoginResponseBody
 
 interface IAuthenticateRemoteDataSource {
 
-    suspend fun register(userName: String, email: String, password: String): Result<Unit>
+    suspend fun register(email: String, password: String): Result<Unit>
 
-    suspend fun login(userName: String, password: String): Result<LoginResponseBody>
+    suspend fun login(email: String, password: String): Result<LoginResponseBody>
 }

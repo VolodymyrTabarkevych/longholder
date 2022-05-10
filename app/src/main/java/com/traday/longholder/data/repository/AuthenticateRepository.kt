@@ -11,12 +11,12 @@ class AuthenticateRepository @Inject constructor(
     private val userLocalDataSource: IUserLocalDataSource
 ) : IAuthenticateRepository {
 
-    override suspend fun register(userName: String, email: String, password: String): Result<Unit> {
-        return authenticateRemoteDataSource.register(userName, email, password)
+    override suspend fun register(email: String, password: String): Result<Unit> {
+        return authenticateRemoteDataSource.register(email, password)
     }
 
-    override suspend fun login(userName: String, password: String): Result<Unit> {
-        val loginResult = authenticateRemoteDataSource.login(userName, password)
+    override suspend fun login(email: String, password: String): Result<Unit> {
+        val loginResult = authenticateRemoteDataSource.login(email, password)
         if (loginResult is Result.Error) return loginResult
         val token = (loginResult as Result.Success).data.token
         return userLocalDataSource.setUserToken(token)
