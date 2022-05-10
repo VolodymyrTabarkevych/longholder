@@ -2,27 +2,28 @@ package com.traday.longholder.presentation.signup
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
-import com.traday.longholder.databinding.FragmentSignUpPasswordBinding
+import com.traday.longholder.databinding.FragmentSignUpBinding
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.extensions.hideKeyboard
 import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
 import com.traday.longholder.extensions.setupWithDefaultConfiguration
 import com.traday.longholder.presentation.base.BaseMVVMFragment
+import com.traday.longholder.presentation.validation.exception.EmailNotValidException
 import com.traday.longholder.presentation.validation.exception.PasswordMatchException
 import com.traday.longholder.presentation.validation.exception.PasswordNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 
-class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpPasswordBinding>(
-    R.layout.fragment_sign_up_password
+class SignUpFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpBinding>(
+    R.layout.fragment_sign_up
 ) {
 
-    override val binding: FragmentSignUpPasswordBinding by viewBinding(FragmentSignUpPasswordBinding::bind)
+    override val binding: FragmentSignUpBinding by viewBinding(FragmentSignUpBinding::bind)
 
-    override val viewModel: SignUpViewModel by activityViewModels()
+    override val viewModel: SignUpViewModel by viewModels()
 
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
@@ -31,12 +32,14 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
 
     private fun initActionButtons() {
         with(binding) {
-            stSignUpPassword.setLeftActionOnCLickListener { navController.popBackStack() }
-            pbSignUpPasswordNext.setOnClickListener {
+            stSignUp.setLeftActionOnCLickListener { navController.popBackStack() }
+            pbSignUpNext.setOnClickListener {
+                val email: String = etSignUpEmail.text.toString()
                 val password: String = etSignUpPassword.text.toString()
-                viewModel.register(password)
+                val confirmPassword: String = etSignUpConfirmPassword.text.toString()
+                viewModel.register(email, password, confirmPassword)
             }
-            pbSignUpPasswordNext.setClickListenerForDisabledState {
+            pbSignUpNext.setClickListenerForDisabledState {
                 clearInputFieldsFocusAndHideKeyboard()
             }
         }
@@ -44,11 +47,15 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
 
     private fun initFieldsListeners() {
         with(binding) {
-            tilSignUpPasswrod.setupWithDefaultConfiguration(
+            tilSignUpEmail.setupWithDefaultConfiguration(
                 onStateChanged = ::validateFields,
                 onActionDone = ::clearInputFieldsFocusAndHideKeyboard
             )
-            tilSignUpConfirmPasswrod.setupWithDefaultConfiguration(
+            tilSignUpPassword.setupWithDefaultConfiguration(
+                onStateChanged = ::validateFields,
+                onActionDone = ::clearInputFieldsFocusAndHideKeyboard
+            )
+            tilSignUpConfirmPassword.setupWithDefaultConfiguration(
                 onStateChanged = ::validateFields,
                 onActionDone = ::clearInputFieldsFocusAndHideKeyboard
             )
@@ -57,15 +64,18 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
 
     override fun initViewModel() {
         with(viewModel) {
-            passwordButtonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
+            buttonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
             validationErrorsLiveData.observe(viewLifecycleOwner, ::showValidationError)
             registerLiveData.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> setRegisterLoading(false)
                     is Resource.Loading -> setRegisterLoading(true)
                     is Resource.Success -> {
-                        val password: String = binding.etSignUpPassword.text.toString()
-                        viewModel.login(password)
+                        with(binding) {
+                            val email: String = etSignUpEmail.text.toString()
+                            val password: String = etSignUpPassword.text.toString()
+                            viewModel.login(email, password)
+                        }
                     }
                 }
             }
@@ -74,7 +84,7 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
                     is Resource.Error -> setRegisterLoading(false)
                     is Resource.Loading -> setRegisterLoading(true)
                     is Resource.Success -> {
-                        navController.navigateSafe(SignUpPasswordFragmentDirections.actionSingUpPasswordFragmentToOnboardingFragment())
+                        navController.navigateSafe(SignUpFragmentDirections.actionSignUpFragmentToOnboardingFragment())
                     }
                 }
             }
@@ -82,40 +92,47 @@ class SignUpPasswordFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpP
     }
 
     private fun setRegisterLoading(isLoading: Boolean) {
-        binding.pbSignUpPasswordNext.setLoading(isLoading)
+        binding.pbSignUpNext.setLoading(isLoading)
     }
 
     private fun changeButtonState(enabled: Boolean) {
-        binding.pbSignUpPasswordNext.isEnabled = enabled
+        binding.pbSignUpNext.isEnabled = enabled
     }
 
     private fun showValidationError(errorList: List<ValidateResult.Error>) {
         errorList.forEach {
             when (it.exception) {
+                is EmailNotValidException -> setEmailError(getString(it.exception.stringId))
                 is PasswordNotValidException -> setPasswordError(getString(it.exception.stringId))
                 is PasswordMatchException -> setConfirmPasswordError(getString(it.exception.stringId))
             }
         }
     }
 
+    private fun setEmailError(errorMsg: String?) {
+        binding.tilSignUpEmail.setErrorIfOnFocusAndNotEmpty(errorMsg)
+    }
+
     private fun setPasswordError(errorMsg: String?) {
-        binding.tilSignUpPasswrod.setErrorIfOnFocusAndNotEmpty(errorMsg)
+        binding.tilSignUpPassword.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun setConfirmPasswordError(errorMsg: String?) {
-        binding.tilSignUpConfirmPasswrod.setErrorIfOnFocusAndNotEmpty(errorMsg)
+        binding.tilSignUpConfirmPassword.setErrorIfOnFocusAndNotEmpty(errorMsg)
     }
 
     private fun validateFields() {
         with(binding) {
+            val email: String = etSignUpEmail.text.toString()
             val password: String = etSignUpPassword.text.toString()
             val confirmPassword: String = etSignUpConfirmPassword.text.toString()
-            viewModel.validatePassword(password, confirmPassword)
+            viewModel.validateData(email, password, confirmPassword)
         }
     }
 
     private fun clearInputFieldsFocusAndHideKeyboard() {
         with(binding) {
+            etSignUpEmail.clearFocus()
             etSignUpPassword.clearFocus()
             etSignUpConfirmPassword.clearFocus()
             hideKeyboard()

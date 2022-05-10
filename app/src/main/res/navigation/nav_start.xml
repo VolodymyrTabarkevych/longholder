@@ -47,30 +47,11 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.traday.longholder.presentation.signup.SignUpEmailFragment"
+        android:name="com.traday.longholder.presentation.signup.SignUpFragment"
         android:label="SignUpFragment"
-        tools:layout="@layout/fragment_sign_up_email">
+        tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUpFragment_to_signUpNameFragment"
-            app:destination="@id/signUpNameFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpNameFragment"
-        android:name="com.traday.longholder.presentation.signup.SignUpNameFragment"
-        android:label="SignUpNameFragment"
-        tools:layout="@layout/fragment_sign_up_name">
-        <action
-            android:id="@+id/action_signUpNameFragment_to_singUpPasswordFragment"
-            app:destination="@id/singUpPasswordFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/singUpPasswordFragment"
-        android:name="com.traday.longholder.presentation.signup.SignUpPasswordFragment"
-        android:label="SingUpPasswordFragment"
-        tools:layout="@layout/fragment_sign_up_password">
-
-        <action
-            android:id="@+id/action_singUpPasswordFragment_to_onboardingFragment"
+            android:id="@+id/action_signUpFragment_to_onboardingFragment"
             app:destination="@id/onboardingFragment" />
     </fragment>
     <fragment

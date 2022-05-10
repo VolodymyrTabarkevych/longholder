@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.traday.longholder.presentation.customviews.SimpleToolbar
+            android:id="@+id/stSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.App.Screen.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/spacing_2"
+                android:text="@string/sign_up_what_email_password" />
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                android:id="@+id/tilSignUpEmail"
+                style="@style/Widget.App.TextInputLayout.FilledBox.Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_3"
+                app:helperText="@string/sign_up_policy">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/etSignUpEmail"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                android:id="@+id/tilSignUpPassword"
+                style="@style/Widget.App.TextInputLayout.FilledBox.Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_2"
+                app:helperText="@string/sign_up_create_password_description">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/etSignUpPassword"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                android:id="@+id/tilSignUpConfirmPassword"
+                style="@style/Widget.App.TextInputLayout.FilledBox.Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginTop="@dimen/sc_spacing_2"
+                android:hint="@string/sign_up_confirm_password">
+
+                <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                    android:id="@+id/etSignUpConfirmPassword"
+                    style="@style/Widget.App.TextInputEditText.OutlinedBox.Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no" />
+            </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.traday.longholder.presentation.customviews.ProgressButton
+                android:id="@+id/pbSignUpNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_2"
+                android:layout_marginVertical="@dimen/spacing_5"
+                app:progressButtonEnabled="false"
+                app:progressButtonText="@string/common_next" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
