@@ -321,7 +321,7 @@
 
                 <com.traday.longholder.presentation.customviews.AppTextInputLayout
                     android:id="@+id/tilCalculatorSubtractPercent"
-                    style="@style/Widget.App.TextInputLayout.FilledBox"
+                    style="@style/Widget.App.TextInputLayout.FilledBox.DisabledHint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/spacing_2"
@@ -329,7 +329,7 @@
 
                     <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
                         android:id="@+id/etCalculatorSubtractPercent"
-                        style="@style/Widget.App.TextInputEditText.OutlinedBox"
+                        style="@style/Widget.App.TextInputEditText.OutlinedBox.DisabledHint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
