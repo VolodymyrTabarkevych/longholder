@@ -123,7 +123,6 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     tietActiveDate.setOnClickListener {
                         val dateValidatorMin: DateValidator =
                             DateValidatorPointForward.from(System.currentTimeMillis())
-
                         val validators = CompositeDateValidator.allOf(listOf(dateValidatorMin))
 
                         MaterialDatePicker.Builder
