@@ -7,6 +7,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator
+import com.google.android.material.datepicker.CompositeDateValidator
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentActiveBinding
@@ -56,7 +60,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     }
                     actvActiveSelectCurrency.apply {
                         isEnabled = false
-                        setText(active.name)
+                        setText(active.nameFormatted)
                     }
                     tvActiveAmountTitle.text = getString(R.string.active_amount)
                     tietActiveAmount.apply {
@@ -117,8 +121,16 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                         }
                     }
                     tietActiveDate.setOnClickListener {
+                        val dateValidatorMin: DateValidator =
+                            DateValidatorPointForward.from(System.currentTimeMillis())
+
+                        val validators = CompositeDateValidator.allOf(listOf(dateValidatorMin))
+
                         MaterialDatePicker.Builder
                             .datePicker()
+                            .setCalendarConstraints(
+                                CalendarConstraints.Builder().setValidator(validators).build()
+                            )
                             .build().also {
                                 it.addOnPositiveButtonClickListener { timeInMillis ->
                                     val format = SimpleDateFormat(

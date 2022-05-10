@@ -172,7 +172,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
                 tvAnalyticsActiveStartDate.text = it.dateOfStart
                 tvAnalyticsCurrentPrice.text = resources.getString(
                     R.string.common_crypto_price_in_other_currency,
-                    it.nameOfCurrency,
+                    it.nameFormatted,
                     it.currentCurrencyPriceFormatted
                 )
                 binding.llAnalyticsActives.addView(root)

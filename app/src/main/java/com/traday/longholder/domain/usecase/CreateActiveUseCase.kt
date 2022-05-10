@@ -26,7 +26,6 @@ class CreateActiveUseCase @Inject constructor(
                     params.cryptoPriceOnStart,
                     params.valueOfCrypto.toDouble()
                 ),
-                nameOfCurrency = params.nameOfCurrency,
                 dateOfEnd = params.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
                 comment = params.comment,
                 linkToImage = params.linkToImage
@@ -46,7 +45,6 @@ class CreateActiveUseCase @Inject constructor(
         val valueOfCrypto: String,
         val currentCurrencyPrice: Double,
         val cryptoPriceOnStart: Double,
-        val nameOfCurrency: String,
         val dateOfEnd: String,
         val comment: String?,
         val linkToImage: String?

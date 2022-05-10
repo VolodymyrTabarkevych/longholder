@@ -15,7 +15,7 @@ class ActiveItemViewHolder(
         with(binding) {
             root.setOnClickListener { eventListener.onActiveClicked(item) }
             ivActiveCryptoIcon.loadWithGlide(item.linkToImage)
-            tvActiveCryptoName.text = item.name
+            tvActiveCryptoName.text = item.nameFormatted
             tvActiveCryptoValue.text = item.valueOfCryptoFormatted
             tvActiveCryptoPriceInOtherCurrency.apply {
                 text = resources.getString(
@@ -33,7 +33,7 @@ class ActiveItemViewHolder(
             tvActiveCryptoCurrentPrice.apply {
                 text = resources.getString(
                     R.string.common_crypto_price_in_other_currency,
-                    item.nameOfCurrency,
+                    item.nameFormatted,
                     item.currentCurrencyPriceFormatted
                 )
             }

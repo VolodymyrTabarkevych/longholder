@@ -78,10 +78,9 @@ class ActiveViewModel @Inject constructor(
         val selectedCurrency = _selectedCurrencyLiveData.value ?: return
         executeUseCase(
             createActiveUseCase, CreateActiveUseCase.Params(
-                name = selectedCurrency.name,
+                name = selectedCurrency.indexOnExchange,
                 currentCurrencyPrice = selectedCurrency.price,
                 cryptoPriceOnStart = selectedCurrency.price,
-                nameOfCurrency = selectedCurrency.indexOnExchange,
                 valueOfCrypto = valueOfCrypto,
                 dateOfEnd = dateOfEnd,
                 comment = comment,

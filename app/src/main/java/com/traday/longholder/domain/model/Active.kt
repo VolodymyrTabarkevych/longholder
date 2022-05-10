@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Active(
     val id: Int,
     val name: String?,
+    val nameFormatted: String?,
     val valueOfCrypto: Double,
     val valueOfCryptoFormatted: String,
     val cryptoPriceOnStart: Double,

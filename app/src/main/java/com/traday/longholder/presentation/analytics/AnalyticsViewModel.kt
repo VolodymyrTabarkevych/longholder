@@ -47,10 +47,11 @@ class AnalyticsViewModel @Inject constructor(
 
     fun selectCurrencyAndLoadReport(currency: Currency) {
         _selectedCurrencyLiveData.postValue(currency)
-        currency.name?.let { currencyName ->
-            executeUseCase(getReportUseCase, GetReportUseCase.Params(currencyId = currencyName)) {
-                _getReportLiveData.postValue(it)
-            }
+        executeUseCase(
+            getReportUseCase,
+            GetReportUseCase.Params(currencyId = currency.indexOnExchange)
+        ) {
+            _getReportLiveData.postValue(it)
         }
     }
 }
