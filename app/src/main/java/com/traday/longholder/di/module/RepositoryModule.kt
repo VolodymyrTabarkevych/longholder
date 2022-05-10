@@ -28,4 +28,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindReportRepository(repository: ReportRepository): IReportRepository
+
+    @Binds
+    fun bindCalcRepository(repository: CalcRepository): ICalcRepository
 }

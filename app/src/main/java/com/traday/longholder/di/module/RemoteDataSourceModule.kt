@@ -4,6 +4,8 @@ import com.traday.longholder.data.remote.datasource.active.ActiveRemoteDataSourc
 import com.traday.longholder.data.remote.datasource.active.IActiveRemoteDataSource
 import com.traday.longholder.data.remote.datasource.authenticate.AuthenticateRemoteDataSource
 import com.traday.longholder.data.remote.datasource.authenticate.IAuthenticateRemoteDataSource
+import com.traday.longholder.data.remote.datasource.calc.CalcRemoteDataSource
+import com.traday.longholder.data.remote.datasource.calc.ICalcRemoteDataSource
 import com.traday.longholder.data.remote.datasource.currency.CurrencyRemoteDataSource
 import com.traday.longholder.data.remote.datasource.currency.ICurrencyRemoteDataSource
 import com.traday.longholder.data.remote.datasource.notification.INotificationRemoteDataSource
@@ -38,4 +40,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindReportRemoteDataSource(source: ReportRemoteDataSource): IReportRemoteDataSource
+
+    @Binds
+    fun bindCalcRemoteDataSource(source: CalcRemoteDataSource): ICalcRemoteDataSource
 }

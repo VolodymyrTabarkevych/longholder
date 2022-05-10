@@ -41,6 +41,7 @@
     <string name="validation_password_not_valid">Password may contain minimum 8 characters, 1 capital letter and 1 number.</string>
     <string name="validation_crypto_amount_not_valid">Please enter a value bigger than 1</string>
     <string name="validation_password_match">Both passwords must match</string>
+    <string name="validation_value_not_valid">Value not valid</string>
 
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>
@@ -124,4 +125,7 @@
     <string name="calculator_from_number">from number</string>
     <string name="calculator_result">Result</string>
     <string name="calculator_number">Number</string>
+    <string name="calculator_default_result">0</string>
+    <string name="calculator_add_percent">add %</string>
+    <string name="calculator_subtract_percent">subtract %</string>
 </resources>
