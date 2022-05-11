@@ -5,7 +5,7 @@ import com.traday.longholder.data.local.database.dao.UserDao
 import com.traday.longholder.data.local.datasource.base.BaseLocalDataSource
 import com.traday.longholder.data.local.entity.UserEntity
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
-import com.traday.longholder.extensions.result
+import com.traday.longholder.data.mapper.result
 import javax.inject.Inject
 
 class UserLocalDataSource @Inject constructor(

@@ -2,12 +2,12 @@ package com.traday.longholder.data.remote.datasource.active
 
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
+import com.traday.longholder.data.mapper.apiResult
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.data.remote.responsebody.GetActivesResponseBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.*
 import javax.inject.Inject

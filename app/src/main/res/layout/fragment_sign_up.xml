@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:orientation="vertical"
     tools:background="@color/white">
 
-    <LinearLayout
+    <com.traday.longholder.presentation.customviews.SimpleToolbar
+        android:id="@+id/stSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
 
-        <com.traday.longholder.presentation.customviews.SimpleToolbar
-            android:id="@+id/stSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:toolbarLeftActionDrawable="@drawable/ic_arrow_to_left" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -98,5 +98,5 @@
                 app:progressButtonEnabled="false"
                 app:progressButtonText="@string/common_next" />
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

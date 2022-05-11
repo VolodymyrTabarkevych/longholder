@@ -3,8 +3,8 @@ package com.traday.longholder.data.local.datasource.currency
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.database.dao.CurrencyDao
 import com.traday.longholder.data.local.entity.CurrencyEntity
-import com.traday.longholder.extensions.flowResult
-import com.traday.longholder.extensions.result
+import com.traday.longholder.data.mapper.flowResult
+import com.traday.longholder.data.mapper.result
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

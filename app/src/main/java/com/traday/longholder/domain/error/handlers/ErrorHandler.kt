@@ -1,30 +1,24 @@
 package com.traday.longholder.domain.error.handlers
 
-import android.content.Context
-import com.traday.longholder.R
 import com.traday.longholder.data.error.exceptions.BaseException
 import com.traday.longholder.domain.error.entities.BaseError
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ErrorHandler @Inject constructor(@ApplicationContext context: Context) : IErrorHandler {
-
-    private val rs by lazy { context.resources }
+class ErrorHandler @Inject constructor() : IErrorHandler {
 
     override fun getError(tr: Throwable): BaseError =
         when (tr) {
             is BaseException.NetworkConnectionException -> BaseError.NetworkConnectionError(
-                rs.getString(
-                    R.string.error_no_internet_connection
-                )
+                ERROR_MESSAGE_NO_INTERNET_CONNECTION
             )
-            is BaseException.UnauthorizedException -> BaseError.UnauthorizedError("Unauthorized")
-            is BaseException.UserAlreadyExistsException -> BaseError.UserAlreadyExistsError("User already exists")
-            else -> BaseError.SomethingWentWrongError(rs.getString(R.string.error_unknown))
+            is BaseException.UnauthorizedException -> BaseError.UnauthorizedError(tr.error.message)
+            is BaseException.UserAlreadyExistsException -> BaseError.UserAlreadyExistsError(tr.error.message)
+            else -> BaseError.SomethingWentWrongError(tr.message ?: ERROR_MESSAGE_UNKNOWN)
         }
 
     companion object {
 
-        private const val EMPTY_STRING = ""
+        private const val ERROR_MESSAGE_NO_INTERNET_CONNECTION = "No internet connection"
+        private const val ERROR_MESSAGE_UNKNOWN = "Internal Server Error, please try again later"
     }
 }

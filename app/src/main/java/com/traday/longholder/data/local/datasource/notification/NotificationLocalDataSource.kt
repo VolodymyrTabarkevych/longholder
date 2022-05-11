@@ -4,8 +4,8 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.database.dao.NotificationDao
 import com.traday.longholder.data.local.datasource.base.BaseLocalDataSource
 import com.traday.longholder.data.local.entity.NotificationEntity
-import com.traday.longholder.extensions.flowResult
-import com.traday.longholder.extensions.result
+import com.traday.longholder.data.mapper.flowResult
+import com.traday.longholder.data.mapper.result
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

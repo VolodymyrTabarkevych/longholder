@@ -2,10 +2,10 @@ package com.traday.longholder.data.remote.datasource.user
 
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
+import com.traday.longholder.data.mapper.apiResult
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
 import com.traday.longholder.data.remote.dto.UserDto
 import com.traday.longholder.data.remote.rest.IRestBuilder
-import com.traday.longholder.extensions.apiResult
 import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Inject
