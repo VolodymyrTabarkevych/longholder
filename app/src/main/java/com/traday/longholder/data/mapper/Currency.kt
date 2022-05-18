@@ -11,7 +11,8 @@ fun CurrencyDto.toEntity(id: Int) = CurrencyEntity(
     name = name,
     indexOnExchange = indexOnExchange,
     price = price,
-    dateOfUpdate = dateOfUpdate.formatDateServerFormatToClientFormatOrEmpty()
+    dateOfUpdate = dateOfUpdate.formatDateServerFormatToClientFormatOrEmpty(),
+    symbol = symbol
 )
 
 fun CurrencyEntity.toDomain() = Currency(
@@ -20,5 +21,6 @@ fun CurrencyEntity.toDomain() = Currency(
     name = name,
     indexOnExchange = indexOnExchange,
     price = price,
-    dateOfUpdate = dateOfUpdate
+    dateOfUpdate = dateOfUpdate,
+    symbol = symbol
 )

@@ -13,7 +13,8 @@ data class CurrencyEntity(
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "indexOnExchange") val indexOnExchange: String,
     @ColumnInfo(name = "price") val price: Double,
-    @ColumnInfo(name = "dateOfUpdate") val dateOfUpdate: String
+    @ColumnInfo(name = "dateOfUpdate") val dateOfUpdate: String,
+    @ColumnInfo("symbol") val symbol: String
 ) {
 
     companion object {

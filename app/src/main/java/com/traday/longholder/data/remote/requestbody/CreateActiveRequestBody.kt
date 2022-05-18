@@ -10,5 +10,6 @@ data class CreateActiveRequestBody(
     @SerializedName("priceInOtherCurrencyOnStart") val priceInOtherCurrencyOnStart: Double,
     @SerializedName("dateOfEnd") val dateOfEnd: String,
     @SerializedName("comment") val comment: String?,
-    @SerializedName("linkToImage") val linkToImage: String?
+    @SerializedName("linkToImage") val linkToImage: String?,
+    @SerializedName("symbol") val symbol: String
 )

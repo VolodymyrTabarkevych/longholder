@@ -28,7 +28,8 @@ class CreateActiveUseCase @Inject constructor(
                 ),
                 dateOfEnd = params.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
                 comment = params.comment,
-                linkToImage = params.linkToImage
+                linkToImage = params.linkToImage,
+                symbol = params.symbol
             )
         ).toResource(errorHandler)
     }
@@ -47,6 +48,7 @@ class CreateActiveUseCase @Inject constructor(
         val cryptoPriceOnStart: Double,
         val dateOfEnd: String,
         val comment: String?,
-        val linkToImage: String?
+        val linkToImage: String?,
+        val symbol: String
     ) : EmptyParams()
 }

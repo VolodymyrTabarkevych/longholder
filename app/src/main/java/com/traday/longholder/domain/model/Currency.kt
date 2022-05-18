@@ -8,7 +8,8 @@ data class Currency(
     val name: String?,
     val indexOnExchange: String,
     val price: Double,
-    val dateOfUpdate: String
+    val dateOfUpdate: String,
+    val symbol: String
 ) {
 
     override fun toString(): String {

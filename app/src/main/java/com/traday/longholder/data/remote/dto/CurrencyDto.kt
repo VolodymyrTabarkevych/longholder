@@ -8,5 +8,6 @@ data class CurrencyDto(
     @SerializedName("name") val name: String?,
     @SerializedName("indexOnExchange") val indexOnExchange: String,
     @SerializedName("price") val price: Double,
-    @SerializedName("dateOfUpdate") val dateOfUpdate: String
+    @SerializedName("dateOfUpdate") val dateOfUpdate: String,
+    @SerializedName("symbol") val symbol: String
 )

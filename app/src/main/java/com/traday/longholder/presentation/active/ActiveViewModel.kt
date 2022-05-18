@@ -84,7 +84,8 @@ class ActiveViewModel @Inject constructor(
                 valueOfCrypto = valueOfCrypto,
                 dateOfEnd = dateOfEnd,
                 comment = comment,
-                linkToImage = selectedCurrency.linkToPhoto
+                linkToImage = selectedCurrency.linkToPhoto,
+                symbol = selectedCurrency.symbol
             )
         ) {
             _createActiveLiveData.postValue(it)
