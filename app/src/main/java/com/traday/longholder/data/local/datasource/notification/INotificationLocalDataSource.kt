@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface INotificationLocalDataSource {
 
-    suspend fun setNotifications(notifications: List<NotificationEntity>): Result<Unit>
+    suspend fun insertOrUpdateNotifications(notifications: List<NotificationEntity>): Result<Unit>
 
     suspend fun getNotifications(): Result<List<NotificationEntity>>
 

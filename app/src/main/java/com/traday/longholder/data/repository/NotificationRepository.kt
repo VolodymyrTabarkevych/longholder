@@ -35,7 +35,7 @@ class NotificationRepository @Inject constructor(
                         oldNotifications = localNotifications,
                         newNotifications = remoteNotifications
                     )
-                notificationLocalDataSource.setNotifications(syncedNotifications)
+                notificationLocalDataSource.insertOrUpdateNotifications(syncedNotifications)
                 return notificationLocalDataSource.getNotifications()
             }
         }

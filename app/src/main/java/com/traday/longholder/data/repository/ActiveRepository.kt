@@ -23,7 +23,7 @@ class ActiveRepository @Inject constructor(
                 val remoteResult = activeRemoteDataSource.getActives()
                 if (remoteResult is Result.Success) {
                     val mappedItems = remoteResult.data.actives.map { it.toEntity() }
-                    activeLocalDataSource.saveOrUpdateActive(mappedItems)
+                    activeLocalDataSource.insertOrUpdateActive(mappedItems)
                 } else if (remoteResult is Result.Error) {
                     emit(remoteResult)
                 }
@@ -36,7 +36,7 @@ class ActiveRepository @Inject constructor(
             val remoteActivesResult = activeRemoteDataSource.getActives()
             if (remoteActivesResult is Result.Success) {
                 val mappedItems = remoteActivesResult.data.actives.map { it.toEntity() }
-                activeLocalDataSource.saveOrUpdateActive(mappedItems)
+                activeLocalDataSource.insertOrUpdateActive(mappedItems)
             } else {
                 createRemoteActiveResult
             }
@@ -48,7 +48,7 @@ class ActiveRepository @Inject constructor(
     override suspend fun updateActive(active: ActiveDto): Result<Unit> {
         val createRemoteActiveResult = activeRemoteDataSource.updateActive(active)
         return if (createRemoteActiveResult is Result.Success) {
-            activeLocalDataSource.saveOrUpdateActive(active.toEntity())
+            activeLocalDataSource.insertOrUpdateActive(active.toEntity())
         } else {
             createRemoteActiveResult
         }

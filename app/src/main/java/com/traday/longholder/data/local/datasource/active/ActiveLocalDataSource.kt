@@ -13,10 +13,10 @@ class ActiveLocalDataSource @Inject constructor(
     private val activeDao: ActiveDao
 ) : BaseLocalDataSource(), IActiveLocalDataSource {
 
-    override suspend fun saveOrUpdateActive(vararg: ActiveEntity): Result<Unit> =
-        result { activeDao.insertData(vararg) }
+    override suspend fun insertOrUpdateActive(active: ActiveEntity): Result<Unit> =
+        result { activeDao.insertData(active) }
 
-    override suspend fun saveOrUpdateActive(actives: List<ActiveEntity>): Result<Unit> =
+    override suspend fun insertOrUpdateActive(actives: List<ActiveEntity>): Result<Unit> =
         result { activeDao.insertData(actives) }
 
     override fun getActives(): Flow<Result<List<ActiveEntity>>> =

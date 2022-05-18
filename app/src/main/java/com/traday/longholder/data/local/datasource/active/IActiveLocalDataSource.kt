@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface IActiveLocalDataSource {
 
-    suspend fun saveOrUpdateActive(vararg: ActiveEntity): Result<Unit>
+    suspend fun insertOrUpdateActive(active: ActiveEntity): Result<Unit>
 
-    suspend fun saveOrUpdateActive(actives: List<ActiveEntity>): Result<Unit>
+    suspend fun insertOrUpdateActive(actives: List<ActiveEntity>): Result<Unit>
 
     fun getActives(): Flow<Result<List<ActiveEntity>>>
 

@@ -13,7 +13,7 @@ class NotificationLocalDataSource @Inject constructor(
     private val notificationDao: NotificationDao
 ) : BaseLocalDataSource(), INotificationLocalDataSource {
 
-    override suspend fun setNotifications(notifications: List<NotificationEntity>): Result<Unit> =
+    override suspend fun insertOrUpdateNotifications(notifications: List<NotificationEntity>): Result<Unit> =
         result { notificationDao.insertData(notifications) }
 
     override suspend fun getNotifications(): Result<List<NotificationEntity>> =
