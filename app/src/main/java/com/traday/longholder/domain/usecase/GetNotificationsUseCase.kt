@@ -13,12 +13,14 @@ import javax.inject.Inject
 class GetNotificationsUseCase @Inject constructor(
     private val notificationRepository: INotificationRepository,
     private val errorHandler: IErrorHandler
-) : BaseUseCase<EmptyParams, List<Notification>>() {
+) : BaseUseCase<GetNotificationsUseCase.Params, List<Notification>>() {
 
-    override suspend fun run(params: EmptyParams): Resource<List<Notification>> {
-        return notificationRepository.getNotifications()
+    override suspend fun run(params: Params): Resource<List<Notification>> {
+        return notificationRepository.getNotifications(params.sync)
             .toResource(errorHandler) { notification ->
                 notification.map { it.toDomain() }
             }
     }
+
+    class Params(val sync: Boolean) : EmptyParams()
 }

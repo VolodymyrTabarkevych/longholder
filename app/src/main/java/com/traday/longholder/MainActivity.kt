@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.traday.longholder.databinding.ActivityMainBinding
+import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
@@ -41,7 +42,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     }
 
     private fun initViewModel() {
-        viewModel.userStatus.observe(this, ::handleUserStatus)
+        viewModel.userStatus.observe(this) {
+            when (it) {
+                is Resource.Error -> handleUserStatus(UserStatus.NOT_AUTHORIZED)
+                is Resource.Success -> {
+                    handleUserStatus(it.data)
+                }
+            }
+        }
     }
 
     private fun handleUserStatus(userStatus: UserStatus) {

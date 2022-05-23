@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface INotificationRepository {
 
-    suspend fun getNotifications(): Result<List<NotificationEntity>>
+    suspend fun getNotifications(sync: Boolean): Result<List<NotificationEntity>>
 
     fun getNotificationsCountByIsRead(isRead: Boolean): Flow<Result<Int>>
 

@@ -2,12 +2,12 @@ package com.traday.longholder.data.local.datasource.user
 
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.entity.UserEntity
+import com.traday.longholder.domain.enums.UserStatus
+import kotlinx.coroutines.flow.Flow
 
 interface IUserLocalDataSource {
 
     suspend fun setUserToken(userToken: String?): Result<Unit>
-
-    suspend fun getUserToken(): Result<String>
 
     suspend fun setUser(userEntity: UserEntity?): Result<Unit>
 
@@ -15,5 +15,5 @@ interface IUserLocalDataSource {
 
     suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit>
 
-    suspend fun isOnboardingPassed(): Result<Boolean>
+    fun getUserStatus(): Flow<Result<UserStatus>>
 }

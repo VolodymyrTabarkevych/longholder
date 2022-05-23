@@ -5,7 +5,9 @@ import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
 import com.traday.longholder.data.local.entity.UserEntity
 import com.traday.longholder.data.mapper.toEntity
 import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
+import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.domain.repository.IUserRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -23,15 +25,11 @@ class UserRepository @Inject constructor(
         return userLocalDataSource.getUser()
     }
 
-    override suspend fun getUserToken(): Result<String> {
-        return userLocalDataSource.getUserToken()
-    }
-
     override suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit> {
         return userLocalDataSource.setOnboardingPassed(isPassed)
     }
 
-    override suspend fun isOnboardingPassed(): Result<Boolean> {
-        return userLocalDataSource.isOnboardingPassed()
+    override fun getUserStatus(): Flow<Result<UserStatus>> {
+        return userLocalDataSource.getUserStatus()
     }
 }

@@ -27,6 +27,10 @@
     <string name="common_cancel">Cancel</string>
     <string name="common_percent_sign">%</string>
 
+    <!-- Notification -->
+    <string name="push_notification_holding_has_ended">Your holding has ended</string>
+    <string name="push_notification_you_earned">You have earned: %d</string>
+
     <!-- Dialog -->
     <string name="dialog_log_out_title">Do you want to Log out?</string>
     <string name="dialog_log_out">Log Out</string>

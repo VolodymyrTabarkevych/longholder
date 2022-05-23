@@ -14,43 +14,23 @@ class NotificationRepository @Inject constructor(
     private val notificationLocalDataSource: INotificationLocalDataSource
 ) : INotificationRepository {
 
-    override suspend fun getNotifications(): Result<List<NotificationEntity>> {
+    override suspend fun getNotifications(sync: Boolean): Result<List<NotificationEntity>> {
+        if (!sync) return notificationLocalDataSource.getNotifications()
         val remoteNotificationsResult = notificationRemoteDataSource.getNotifications()
         val localNotificationsResult = notificationLocalDataSource.getNotifications()
 
-        when (remoteNotificationsResult) {
+        return when (remoteNotificationsResult) {
             is Result.Error -> {
-                return if (localNotificationsResult is Result.Success && localNotificationsResult.data.isNotEmpty()) {
+                if (localNotificationsResult is Result.Success && localNotificationsResult.data.isNotEmpty()) {
                     localNotificationsResult
                 } else {
                     remoteNotificationsResult
                 }
             }
             is Result.Success -> {
-                val remoteNotifications = remoteNotificationsResult.data.map { it.toEntity() }
-                val localNotifications =
-                    if (localNotificationsResult is Result.Success) localNotificationsResult.data else emptyList()
-                val syncedNotifications =
-                    syncNotifications(
-                        oldNotifications = localNotifications,
-                        newNotifications = remoteNotifications
-                    )
-                notificationLocalDataSource.insertOrUpdateNotifications(syncedNotifications)
-                return notificationLocalDataSource.getNotifications()
+                val mappedRemoteNotifications = remoteNotificationsResult.data.map { it.toEntity() }
+                notificationLocalDataSource.insertOrUpdateNotifications(mappedRemoteNotifications)
             }
-        }
-    }
-
-    private fun syncNotifications(
-        oldNotifications: List<NotificationEntity>,
-        newNotifications: List<NotificationEntity>
-    ): List<NotificationEntity> {
-        if (oldNotifications.isEmpty()) return newNotifications.map { it.copy(isRead = true) }
-        return newNotifications.map { newNotification ->
-            oldNotifications
-                .find { oldNotification -> oldNotification.id == newNotification.id }
-                ?.let { oldNotification -> newNotification.copy(isRead = oldNotification.isRead) }
-                ?: newNotification
         }
     }
 

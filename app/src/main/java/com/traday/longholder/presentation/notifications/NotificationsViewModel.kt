@@ -2,7 +2,6 @@ package com.traday.longholder.presentation.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Notification
 import com.traday.longholder.domain.usecase.GetNotificationsUseCase
@@ -24,7 +23,7 @@ class NotificationsViewModel @Inject constructor(
     }
 
     private fun getNotifications() {
-        executeUseCase(getNotificationsUseCase, EmptyParams()) {
+        executeUseCase(getNotificationsUseCase, GetNotificationsUseCase.Params(false)) {
             _getNotificationsLiveData.postValue(it)
         }
     }

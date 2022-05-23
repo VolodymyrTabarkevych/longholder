@@ -13,8 +13,22 @@ class NotificationLocalDataSource @Inject constructor(
     private val notificationDao: NotificationDao
 ) : BaseLocalDataSource(), INotificationLocalDataSource {
 
-    override suspend fun insertOrUpdateNotifications(notifications: List<NotificationEntity>): Result<Unit> =
-        result { notificationDao.insertData(notifications) }
+    override suspend fun insertOrUpdateNotifications(notifications: List<NotificationEntity>): Result<List<NotificationEntity>> =
+        result {
+            val oldNotifications = notificationDao.getNotifications()
+            val syncedNotifications = if (oldNotifications.isEmpty()) {
+                notifications.map { it.copy(isRead = true) }
+            } else {
+                notifications.map { newNotification ->
+                    oldNotifications
+                        .find { oldNotification -> oldNotification.id == newNotification.id }
+                        ?.let { oldNotification -> newNotification.copy(isRead = oldNotification.isRead) }
+                        ?: newNotification
+                }
+            }
+            notificationDao.insertData(syncedNotifications)
+            notificationDao.getNotifications()
+        }
 
     override suspend fun getNotifications(): Result<List<NotificationEntity>> =
         result { notificationDao.getNotifications() }

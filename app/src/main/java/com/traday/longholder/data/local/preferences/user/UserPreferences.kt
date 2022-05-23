@@ -6,6 +6,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.traday.longholder.data.local.preferences.base.BasePreferences
 import com.traday.longholder.di.qualifire.UserPreferences
+import com.traday.longholder.domain.enums.UserStatus
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class UserPreferences @Inject constructor(
@@ -24,6 +27,16 @@ class UserPreferences @Inject constructor(
 
     override suspend fun isOnboardingPassed(): Boolean = read {
         it[IS_ONBOARDING_PASSED] ?: false
+    }
+
+    override fun getUserStatus(): Flow<UserStatus> = dataStore.data.map {
+        val userToken = it[USER_TOKEN]
+        val isOnboardingPassed = it[IS_ONBOARDING_PASSED] ?: false
+        when {
+            userToken == null -> UserStatus.NOT_AUTHORIZED
+            !isOnboardingPassed -> UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING
+            else -> UserStatus.AUTHORIZED
+        }
     }
 
     companion object {
