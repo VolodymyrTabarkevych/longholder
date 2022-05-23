@@ -22,23 +22,12 @@ class CreateActiveUseCase @Inject constructor(
                 valueOfCrypto = params.valueOfCrypto.toDouble(),
                 currentCurrencyPrice = params.currentCurrencyPrice,
                 cryptoPriceOnStart = params.cryptoPriceOnStart,
-                priceInOtherCurrencyOnStart = calculatePriceInOtherCurrencyOnStart(
-                    params.cryptoPriceOnStart,
-                    params.valueOfCrypto.toDouble()
-                ),
                 dateOfEnd = params.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
                 comment = params.comment,
                 linkToImage = params.linkToImage,
                 symbol = params.symbol
             )
         ).toResource(errorHandler)
-    }
-
-    private fun calculatePriceInOtherCurrencyOnStart(
-        cryptoPriceOnStart: Double,
-        valueOfCrypto: Double
-    ): Double {
-        return cryptoPriceOnStart * valueOfCrypto
     }
 
     class Params(
