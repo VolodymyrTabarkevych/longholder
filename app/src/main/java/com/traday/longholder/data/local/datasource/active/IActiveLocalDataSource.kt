@@ -14,5 +14,5 @@ interface IActiveLocalDataSource {
 
     suspend fun deleteActive(id: Int): Result<Unit>
 
-    suspend fun deleteActive(): Result<Unit>
+    suspend fun deleteAllActives(): Result<Unit>
 }

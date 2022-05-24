@@ -20,6 +20,8 @@ object BaseException {
     class UserAlreadyExistsException(error: ErrorResponse) :
         NetworkRequestException(error)
 
+    class NoAvailableActives(error: ErrorResponse) : NetworkRequestException(error)
+
     open class LocalRequestException : IOException()
 
     class NoDataException : LocalRequestException()

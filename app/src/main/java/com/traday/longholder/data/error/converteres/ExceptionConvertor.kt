@@ -9,12 +9,21 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
     override fun getException(e: Exception): Exception = when (e) {
         is BaseException.NetworkRequestException -> {
             when (e.error.code) {
+                BAD_REQUEST_ERROR_CODE_400 -> handle400(e.error)
                 UNAUTHORIZED_ERROR_CODE_401 -> handle401(e.error)
                 INTERNAL_SERVER_ERROR_500 -> handle500(e.error)
                 else -> BaseException.SomethingWentWrongException(e.error)
             }
         }
         else -> e
+    }
+
+    private fun handle400(error: ErrorResponse): Exception {
+        return if (error.message == NO_AVAILABLE_ACTIVES) {
+            BaseException.NoAvailableActives(error)
+        } else {
+            BaseException.SomethingWentWrongException(error)
+        }
     }
 
     private fun handle401(error: ErrorResponse): Exception {
@@ -45,5 +54,6 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
 
         const val WRONG_LOGIN_OR_PASSWORD = "Wrong login or password!"
         const val USER_ALREADY_EXISTS_ERROR = "User already exists!"
+        const val NO_AVAILABLE_ACTIVES = "No available values!"
     }
 }

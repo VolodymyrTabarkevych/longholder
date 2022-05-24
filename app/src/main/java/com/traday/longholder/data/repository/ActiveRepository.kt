@@ -1,6 +1,7 @@
 package com.traday.longholder.data.repository
 
 import com.traday.longholder.data.base.Result
+import com.traday.longholder.data.error.exceptions.BaseException
 import com.traday.longholder.data.local.datasource.active.IActiveLocalDataSource
 import com.traday.longholder.data.local.entity.ActiveEntity
 import com.traday.longholder.data.mapper.toEntity
@@ -25,7 +26,11 @@ class ActiveRepository @Inject constructor(
                     val mappedItems = remoteResult.data.actives.map { it.toEntity() }
                     activeLocalDataSource.insertOrUpdateActive(mappedItems)
                 } else if (remoteResult is Result.Error) {
-                    emit(remoteResult)
+                    if (remoteResult.error is BaseException.NoAvailableActives) {
+                        activeLocalDataSource.deleteAllActives()
+                    } else {
+                        emit(remoteResult)
+                    }
                 }
             }
     }

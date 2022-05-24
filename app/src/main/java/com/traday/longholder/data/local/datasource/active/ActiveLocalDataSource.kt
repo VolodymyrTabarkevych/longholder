@@ -25,6 +25,6 @@ class ActiveLocalDataSource @Inject constructor(
     override suspend fun deleteActive(id: Int): Result<Unit> =
         result { activeDao.deleteActiveById(id) }
 
-    override suspend fun deleteActive(): Result<Unit> =
+    override suspend fun deleteAllActives(): Result<Unit> =
         result { activeDao.deleteActive() }
 }
