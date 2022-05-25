@@ -153,7 +153,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             tvActiveTitle.text = getString(R.string.active_add)
             tvActiveSelectCurrencyTitle.text = getString(R.string.active_select_coin)
             tilActiveSelectCurrency.endIconDrawable =
-                getDrawableCompat(R.drawable.ic_arrow_to_down)
+                getDrawableCompat(R.drawable.ic_small_arrow_to_bottom)
             actvActiveSelectCurrency.isEnabled = true
             tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
             tvActiveCommentTitle.text = getString(R.string.active_leave_comment)

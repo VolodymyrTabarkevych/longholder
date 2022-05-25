@@ -21,7 +21,7 @@
     <string name="common_dollar">$</string>
     <string name="common_dollar_value_with_brackets">($%s)</string>
     <string name="common_earned_crypto_with_percent">%1$s (%2$s %%)</string>
-    <string name="common_earned_crypto">+%1$s</string>
+    <string name="common_earned_crypto">%1$s</string>
     <string name="common_value_with_percent">%.2f%%</string>
     <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Cancel</string>

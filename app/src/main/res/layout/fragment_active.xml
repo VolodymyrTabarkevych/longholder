@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_1"
-                    app:endIconDrawable="@drawable/ic_arrow_to_down"
+                    app:endIconDrawable="@drawable/ic_small_arrow_to_bottom"
                     app:startIconDrawable="@drawable/img_btc"
                     app:startIconTint="@null">
 
@@ -167,7 +167,7 @@
                             android:text="@string/common_dollar"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/text.size.medium"
-                            app:drawableEndCompat="@drawable/ic_arrow_to_down" />
+                            app:drawableEndCompat="@drawable/ic_small_arrow_to_bottom" />
                     </FrameLayout>
 
                     <TextView
@@ -205,7 +205,7 @@
                             android:text="@string/common_dollar"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/text.size.medium"
-                            app:drawableEndCompat="@drawable/ic_arrow_to_down" />
+                            app:drawableEndCompat="@drawable/ic_small_arrow_to_bottom" />
                     </FrameLayout>
 
                     <TextView

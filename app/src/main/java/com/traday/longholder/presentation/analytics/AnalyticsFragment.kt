@@ -17,7 +17,9 @@ import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.model.Report
+import com.traday.longholder.extensions.getColorCompat
 import com.traday.longholder.extensions.navigateSafe
+import com.traday.longholder.extensions.rightDrawable
 import com.traday.longholder.extensions.setStartIconWithGlide
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
@@ -168,11 +170,16 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
         actives.forEach {
             with(ItemAnalyticsActiveBinding.inflate(LayoutInflater.from(requireContext()))) {
                 tvAnalyticsActiveAmount.text = it.valueOfCryptoFormatted
-                tvAnalyticsActivePriceInOtherCurrency.text = it.priceInOtherCurrencyOnStartFormatted
+                tvAnalyticsActivePriceInOtherCurrency.apply {
+                    text = resources.getString(
+                        R.string.common_dollar_value_with_brackets,
+                        it.priceInOtherCurrencyOnStartFormatted
+                    )
+                }
                 tvAnalyticsActiveStartDate.text = it.dateOfStart
                 tvAnalyticsCurrentPrice.text = resources.getString(
                     R.string.common_crypto_price_in_other_currency,
-                    it.nameFormatted,
+                    it.symbolFormatted,
                     it.currentCurrencyPriceFormatted
                 )
                 binding.llAnalyticsActives.addView(root)
@@ -186,10 +193,15 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
             tvAnalyticsTotalInfoCount.text = report.countOfCryptoFormatted
             tvAnalyticsTotalInfoPriceNow.text = report.priceNowFormatted
             tvAnalyticsTotalInfoPriceTotal.text = report.allMoneyFormatted
-            tvAnalyticsTotalInfoEarned.text =
-                getString(R.string.common_earned_crypto, report.profitFormatted)
-            tvAnalyticsTotalInfoEarnedInPercents.text =
-                getString(R.string.common_value_with_percent, report.percents)
+            tvAnalyticsTotalInfoEarned.apply {
+                setTextColor(getColorCompat(report.profitResIdColor))
+                text = getString(R.string.common_earned_crypto, report.profitFormatted)
+            }
+            tvAnalyticsTotalInfoEarnedInPercents.apply {
+                setTextColor(getColorCompat(report.profitResIdColor))
+                rightDrawable(report.getPercentsDrawableResId, report.profitResIdColor)
+                text = getString(R.string.common_value_with_percent, report.percents)
+            }
             binding.llAnalyticsTotalInfo.addView(root)
         }
     }
