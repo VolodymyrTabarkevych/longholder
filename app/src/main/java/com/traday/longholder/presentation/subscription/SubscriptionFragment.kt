@@ -32,6 +32,7 @@ class SubscriptionFragment :
 
     private fun initActionButtons() {
         with(binding) {
+            stSubscription.setLeftActionOnCLickListener { navController.popBackStack() }
             pbSubscriptionNext.setOnClickListener {
                 val currentPage = vpSubscription.currentItem
                 val lastPage = subscriptionAdapter.itemCount.dec()
