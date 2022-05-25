@@ -20,8 +20,7 @@ class MainViewModel @Inject constructor(
 
     private val _userStatusLiveData =
         executeUseCase(getUserStatusUseCase, EmptyParams()).onEach(::handleNotificationWorker)
-            .asLiveData()
-    val userStatus: LiveData<Resource<UserStatus>> get() = _userStatusLiveData
+    val userStatus: LiveData<Resource<UserStatus>> get() = _userStatusLiveData.asLiveData()
 
     private fun handleNotificationWorker(userStatusResource: Resource<UserStatus>) {
         if (userStatusResource !is Resource.Success) return

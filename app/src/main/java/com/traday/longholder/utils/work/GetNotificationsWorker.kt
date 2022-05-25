@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
+import com.google.common.util.concurrent.ListenableFuture
 import com.traday.longholder.MainActivity
 import com.traday.longholder.R
 import com.traday.longholder.domain.repository.INotificationRepository
@@ -111,7 +112,22 @@ class GetNotificationsWorker @AssistedInject constructor(
         }
 
         fun stop(context: Context) {
-            WorkManager.getInstance(context).cancelAllWorkByTag(WORKER_NAME)
+            WorkManager.getInstance(context).cancelUniqueWork(WORKER_NAME)
+        }
+
+        fun isScheduled(context: Context): Boolean {
+            val statuses: ListenableFuture<List<WorkInfo>> =
+                WorkManager.getInstance(context).getWorkInfosForUniqueWork(WORKER_NAME)
+            return try {
+                var running = false
+                statuses.get().forEach {
+                    running =
+                        it.state == WorkInfo.State.RUNNING || it.state == WorkInfo.State.ENQUEUED
+                }
+                return running
+            } catch (e: Exception) {
+                false
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @Singleton
 class GetNotificationsWorkerRunner @Inject constructor(
     @ApplicationContext context: Context
@@ -20,6 +21,8 @@ class GetNotificationsWorkerRunner @Inject constructor(
     private val context = context.applicationContext
 
     override fun startService() {
+        val isScheduled = GetNotificationsWorker.isScheduled(context)
+        if (isScheduled) return
         val intent = Intent(context, GetNotificationsWorkerScheduler::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
             context,
