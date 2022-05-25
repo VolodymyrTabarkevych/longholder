@@ -45,7 +45,8 @@ class NotificationsFragment :
     override fun initViewModel() {
         viewModel.getNotificationsLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Error -> {}
+                is Resource.Error -> {
+                }
                 is Resource.Loading -> setNotificationsLoading(true)
                 is Resource.Success -> {
                     setNotificationsLoading(false)
@@ -63,6 +64,11 @@ class NotificationsFragment :
     }
 
     private fun setNotifications(notifications: List<Notification>) {
-        notificationsAdapter.submitList(notifications)
+        with(binding) {
+            val isNotificationsNotEmpty = notifications.isNotEmpty()
+            rvNotifications.isVisible = isNotificationsNotEmpty
+            tvNotificationsEmptyNotificationTitle.isVisible = !isNotificationsNotEmpty
+            notificationsAdapter.submitList(notifications)
+        }
     }
 }

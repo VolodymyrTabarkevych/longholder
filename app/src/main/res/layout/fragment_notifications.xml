@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -22,16 +23,29 @@
         android:id="@+id/pbNotifications"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvNotificationsEmptyNotificationTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/avenir_medium"
+        android:gravity="center"
+        android:text="@string/notifications_empty_notifications_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.xx_medium"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotifications"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="@dimen/spacing_2"
         android:layout_marginTop="@dimen/spacing_3"
         android:layout_weight="1"
         android:clipToPadding="false"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:paddingHorizontal="@dimen/spacing_2"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_notification" />
 </LinearLayout>

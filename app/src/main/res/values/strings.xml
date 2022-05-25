@@ -97,6 +97,7 @@
 
     <!-- Notifications -->
     <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty_notifications_title">You doesn’t have any messages yet</string>
 
     <!-- Language -->
     <string name="language_title">Language</string>
