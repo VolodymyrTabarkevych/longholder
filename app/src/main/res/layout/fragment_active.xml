@@ -227,6 +227,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvActiveCommentTitle"
                     style="@style/TextAppearance.App.Screen.TextInputHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -75,14 +75,15 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
 
     private fun initMode(mode: ActiveScreenMode) {
         when (mode) {
-            is ActiveScreenMode.Create -> iniCreate()
-            is ActiveScreenMode.Update -> initUpdate(mode.active)
+            is ActiveScreenMode.Create -> iniCreateMode()
+            is ActiveScreenMode.Update -> initUpdateMode(mode.active)
+            is ActiveScreenMode.View -> initViewMode(mode.active)
         }
     }
 
-    private fun initUpdate(active: Active) {
+    private fun initUpdateMode(active: Active) {
         with(binding) {
-            tvActiveTitle.text = getString(R.string.active_your)
+            tvActiveTitle.text = getString(R.string.active_update)
             tvActiveSelectCurrencyTitle.text = getString(R.string.active_your_coin)
             tilActiveSelectCurrency.apply {
                 setStartIconWithGlide(active.linkToImage)
@@ -92,7 +93,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 isEnabled = false
                 setText(active.nameFormatted)
             }
-            tvActiveAmountTitle.text = getString(R.string.active_amount)
+            tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
             tietActiveAmount.apply {
                 setText(active.valueOfCrypto.toString())
             }
@@ -100,6 +101,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 setText(active.dateOfEnd)
                 setTextColor(getColorCompat(R.color.black))
             }
+            tvActiveCommentTitle.text = getString(R.string.active_your_comment)
             tietActiveComment.apply {
                 isEnabled = false
                 setText(active.comment)
@@ -146,7 +148,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
         }
     }
 
-    private fun iniCreate() {
+    private fun iniCreateMode() {
         with(binding) {
             tvActiveTitle.text = getString(R.string.active_add)
             tvActiveSelectCurrencyTitle.text = getString(R.string.active_select_coin)
@@ -154,6 +156,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 getDrawableCompat(R.drawable.ic_arrow_to_down)
             actvActiveSelectCurrency.isEnabled = true
             tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
+            tvActiveCommentTitle.text = getString(R.string.active_leave_comment)
             llActiveInfo.gone()
 
             pbActiveFirstAction.apply {
@@ -171,6 +174,51 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 setText(getString(R.string.common_cancel))
                 setOnClickListener { navController.popBackStack() }
             }
+        }
+    }
+
+    private fun initViewMode(active: Active) {
+        with(binding) {
+            tvActiveTitle.text = getString(R.string.active_your)
+            tvActiveSelectCurrencyTitle.text = getString(R.string.active_your_coin)
+            tilActiveSelectCurrency.apply {
+                setStartIconWithGlide(active.linkToImage)
+                endIconDrawable = null
+            }
+            actvActiveSelectCurrency.apply {
+                isEnabled = false
+                setText(active.nameFormatted)
+            }
+            tvActiveAmountTitle.text = getString(R.string.active_amount)
+            tietActiveAmount.apply {
+                isEnabled = false
+                setText(active.valueOfCrypto.toString())
+            }
+            tietActiveDate.apply {
+                isEnabled = false
+                setText(active.dateOfEnd)
+                setTextColor(getColorCompat(R.color.black))
+            }
+            tvActiveCommentTitle.text = getString(R.string.active_your_comment)
+            tietActiveComment.apply {
+                isEnabled = false
+                setText(active.comment)
+            }
+            llActiveInfo.show()
+            tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
+            tvActiveSummaryToday.text = active.currentCurrencyPriceSummaryFormatted
+
+            tvActiveEarned.apply {
+                setTextColor(getColorCompat(active.earnedMoneyResIdColor))
+                text = getString(
+                    R.string.common_earned_crypto_with_percent,
+                    active.earnedMoneyFormatted,
+                    active.percentsFormatted
+                )
+            }
+
+            pbActiveFirstAction.gone()
+            pbActiveSecondAction.gone()
         }
     }
 
@@ -202,10 +250,10 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             }
             deleteActiveLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> setCreateDeleteActiveLoading(false)
-                    is Resource.Loading -> setCreateDeleteActiveLoading(true)
+                    is Resource.Error -> setDeleteActiveLoading(false)
+                    is Resource.Loading -> setDeleteActiveLoading(true)
                     is Resource.Success -> {
-                        setCreateDeleteActiveLoading(false)
+                        setDeleteActiveLoading(false)
                         navController.popBackStack()
                     }
                 }
@@ -266,6 +314,13 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
 
     private fun setCreateDeleteActiveLoading(isLoading: Boolean) {
         binding.pbActiveFirstAction.setLoading(isLoading)
+    }
+
+    private fun setDeleteActiveLoading(isLoading: Boolean) {
+        with(binding) {
+            pbActiveFirstAction.isEnabled = !isLoading
+            pbActiveSecondAction.setLoading(isLoading)
+        }
     }
 
     private fun setUpdateActiveLoading(isLoading: Boolean) {

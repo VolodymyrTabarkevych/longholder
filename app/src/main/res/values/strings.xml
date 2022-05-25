@@ -108,6 +108,7 @@
     <!-- Active -->
     <string name="active_add">Add your Active</string>
     <string name="active_your">Your Active</string>
+    <string name="active_update">Update your Active</string>
     <string name="active_select_coin">Select your coin</string>
     <string name="active_your_coin">Your coin</string>
     <string name="active_enter_amount">Enter amount</string>
@@ -118,6 +119,7 @@
     <string name="active_summary_today">Summary today</string>
     <string name="active_profit">Profit if sell now</string>
     <string name="active_leave_comment">Leave your comment</string>
+    <string name="active_your_comment">Your comment</string>
     <string name="active_put_on_hold">Put on Hold</string>
     <string name="active_stop_holding">Stop Holding</string>
 
