@@ -4,8 +4,8 @@ import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.mapper.apiResult
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
-import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
+import com.traday.longholder.data.remote.requestbody.UpdateActiveRequestBody
 import com.traday.longholder.data.remote.responsebody.GetActivesResponseBody
 import com.traday.longholder.data.remote.rest.IRestBuilder
 import retrofit2.Response
@@ -27,7 +27,7 @@ class ActiveRemoteDataSource @Inject constructor(
     override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> =
         apiResult { api.createActive(active) }
 
-    override suspend fun updateActive(active: ActiveDto): Result<Unit> =
+    override suspend fun updateActive(active: UpdateActiveRequestBody): Result<Unit> =
         apiResult { api.updateActive(active) }
 
     override suspend fun deleteActive(id: Int): Result<Unit> =
@@ -42,7 +42,7 @@ class ActiveRemoteDataSource @Inject constructor(
         suspend fun createActive(@Body active: CreateActiveRequestBody): Response<Unit>
 
         @PUT("User/updateCryptos")
-        suspend fun updateActive(@Body active: ActiveDto): Response<Unit>
+        suspend fun updateActive(@Body active: UpdateActiveRequestBody): Response<Unit>
 
         @DELETE("User/deleteCryptos")
         suspend fun deleteActive(@Query("id") id: Int): Response<Unit>

@@ -15,10 +15,12 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentActiveBinding
 import com.traday.longholder.domain.base.Resource
+import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.extensions.*
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
+import com.traday.longholder.presentation.customviews.ProgressButton
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import com.traday.longholder.utils.CALENDAR_FORMAT_PATTERN
 import com.traday.longholder.utils.showDialog
@@ -42,109 +44,132 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
 
     private fun initActionButtons() {
         with(binding) {
+            tilActiveAmount.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
+            tietActiveDate.setOnClickListener {
+                val dateValidatorMin: DateValidator =
+                    DateValidatorPointForward.from(System.currentTimeMillis())
+                val validators = CompositeDateValidator.allOf(listOf(dateValidatorMin))
+
+                MaterialDatePicker.Builder
+                    .datePicker()
+                    .setCalendarConstraints(
+                        CalendarConstraints.Builder().setValidator(validators).build()
+                    )
+                    .build().also {
+                        it.addOnPositiveButtonClickListener { timeInMillis ->
+                            val format = SimpleDateFormat(
+                                CALENDAR_FORMAT_PATTERN,
+                                Locale.getDefault()
+                            )
+                            val formattedDate: String = format.format(timeInMillis)
+                            tietActiveDate.setText(formattedDate)
+                            tietActiveDate.setTextColor(getColorCompat(R.color.black))
+                            validateFields()
+                        }
+                        it.show(childFragmentManager, TAG)
+                    }
+            }
             stActive.setLeftActionOnCLickListener { navController.popBackStack() }
-            pbActiveCancel.setOnClickListener { navController.popBackStack() }
         }
     }
 
     private fun initMode(mode: ActiveScreenMode) {
+        when (mode) {
+            is ActiveScreenMode.Create -> iniCreate()
+            is ActiveScreenMode.Update -> initUpdate(mode.active)
+        }
+    }
+
+    private fun initUpdate(active: Active) {
         with(binding) {
-            when (mode) {
-                is ActiveScreenMode.View -> {
-                    val active = mode.active
-                    tvActiveTitle.text = getString(R.string.active_your)
-                    tvActiveSelectCurrencyTitle.text = getString(R.string.active_your_coin)
-                    tilActiveSelectCurrency.apply {
-                        setStartIconWithGlide(active.linkToImage)
-                        endIconDrawable = null
-                    }
-                    actvActiveSelectCurrency.apply {
-                        isEnabled = false
-                        setText(active.nameFormatted)
-                    }
-                    tvActiveAmountTitle.text = getString(R.string.active_amount)
-                    tietActiveAmount.apply {
-                        isEnabled = false
-                        setText(active.valueOfCrypto.toString())
-                    }
-                    tietActiveDate.setText(active.dateOfStart)
-                    tietActiveDate.setTextColor(getColorCompat(R.color.black))
-                    tietActiveComment.apply {
-                        isEnabled = false
-                        setText(active.comment)
-                    }
-                    llActiveInfo.show()
-                    tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
-                    tvActiveSummaryToday.text = active.currentCurrencyPriceSummaryFormatted
-                    tvActiveEarned.text = getString(
-                        R.string.common_earned_crypto_with_percent,
-                        active.earnedMoneyFormatted,
-                        active.percentsFormatted
+            tvActiveTitle.text = getString(R.string.active_your)
+            tvActiveSelectCurrencyTitle.text = getString(R.string.active_your_coin)
+            tilActiveSelectCurrency.apply {
+                setStartIconWithGlide(active.linkToImage)
+                endIconDrawable = null
+            }
+            actvActiveSelectCurrency.apply {
+                isEnabled = false
+                setText(active.nameFormatted)
+            }
+            tvActiveAmountTitle.text = getString(R.string.active_amount)
+            tietActiveAmount.apply {
+                setText(active.valueOfCrypto.toString())
+            }
+            tietActiveDate.apply {
+                setText(active.dateOfEnd)
+                setTextColor(getColorCompat(R.color.black))
+            }
+            tietActiveComment.apply {
+                isEnabled = false
+                setText(active.comment)
+            }
+            llActiveInfo.show()
+            tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
+            tvActiveSummaryToday.text = active.currentCurrencyPriceSummaryFormatted
+
+            tvActiveEarned.apply {
+                setTextColor(getColorCompat(active.earnedMoneyResIdColor))
+                text = getString(
+                    R.string.common_earned_crypto_with_percent,
+                    active.earnedMoneyFormatted,
+                    active.percentsFormatted
+                )
+            }
+
+            pbActiveFirstAction.apply {
+                setType(ProgressButton.Type.PRIMARY)
+                setText(getString(R.string.common_update))
+                setOnClickListener {
+                    viewModel.updateActive(
+                        valueOfCrypto = tietActiveAmount.text.toString(),
+                        dateOfEnd = tietActiveDate.text.toString()
                     )
-
-                    pbActiveHoldAction.apply {
-                        setText(getString(R.string.active_stop_holding))
-                        setOnClickListener {
-                            showDialog(
-                                title = getString(R.string.dialog_do_you_want_stop_holding),
-                                message = getString(R.string.dialog_if_you_stop_holding),
-                                positiveButtonText = getString(R.string.active_stop_holding),
-                                negativeButtonText = getString(R.string.common_cancel),
-                                onPositiveButtonClicked = {
-                                    viewModel.deleteActive(active.id)
-                                }
-                            )
-                        }
-                    }
                 }
-                else -> {
-                    tilActiveAmount.isEnabled = true
-                    tilActiveAmount.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
+            }
 
-                    tvActiveTitle.text = getString(R.string.active_add)
-                    tvActiveSelectCurrencyTitle.text = getString(R.string.active_select_coin)
-                    tilActiveSelectCurrency.endIconDrawable =
-                        getDrawableCompat(R.drawable.ic_arrow_to_down)
-                    actvActiveSelectCurrency.isEnabled = true
-                    tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
-                    llActiveInfo.gone()
-
-                    pbActiveHoldAction.apply {
-                        isEnabled = false
-                        setText(getString(R.string.active_put_on_hold))
-                        setOnClickListener {
-                            viewModel.createActive(
-                                valueOfCrypto = tietActiveAmount.text.toString(),
-                                dateOfEnd = tietActiveDate.text.toString(),
-                                comment = tietActiveComment.text.toString()
-                            )
+            pbActiveSecondAction.apply {
+                setType(ProgressButton.Type.EMPTY_WITH_BORDER)
+                setText(getString(R.string.active_stop_holding))
+                setOnClickListener {
+                    showDialog(
+                        title = getString(R.string.dialog_do_you_want_stop_holding),
+                        message = getString(R.string.dialog_if_you_stop_holding),
+                        positiveButtonText = getString(R.string.active_stop_holding),
+                        negativeButtonText = getString(R.string.common_cancel),
+                        onPositiveButtonClicked = {
+                            viewModel.deleteActive(active.id)
                         }
-                    }
-                    tietActiveDate.setOnClickListener {
-                        val dateValidatorMin: DateValidator =
-                            DateValidatorPointForward.from(System.currentTimeMillis())
-                        val validators = CompositeDateValidator.allOf(listOf(dateValidatorMin))
-
-                        MaterialDatePicker.Builder
-                            .datePicker()
-                            .setCalendarConstraints(
-                                CalendarConstraints.Builder().setValidator(validators).build()
-                            )
-                            .build().also {
-                                it.addOnPositiveButtonClickListener { timeInMillis ->
-                                    val format = SimpleDateFormat(
-                                        CALENDAR_FORMAT_PATTERN,
-                                        Locale.getDefault()
-                                    )
-                                    val formattedDate: String = format.format(timeInMillis)
-                                    tietActiveDate.setText(formattedDate)
-                                    tietActiveDate.setTextColor(getColorCompat(R.color.black))
-                                    validateFields()
-                                }
-                                it.show(childFragmentManager, TAG)
-                            }
-                    }
+                    )
                 }
+            }
+        }
+    }
+
+    private fun iniCreate() {
+        with(binding) {
+            tvActiveTitle.text = getString(R.string.active_add)
+            tvActiveSelectCurrencyTitle.text = getString(R.string.active_select_coin)
+            tilActiveSelectCurrency.endIconDrawable =
+                getDrawableCompat(R.drawable.ic_arrow_to_down)
+            actvActiveSelectCurrency.isEnabled = true
+            tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
+            llActiveInfo.gone()
+
+            pbActiveFirstAction.apply {
+                setText(getString(R.string.active_put_on_hold))
+                setOnClickListener {
+                    viewModel.createActive(
+                        valueOfCrypto = tietActiveAmount.text.toString(),
+                        dateOfEnd = tietActiveDate.text.toString(),
+                        comment = tietActiveComment.text.toString()
+                    )
+                }
+            }
+            pbActiveSecondAction.apply {
+                setType(ProgressButton.Type.EMPTY_WITH_BORDER_RED)
+                setText(getString(R.string.common_cancel))
+                setOnClickListener { navController.popBackStack() }
             }
         }
     }
@@ -181,6 +206,16 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     is Resource.Loading -> setCreateDeleteActiveLoading(true)
                     is Resource.Success -> {
                         setCreateDeleteActiveLoading(false)
+                        navController.popBackStack()
+                    }
+                }
+            }
+            updateActiveLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> setUpdateActiveLoading(false)
+                    is Resource.Loading -> setUpdateActiveLoading(true)
+                    is Resource.Success -> {
+                        setUpdateActiveLoading(false)
                         navController.popBackStack()
                     }
                 }
@@ -226,11 +261,18 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
     }
 
     private fun setButtonState(enabled: Boolean) {
-        binding.pbActiveHoldAction.isEnabled = enabled
+        binding.pbActiveFirstAction.isEnabled = enabled
     }
 
     private fun setCreateDeleteActiveLoading(isLoading: Boolean) {
-        binding.pbActiveHoldAction.setLoading(isLoading)
+        binding.pbActiveFirstAction.setLoading(isLoading)
+    }
+
+    private fun setUpdateActiveLoading(isLoading: Boolean) {
+        with(binding) {
+            pbActiveFirstAction.setLoading(isLoading)
+            pbActiveSecondAction.isEnabled = !isLoading
+        }
     }
 
     private fun setValidationError(errorList: List<ValidateResult.Error>) {

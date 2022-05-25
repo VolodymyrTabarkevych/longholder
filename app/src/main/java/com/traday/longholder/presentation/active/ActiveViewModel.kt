@@ -10,6 +10,7 @@ import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.usecase.CreateActiveUseCase
 import com.traday.longholder.domain.usecase.DeleteActiveUseCase
 import com.traday.longholder.domain.usecase.GetCurrenciesUseCase
+import com.traday.longholder.domain.usecase.UpdateActiveUseCase
 import com.traday.longholder.presentation.base.BaseValidationViewModel
 import com.traday.longholder.presentation.validation.validator.CalendarValidator
 import com.traday.longholder.presentation.validation.validator.CryptoValidator
@@ -23,6 +24,7 @@ class ActiveViewModel @Inject constructor(
     private val getCurrenciesUseCase: GetCurrenciesUseCase,
     private val createActiveUseCase: CreateActiveUseCase,
     private val deleteActiveUseCase: DeleteActiveUseCase,
+    private val updateActiveUseCase: UpdateActiveUseCase,
     state: SavedStateHandle
 ) : BaseValidationViewModel() {
 
@@ -48,13 +50,41 @@ class ActiveViewModel @Inject constructor(
     private val _deleteActiveLiveData = MutableLiveData<Resource<Unit>>()
     val deleteActiveLiveData: LiveData<Resource<Unit>> get() = _deleteActiveLiveData
 
+    private val _updateActiveLiveData = MutableLiveData<Resource<Unit>>()
+    val updateActiveLiveData: LiveData<Resource<Unit>> get() = _updateActiveLiveData
+
 
     fun validateFields(amount: String, date: String) {
-        onValidateFields(
-            ::onValidationSuccess,
-            CryptoValidator.Amount.validate(amount),
-            CalendarValidator.Date.validate(date)
-        )
+        when (mode) {
+            is ActiveScreenMode.Create -> {
+                onValidateFields(
+                    ::onValidationSuccess,
+                    CryptoValidator.Amount.validate(amount),
+                    CalendarValidator.Date.validate(date)
+                )
+            }
+            is ActiveScreenMode.Update -> {
+                val amountWasChanged = CryptoValidator.AmountsNotSame.validate(
+                    oldValue = mode.active.valueOfCrypto.toString(),
+                    newValue = amount
+                ) !is ValidateResult.Error
+
+                val dateWasChanged = CalendarValidator.DatesNotSame.validate(
+                    oldValue = mode.active.dateOfEnd,
+                    newValue = date
+                ) !is ValidateResult.Error
+
+                if (amountWasChanged || dateWasChanged) {
+                    onValidateFields(
+                        ::onValidationSuccess,
+                        CryptoValidator.Amount.validate(amount),
+                        CalendarValidator.Date.validate(date)
+                    )
+                } else {
+                    _buttonStateLiveData.postValue(false)
+                }
+            }
+        }
     }
 
     private fun onValidationSuccess() {
@@ -95,6 +125,15 @@ class ActiveViewModel @Inject constructor(
     fun deleteActive(activeId: Int) {
         executeUseCase(deleteActiveUseCase, DeleteActiveUseCase.Params(activeId)) {
             _deleteActiveLiveData.postValue(it)
+        }
+    }
+
+    fun updateActive(valueOfCrypto: String, dateOfEnd: String) {
+        if (mode !is ActiveScreenMode.Update) return
+        val currentActive =
+            mode.active.copy(valueOfCrypto = valueOfCrypto.toDouble(), dateOfEnd = dateOfEnd)
+        executeUseCase(updateActiveUseCase, UpdateActiveUseCase.Params(currentActive)) {
+            _updateActiveLiveData.postValue(it)
         }
     }
 }

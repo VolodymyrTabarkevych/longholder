@@ -108,7 +108,7 @@ class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
     override fun onActiveClicked(active: Active) {
         navController.navigateSafe(
             WalletFragmentDirections.actionWalletFragmentToActiveFragment(
-                ActiveScreenMode.View(
+                ActiveScreenMode.Update(
                     active
                 )
             )

@@ -20,11 +20,12 @@
     <string name="common_skip">Skip</string>
     <string name="common_dollar">$</string>
     <string name="common_dollar_value_with_brackets">($%s)</string>
-    <string name="common_earned_crypto_with_percent">+%1$s (%2$s %%)</string>
+    <string name="common_earned_crypto_with_percent">%1$s (%2$s %%)</string>
     <string name="common_earned_crypto">+%1$s</string>
     <string name="common_value_with_percent">%.2f%%</string>
     <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Cancel</string>
+    <string name="common_update">Update</string>
     <string name="common_percent_sign">%</string>
 
     <!-- Notification -->
@@ -46,6 +47,8 @@
     <string name="validation_crypto_amount_not_valid">Please enter a value bigger than 1</string>
     <string name="validation_password_match">Both passwords must match</string>
     <string name="validation_value_not_valid">Value not valid</string>
+    <string name="validation_same_value">Same amount</string>
+    <string name="validation_same_date">Same date</string>
 
     <!-- Welcome screen -->
     <string name="welcome_registration">Registration</string>

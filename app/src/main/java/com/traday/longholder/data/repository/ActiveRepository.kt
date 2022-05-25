@@ -6,9 +6,11 @@ import com.traday.longholder.data.local.datasource.active.IActiveLocalDataSource
 import com.traday.longholder.data.local.entity.ActiveEntity
 import com.traday.longholder.data.mapper.toEntity
 import com.traday.longholder.data.remote.datasource.active.IActiveRemoteDataSource
-import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
+import com.traday.longholder.data.remote.requestbody.UpdateActiveRequestBody
+import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.repository.IActiveRepository
+import com.traday.longholder.extensions.formatDateClientFormatToServerFormatOrEmpty
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
@@ -50,8 +52,19 @@ class ActiveRepository @Inject constructor(
         }
     }
 
-    override suspend fun updateActive(active: ActiveDto): Result<Unit> {
-        val createRemoteActiveResult = activeRemoteDataSource.updateActive(active)
+    override suspend fun updateActive(active: Active): Result<Unit> {
+        val updateActiveRequestBody = UpdateActiveRequestBody(
+            id = active.id,
+            name = active.name,
+            valueOfCrypto = active.valueOfCrypto,
+            currentCurrencyPrice = active.currentCurrencyPrice,
+            cryptoPriceOnStart = active.cryptoPriceOnStart,
+            dateOfEnd = active.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
+            comment = active.comment,
+            linkToImage = active.linkToImage,
+            symbol = active.symbol
+        )
+        val createRemoteActiveResult = activeRemoteDataSource.updateActive(updateActiveRequestBody)
         return if (createRemoteActiveResult is Result.Success) {
             activeLocalDataSource.insertOrUpdateActive(active.toEntity())
         } else {

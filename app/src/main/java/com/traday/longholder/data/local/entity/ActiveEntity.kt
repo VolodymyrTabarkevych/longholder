@@ -22,7 +22,8 @@ data class ActiveEntity(
     @ColumnInfo(name = "comment") val comment: String?,
     @ColumnInfo(name = "linkToImage") val linkToImage: String?,
     @ColumnInfo(name = "earnedMoney") val earnedMoney: Double,
-    @ColumnInfo(name = "percents") val percents: Double
+    @ColumnInfo(name = "percents") val percents: Double,
+    @ColumnInfo(name = "symbol") val symbol: String
 ) {
 
     companion object {

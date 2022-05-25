@@ -188,9 +188,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/avenir_medium"
-                            tools:text="983 143 523,22"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/text.size.xx_medium" />
+                            android:textSize="@dimen/text.size.xx_medium"
+                            tools:text="983 143 523,22" />
 
                         <TextView
                             android:id="@+id/tvActiveSummaryTodayCurrency"
@@ -247,14 +247,15 @@
                 </com.traday.longholder.presentation.customviews.AppTextInputLayout>
 
                 <com.traday.longholder.presentation.customviews.ProgressButton
-                    android:id="@+id/pbActiveHoldAction"
+                    android:id="@+id/pbActiveFirstAction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_5"
+                    app:progressButtonEnabled="false"
                     app:progressButtonText="@string/active_put_on_hold" />
 
                 <com.traday.longholder.presentation.customviews.ProgressButton
-                    android:id="@+id/pbActiveCancel"
+                    android:id="@+id/pbActiveSecondAction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_2"

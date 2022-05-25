@@ -11,7 +11,7 @@ open class ActiveScreenMode : Parcelable {
     object Create : ActiveScreenMode(), Parcelable
 
     @Parcelize
-    class View(val active: Active) : ActiveScreenMode(), Parcelable
+    class Update(val active: Active) : ActiveScreenMode(), Parcelable
 }
 
 

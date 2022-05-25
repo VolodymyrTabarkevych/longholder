@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import com.traday.longholder.R
 import com.traday.longholder.databinding.WidgetProgressButtonBinding
+import com.traday.longholder.extensions.getColorCompat
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
 
@@ -98,6 +99,8 @@ class ProgressButton @JvmOverloads constructor(
                         tvProgressButton,
                         R.style.TextAppearance_App_ProgressButton_Primary
                     )
+                    pbProgressButton.indeterminateTintList =
+                        ColorStateList.valueOf(getColorCompat(R.color.white))
                 }
                 Type.EMPTY_WITH_BORDER -> {
                     flProgressButtonMain.background =
@@ -109,6 +112,8 @@ class ProgressButton @JvmOverloads constructor(
                         tvProgressButton,
                         R.style.TextAppearance_App_ProgressButton_EmptyWithStroke
                     )
+                    pbProgressButton.indeterminateTintList =
+                        ColorStateList.valueOf(getColorCompat(R.color.st_tropaz))
                 }
                 Type.EMPTY_WITH_BORDER_RED -> {
                     flProgressButtonMain.background =
@@ -120,6 +125,8 @@ class ProgressButton @JvmOverloads constructor(
                         tvProgressButton,
                         R.style.TextAppearance_App_ProgressButton_EmptyWithStrokeRed
                     )
+                    pbProgressButton.indeterminateTintList =
+                        ColorStateList.valueOf(getColorCompat(R.color.st_tropaz))
                 }
             }
         }
@@ -127,13 +134,6 @@ class ProgressButton @JvmOverloads constructor(
 
     fun setColor(color: ColorStateList?) {
         binding.flProgressButtonMain.backgroundTintList = color
-    }
-
-    fun setDrawable(@DrawableRes drawable: Int) {
-        with(binding) {
-            flProgressButtonMain.backgroundTintList = null
-            flProgressButtonMain.background = ContextCompat.getDrawable(context, drawable)
-        }
     }
 
     enum class Type {

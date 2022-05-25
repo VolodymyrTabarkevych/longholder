@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.traday.longholder.R
 import com.traday.longholder.databinding.ItemActiveBinding
 import com.traday.longholder.domain.model.Active
+import com.traday.longholder.extensions.getColorCompat
 import com.traday.longholder.extensions.loadWithGlide
 
 class ActiveItemViewHolder(
@@ -24,6 +25,7 @@ class ActiveItemViewHolder(
                 )
             }
             tvActiveCryptoEarnedMoney.apply {
+                setTextColor(getColorCompat(item.earnedMoneyResIdColor))
                 text = resources.getString(
                     R.string.common_earned_crypto_with_percent,
                     item.earnedMoneyFormatted,
@@ -33,7 +35,7 @@ class ActiveItemViewHolder(
             tvActiveCryptoCurrentPrice.apply {
                 text = resources.getString(
                     R.string.common_crypto_price_in_other_currency,
-                    item.nameFormatted,
+                    item.symbolFormatted,
                     item.currentCurrencyPriceFormatted
                 )
             }

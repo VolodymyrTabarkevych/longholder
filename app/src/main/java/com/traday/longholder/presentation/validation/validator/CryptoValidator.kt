@@ -1,6 +1,7 @@
 package com.traday.longholder.presentation.validation.validator
 
 import com.traday.longholder.R
+import com.traday.longholder.presentation.validation.exception.CryptoSameAmountException
 import com.traday.longholder.presentation.validation.exception.CryptoValueNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import com.traday.longholder.presentation.validation.validator.base.Validator
@@ -20,6 +21,16 @@ sealed class CryptoValidator<T> : Validator<T> {
                 return ValidateResult.Error(CryptoValueNotValidException(R.string.validation_crypto_amount_not_valid))
             }
         }
+    }
+
+    object AmountsNotSame {
+
+        fun validate(oldValue: String, newValue: String): ValidateResult =
+            if (oldValue.toDoubleOrNull() == newValue.toDoubleOrNull()) {
+                ValidateResult.Error(CryptoSameAmountException(R.string.validation_same_value))
+            } else {
+                ValidateResult.Success
+            }
     }
 
     companion object {
