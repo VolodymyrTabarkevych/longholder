@@ -13,7 +13,7 @@ class ErrorHandler @Inject constructor() : IErrorHandler {
             )
             is BaseException.UnauthorizedException -> BaseError.UnauthorizedError(tr.error.message)
             is BaseException.UserAlreadyExistsException -> BaseError.UserAlreadyExistsError(tr.error.message)
-            else -> BaseError.SomethingWentWrongError(tr.message ?: ERROR_MESSAGE_UNKNOWN)
+            else -> BaseError.SomethingWentWrongError(ERROR_MESSAGE_UNKNOWN)
         }
 
     companion object {

@@ -27,6 +27,7 @@ class RestBuilder @Inject constructor(@ApplicationContext val context: Context) 
     private val gson by lazy {
         GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .setLenient()
             .create()
     }
 
