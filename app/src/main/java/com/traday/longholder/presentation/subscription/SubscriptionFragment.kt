@@ -1,6 +1,7 @@
 package com.traday.longholder.presentation.subscription
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -9,10 +10,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSubscriptionBinding
+import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
+import com.traday.longholder.utils.showDialog
 
 class SubscriptionFragment :
     BaseMVVMFragment<SubscriptionViewModel, FragmentSubscriptionBinding>(
@@ -40,10 +43,18 @@ class SubscriptionFragment :
                 vpSubscription.setCurrentItem(nextPage, true)
             }
             pbSubscriptionStart.setOnClickListener {
-                viewModel.makeSubscription()
+                showDialog(
+                    "This feature is not yet implemented",
+                    onCustomize = { dialogCommonBinding, _ ->
+                        dialogCommonBinding.tvDialogTitle.gravity = Gravity.CENTER_HORIZONTAL
+                    })
             }
             pbSubscriptionCancel.setOnClickListener {
-                viewModel.cancelSubscription()
+                showDialog(
+                    "This feature is not yet implemented",
+                    onCustomize = { dialogCommonBinding, _ ->
+                        dialogCommonBinding.tvDialogTitle.gravity = Gravity.CENTER_HORIZONTAL
+                    })
             }
         }
     }
@@ -67,8 +78,10 @@ class SubscriptionFragment :
 
     override fun initViewModel() {
         with(viewModel) {
+            isUserOnSubscription.observe(viewLifecycleOwner) {
+                if (it is Resource.Success) setSubscriptionScreen(it.data)
+            }
             onboardingButtonsLiveData.observe(viewLifecycleOwner, ::setActionButtons)
-            subscriptionLiveData.observe(viewLifecycleOwner, ::setSubscriptionScreen)
         }
     }
 
