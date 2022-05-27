@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.Flow
 interface CurrencyDao : BaseDao<CurrencyEntity> {
 
     @Query("SELECT * FROM $TABLE_NAME")
-    fun getCurrencies(): Flow<List<CurrencyEntity>>
+    suspend fun getCurrencies(): List<CurrencyEntity>
+
+    @Query("SELECT * FROM $TABLE_NAME")
+    fun subscribeOnCurrencies(): Flow<List<CurrencyEntity>>
 
     @Query("DELETE FROM $TABLE_NAME")
     suspend fun deleteCurrencies()

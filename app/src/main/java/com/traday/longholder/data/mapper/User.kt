@@ -8,17 +8,13 @@ import com.traday.longholder.utils.EMPTY_STRING
 fun UserDto.toEntity() = UserEntity(
     userName = userName ?: EMPTY_STRING,
     email = email ?: EMPTY_STRING,
-    currencyCode = currencyCode ?: EMPTY_STRING/*,
-    cryptos = cryptos.map { it.toEntity() },
-    messages = messages.map { it.toEntity() },
-    reports = reports.map { it.toEntity() }*/
+    currencyCode = currencyCode ?: EMPTY_STRING,
+    isOnSubscription = isOnSubscription
 )
 
 fun UserEntity.toDomain() = User(
     userName = userName,
     email = email,
-    currencyCode = currencyCode/*,
-    cryptos = cryptos.map { it.toDomain() },
-    messages = messages.map { it.toDomain() },
-    reports = reports.map { it.toDomain() }*/
+    currencyCode = currencyCode,
+    isOnSubscription = isOnSubscription
 )

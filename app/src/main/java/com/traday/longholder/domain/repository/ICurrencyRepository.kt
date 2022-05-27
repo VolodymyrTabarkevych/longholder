@@ -6,5 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICurrencyRepository {
 
-    fun getCurrencies(): Flow<Result<List<CurrencyEntity>>>
+    suspend fun getCurrencies(sync: Boolean): Result<List<CurrencyEntity>>
+
+    fun subscribeOnCurrencies(syncAtStart: Boolean): Flow<Result<List<CurrencyEntity>>>
 }

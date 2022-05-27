@@ -10,7 +10,7 @@ import com.traday.longholder.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetUserStatusUseCase @Inject constructor(
+class SubscribeOnUserStatusUseCase @Inject constructor(
     private val userRepository: IUserRepository,
     private val errorHandler: IErrorHandler
 ) : FlowUseCase<EmptyParams, UserStatus>() {

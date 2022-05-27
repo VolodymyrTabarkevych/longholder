@@ -6,11 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICurrencyLocalDataSource {
 
-    suspend fun saveOrUpdateCurrencies(vararg: CurrencyEntity): Result<Unit>
+    suspend fun insertOrUpdateCurrencies(currencies: List<CurrencyEntity>): Result<List<CurrencyEntity>>
 
-    suspend fun saveOrUpdateCurrencies(currencies: List<CurrencyEntity>): Result<Unit>
+    suspend fun getCurrencies(): Result<List<CurrencyEntity>>
 
-    fun getCurrencies(): Flow<Result<List<CurrencyEntity>>>
-
-    suspend fun deleteCurrencies(): Result<Unit>
+    fun subscribeOnCurrencies(): Flow<Result<List<CurrencyEntity>>>
 }

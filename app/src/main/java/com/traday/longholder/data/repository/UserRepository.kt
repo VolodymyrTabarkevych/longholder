@@ -8,6 +8,7 @@ import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
 import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.domain.repository.IUserRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -17,12 +18,27 @@ class UserRepository @Inject constructor(
 
     override suspend fun getUser(sync: Boolean): Result<UserEntity> {
         if (sync) {
-            val result = userRemoteDataSource.getUser()
-            if (result is Result.Success) {
-                userLocalDataSource.setUser(result.data.toEntity())
+            val remoteUserResult = userRemoteDataSource.getUser()
+            if (remoteUserResult is Result.Success) {
+                val mappedUser = remoteUserResult.data.toEntity()
+                userLocalDataSource.setUser(mappedUser)
             }
         }
         return userLocalDataSource.getUser()
+    }
+
+    override fun subscribeOnUser(syncOnStart: Boolean): Flow<Result<UserEntity>> {
+        return userLocalDataSource.subscribeOnUser()
+            .onStart {
+                if (!syncOnStart) return@onStart
+                val remoteUserResult = userRemoteDataSource.getUser()
+                if (remoteUserResult is Result.Success) {
+                    val mappedUser = remoteUserResult.data.toEntity()
+                    userLocalDataSource.setUser(mappedUser)
+                } else if (remoteUserResult is Result.Error) {
+                    emit(remoteUserResult)
+                }
+            }
     }
 
     override suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit> {

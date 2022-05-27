@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.Flow
 interface ActiveDao : BaseDao<ActiveEntity> {
 
     @Query("SELECT * FROM $TABLE_NAME")
-    fun getActives(): Flow<List<ActiveEntity>>
+    suspend fun getActives(): List<ActiveEntity>
+
+    @Query("SELECT * FROM $TABLE_NAME")
+    fun subscribeOnActives(): Flow<List<ActiveEntity>>
 
     @Query("DELETE FROM $TABLE_NAME WHERE id = :id")
     suspend fun deleteActiveById(id: Int)

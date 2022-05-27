@@ -25,6 +25,9 @@ class UserLocalDataSource @Inject constructor(
     override suspend fun getUser(): Result<UserEntity> =
         result { userDao.getUser() }
 
+    override fun subscribeOnUser(): Flow<Result<UserEntity>> =
+        flowResult { userDao.subscribeOnUser() }
+
     override suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit> =
         result { userPreferences.setOnboardingPassed(isPassed) }
 

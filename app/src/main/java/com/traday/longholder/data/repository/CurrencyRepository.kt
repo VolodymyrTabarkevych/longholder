@@ -15,20 +15,46 @@ class CurrencyRepository @Inject constructor(
     private val currencyLocalDataSource: ICurrencyLocalDataSource
 ) : ICurrencyRepository {
 
-    override fun getCurrencies(): Flow<Result<List<CurrencyEntity>>> {
-        return currencyLocalDataSource.getCurrencies()
+    override suspend fun getCurrencies(sync: Boolean): Result<List<CurrencyEntity>> {
+        if (!sync) return currencyLocalDataSource.getCurrencies()
+        val remoteCurrenciesResult = currencyRemoteDataSource.getCurrencies()
+        val localCurrenciesResult = currencyLocalDataSource.getCurrencies()
+
+        return when (remoteCurrenciesResult) {
+            is Result.Error -> {
+                if (localCurrenciesResult is Result.Success && localCurrenciesResult.data.isNotEmpty()) {
+                    localCurrenciesResult
+                } else {
+                    remoteCurrenciesResult
+                }
+            }
+            is Result.Success -> {
+                val mappedCurrencies =
+                    remoteCurrenciesResult.data.mapIndexed { index, currencyDto ->
+                        currencyDto.toEntity(
+                            index
+                        )
+                    }
+                currencyLocalDataSource.insertOrUpdateCurrencies(mappedCurrencies)
+            }
+        }
+    }
+
+    override fun subscribeOnCurrencies(syncAtStart: Boolean): Flow<Result<List<CurrencyEntity>>> {
+        return currencyLocalDataSource.subscribeOnCurrencies()
             .onStart {
-                val remoteResult = currencyRemoteDataSource.getCurrencies()
-                if (remoteResult is Result.Success) {
-                    val mappedItems =
-                        remoteResult.data.mapIndexed { index, currencyDto ->
+                if (!syncAtStart) return@onStart
+                val remoteCurrenciesResult = currencyRemoteDataSource.getCurrencies()
+                if (remoteCurrenciesResult is Result.Success) {
+                    val mappedCurrencies =
+                        remoteCurrenciesResult.data.mapIndexed { index, currencyDto ->
                             currencyDto.toEntity(
                                 index
                             )
                         }
-                    currencyLocalDataSource.saveOrUpdateCurrencies(mappedItems)
-                } else if (remoteResult is Result.Error) {
-                    emit(remoteResult)
+                    currencyLocalDataSource.insertOrUpdateCurrencies(mappedCurrencies)
+                } else if (remoteCurrenciesResult is Result.Error) {
+                    emit(remoteCurrenciesResult)
                 }
             }
     }

@@ -12,15 +12,16 @@ class CurrencyLocalDataSource @Inject constructor(
     private val currencyDao: CurrencyDao
 ) : ICurrencyLocalDataSource {
 
-    override suspend fun saveOrUpdateCurrencies(vararg: CurrencyEntity): Result<Unit> =
-        result { currencyDao.insertData(vararg) }
+    override suspend fun insertOrUpdateCurrencies(currencies: List<CurrencyEntity>): Result<List<CurrencyEntity>> =
+        result {
+            currencyDao.deleteCurrencies()
+            currencyDao.insertData(currencies)
+            currencyDao.getCurrencies()
+        }
 
-    override suspend fun saveOrUpdateCurrencies(currencies: List<CurrencyEntity>): Result<Unit> =
-        result { currencyDao.insertData(currencies) }
+    override suspend fun getCurrencies(): Result<List<CurrencyEntity>> =
+        result { currencyDao.getCurrencies() }
 
-    override fun getCurrencies(): Flow<Result<List<CurrencyEntity>>> =
-        flowResult { currencyDao.getCurrencies() }
-
-    override suspend fun deleteCurrencies(): Result<Unit> =
-        result { currencyDao.deleteCurrencies() }
+    override fun subscribeOnCurrencies(): Flow<Result<List<CurrencyEntity>>> =
+        flowResult { currencyDao.subscribeOnCurrencies() }
 }

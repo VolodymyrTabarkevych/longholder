@@ -11,10 +11,8 @@ data class UserEntity(
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "userName") val userName: String,
     @ColumnInfo(name = "email") val email: String,
-    @ColumnInfo(name = "currencyCode") val currencyCode: String/*,
-    @Embedded(prefix = "crypto") val cryptos: List<CryptoEntity>,
-    @Embedded(prefix = "message") val messages: List<MessageEntity>,
-    @Embedded(prefix = "report") val reports: List<ReportEntity>*/
+    @ColumnInfo(name = "currencyCode") val currencyCode: String,
+    @ColumnInfo(name = "isOnSubscription") val isOnSubscription: Boolean
 ) {
 
     companion object {

@@ -3,8 +3,6 @@ package com.traday.longholder.presentation.active
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.asLiveData
-import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.usecase.CreateActiveUseCase
@@ -16,7 +14,6 @@ import com.traday.longholder.presentation.validation.validator.CalendarValidator
 import com.traday.longholder.presentation.validation.validator.CryptoValidator
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.emptyFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,12 +34,8 @@ class ActiveViewModel @Inject constructor(
     private val _buttonStateLiveData = MutableLiveData<Boolean>()
     val buttonStateLiveData: LiveData<Boolean> get() = _buttonStateLiveData
 
-    private val _getCurrenciesLiveData = if (mode is ActiveScreenMode.Create) {
-        executeUseCase(getCurrenciesUseCase, EmptyParams())
-    } else {
-        emptyFlow()
-    }
-    val getCurrenciesLiveData: LiveData<Resource<List<Currency>>> get() = _getCurrenciesLiveData.asLiveData()
+    private val _getCurrenciesLiveData = MutableLiveData<Resource<List<Currency>>>()
+    val getCurrenciesLiveData: LiveData<Resource<List<Currency>>> get() = _getCurrenciesLiveData
 
     private val _createActiveLiveData = MutableLiveData<Resource<Unit>>()
     val createActiveLiveData: LiveData<Resource<Unit>> get() = _createActiveLiveData
@@ -53,6 +46,17 @@ class ActiveViewModel @Inject constructor(
     private val _updateActiveLiveData = MutableLiveData<Resource<Unit>>()
     val updateActiveLiveData: LiveData<Resource<Unit>> get() = _updateActiveLiveData
 
+
+    init {
+        getCurrencies()
+    }
+
+    private fun getCurrencies() {
+        val sync = mode == ActiveScreenMode.Create
+        executeUseCase(getCurrenciesUseCase, GetCurrenciesUseCase.Params(sync)) {
+            _getCurrenciesLiveData.postValue(it)
+        }
+    }
 
     fun validateFields(amount: String, date: String) {
         when (mode) {

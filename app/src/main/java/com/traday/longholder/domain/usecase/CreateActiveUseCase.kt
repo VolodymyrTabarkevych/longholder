@@ -1,13 +1,11 @@
 package com.traday.longholder.domain.usecase
 
 import com.traday.longholder.data.mapper.toResource
-import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.domain.base.BaseUseCase
 import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.error.handlers.IErrorHandler
 import com.traday.longholder.domain.repository.IActiveRepository
-import com.traday.longholder.extensions.formatDateClientFormatToServerFormatOrEmpty
 import javax.inject.Inject
 
 class CreateActiveUseCase @Inject constructor(
@@ -17,16 +15,14 @@ class CreateActiveUseCase @Inject constructor(
 
     override suspend fun run(params: Params): Resource<Unit> {
         return activeRepository.createActive(
-            CreateActiveRequestBody(
-                name = params.name,
-                valueOfCrypto = params.valueOfCrypto.toDouble(),
-                currentCurrencyPrice = params.currentCurrencyPrice,
-                cryptoPriceOnStart = params.cryptoPriceOnStart,
-                dateOfEnd = params.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
-                comment = params.comment,
-                linkToImage = params.linkToImage,
-                symbol = params.symbol
-            )
+            name = params.name,
+            valueOfCrypto = params.valueOfCrypto,
+            currentCurrencyPrice = params.currentCurrencyPrice,
+            cryptoPriceOnStart = params.cryptoPriceOnStart,
+            dateOfEnd = params.dateOfEnd,
+            comment = params.comment,
+            linkToImage = params.linkToImage,
+            symbol = params.symbol
         ).toResource(errorHandler)
     }
 

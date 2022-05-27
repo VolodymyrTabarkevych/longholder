@@ -13,6 +13,8 @@ interface IUserLocalDataSource {
 
     suspend fun getUser(): Result<UserEntity>
 
+    fun subscribeOnUser(): Flow<Result<UserEntity>>
+
     suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit>
 
     fun getUserStatus(): Flow<Result<UserStatus>>

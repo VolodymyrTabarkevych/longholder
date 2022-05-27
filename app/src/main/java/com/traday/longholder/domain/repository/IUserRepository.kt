@@ -9,6 +9,8 @@ interface IUserRepository {
 
     suspend fun getUser(sync: Boolean): Result<UserEntity>
 
+    fun subscribeOnUser(syncOnStart: Boolean): Flow<Result<UserEntity>>
+
     suspend fun setOnboardingPassed(isPassed: Boolean): Result<Unit>
 
     fun getUserStatus(): Flow<Result<UserStatus>>

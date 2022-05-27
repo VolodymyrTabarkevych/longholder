@@ -20,13 +20,35 @@ class ActiveRepository @Inject constructor(
     private val activeLocalDataSource: IActiveLocalDataSource
 ) : IActiveRepository {
 
-    override fun getActives(): Flow<Result<List<ActiveEntity>>> {
-        return activeLocalDataSource.getActives()
+    override suspend fun getActives(sync: Boolean): Result<List<ActiveEntity>> {
+        if (!sync) return activeLocalDataSource.getActives()
+        val remoteActivesResult = activeRemoteDataSource.getActives()
+        val localActivesResult = activeLocalDataSource.getActives()
+
+        return when (remoteActivesResult) {
+            is Result.Error -> {
+                if (localActivesResult is Result.Success && localActivesResult.data.isNotEmpty()) {
+                    localActivesResult
+                } else {
+                    remoteActivesResult
+                }
+            }
+            is Result.Success -> {
+                val mappedCurrencies =
+                    remoteActivesResult.data.actives.map { it.toEntity() }
+                activeLocalDataSource.insertOrUpdateActives(mappedCurrencies)
+            }
+        }
+    }
+
+    override fun subscribeOnActives(syncAtStart: Boolean): Flow<Result<List<ActiveEntity>>> {
+        return activeLocalDataSource.subscribeOnActives()
             .onStart {
+                if (!syncAtStart) return@onStart
                 val remoteResult = activeRemoteDataSource.getActives()
                 if (remoteResult is Result.Success) {
                     val mappedItems = remoteResult.data.actives.map { it.toEntity() }
-                    activeLocalDataSource.insertOrUpdateActive(mappedItems)
+                    activeLocalDataSource.insertOrUpdateActives(mappedItems)
                 } else if (remoteResult is Result.Error) {
                     if (remoteResult.error is BaseException.NoAvailableActives) {
                         activeLocalDataSource.deleteAllActives()
@@ -37,13 +59,34 @@ class ActiveRepository @Inject constructor(
             }
     }
 
-    override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> {
-        val createRemoteActiveResult = activeRemoteDataSource.createActive(active)
+    override suspend fun createActive(
+        name: String?,
+        valueOfCrypto: String,
+        currentCurrencyPrice: Double,
+        cryptoPriceOnStart: Double,
+        dateOfEnd: String,
+        comment: String?,
+        linkToImage: String?,
+        symbol: String
+    ): Result<Unit> {
+        val createRemoteActiveResult = activeRemoteDataSource.createActive(
+            CreateActiveRequestBody(
+                name = name,
+                valueOfCrypto = valueOfCrypto.toDouble(),
+                currentCurrencyPrice = currentCurrencyPrice,
+                cryptoPriceOnStart = cryptoPriceOnStart,
+                dateOfEnd = dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
+                comment = comment,
+                linkToImage = linkToImage,
+                symbol = symbol
+            )
+        )
         return if (createRemoteActiveResult is Result.Success) {
             val remoteActivesResult = activeRemoteDataSource.getActives()
             if (remoteActivesResult is Result.Success) {
                 val mappedItems = remoteActivesResult.data.actives.map { it.toEntity() }
-                activeLocalDataSource.insertOrUpdateActive(mappedItems)
+                activeLocalDataSource.insertOrUpdateActives(mappedItems)
+                Result.Success(Unit)
             } else {
                 createRemoteActiveResult
             }
@@ -53,18 +96,19 @@ class ActiveRepository @Inject constructor(
     }
 
     override suspend fun updateActive(active: Active): Result<Unit> {
-        val updateActiveRequestBody = UpdateActiveRequestBody(
-            id = active.id,
-            name = active.name,
-            valueOfCrypto = active.valueOfCrypto,
-            currentCurrencyPrice = active.currentCurrencyPrice,
-            cryptoPriceOnStart = active.cryptoPriceOnStart,
-            dateOfEnd = active.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
-            comment = active.comment,
-            linkToImage = active.linkToImage,
-            symbol = active.symbol
+        val createRemoteActiveResult = activeRemoteDataSource.updateActive(
+            UpdateActiveRequestBody(
+                id = active.id,
+                name = active.name,
+                valueOfCrypto = active.valueOfCrypto,
+                currentCurrencyPrice = active.currentCurrencyPrice,
+                cryptoPriceOnStart = active.cryptoPriceOnStart,
+                dateOfEnd = active.dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
+                comment = active.comment,
+                linkToImage = active.linkToImage,
+                symbol = active.symbol
+            )
         )
-        val createRemoteActiveResult = activeRemoteDataSource.updateActive(updateActiveRequestBody)
         return if (createRemoteActiveResult is Result.Success) {
             activeLocalDataSource.insertOrUpdateActive(active.toEntity())
         } else {

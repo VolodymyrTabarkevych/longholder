@@ -98,6 +98,6 @@ fun Active.toDto() = ActiveDto(
     linkToImage = linkToImage,
     earnedMoney = earnedMoney,
     percents = percents,
-    symbol = symbol
+    symbol = symbol,
 )
 

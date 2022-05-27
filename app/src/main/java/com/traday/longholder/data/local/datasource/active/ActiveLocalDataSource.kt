@@ -16,11 +16,18 @@ class ActiveLocalDataSource @Inject constructor(
     override suspend fun insertOrUpdateActive(active: ActiveEntity): Result<Unit> =
         result { activeDao.insertData(active) }
 
-    override suspend fun insertOrUpdateActive(actives: List<ActiveEntity>): Result<Unit> =
-        result { activeDao.insertData(actives) }
+    override suspend fun insertOrUpdateActives(actives: List<ActiveEntity>): Result<List<ActiveEntity>> =
+        result {
+            activeDao.deleteActive()
+            activeDao.insertData(actives)
+            activeDao.getActives()
+        }
 
-    override fun getActives(): Flow<Result<List<ActiveEntity>>> =
-        flowResult { activeDao.getActives() }
+    override suspend fun getActives(): Result<List<ActiveEntity>> =
+        result { activeDao.getActives() }
+
+    override fun subscribeOnActives(): Flow<Result<List<ActiveEntity>>> =
+        flowResult { activeDao.subscribeOnActives() }
 
     override suspend fun deleteActive(id: Int): Result<Unit> =
         result { activeDao.deleteActiveById(id) }

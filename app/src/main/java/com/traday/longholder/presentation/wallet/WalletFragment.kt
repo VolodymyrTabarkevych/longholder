@@ -63,19 +63,21 @@ class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
     }
 
     override fun initViewModel() {
-        viewModel.getCryptosLiveData.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Error -> setCryptosLoading(true)
-                is Resource.Loading -> setCryptosLoading(true)
-                is Resource.Success -> {
-                    setCryptosLoading(false)
-                    setCryptos(it.data)
+        with(viewModel) {
+            subscribeOnActivesLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> setActivesLoading(false)
+                    is Resource.Loading -> setActivesLoading(true)
+                    is Resource.Success -> {
+                        setActivesLoading(false)
+                        setActives(it.data)
+                    }
                 }
             }
         }
     }
 
-    private fun setCryptosLoading(isLoading: Boolean) {
+    private fun setActivesLoading(isLoading: Boolean) {
         with(binding) {
             rvWalletActives.isVisible = !isLoading
             llWalletNoActives.isVisible = !isLoading
@@ -83,7 +85,7 @@ class WalletFragment : BaseMVVMFragment<WalletViewModel, FragmentWalletBinding>(
         }
     }
 
-    private fun setCryptos(actives: List<Active>) {
+    private fun setActives(actives: List<Active>) {
         with(binding) {
             val showActives = actives.isNotEmpty()
             rvWalletActives.isVisible = showActives

@@ -8,9 +8,11 @@ interface IActiveLocalDataSource {
 
     suspend fun insertOrUpdateActive(active: ActiveEntity): Result<Unit>
 
-    suspend fun insertOrUpdateActive(actives: List<ActiveEntity>): Result<Unit>
+    suspend fun insertOrUpdateActives(actives: List<ActiveEntity>): Result<List<ActiveEntity>>
 
-    fun getActives(): Flow<Result<List<ActiveEntity>>>
+    suspend fun getActives(): Result<List<ActiveEntity>>
+
+    fun subscribeOnActives(): Flow<Result<List<ActiveEntity>>>
 
     suspend fun deleteActive(id: Int): Result<Unit>
 

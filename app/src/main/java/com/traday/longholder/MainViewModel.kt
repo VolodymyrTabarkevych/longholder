@@ -6,7 +6,7 @@ import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.domain.servicerunner.IGetNotificationsWorkerRunner
-import com.traday.longholder.domain.usecase.GetUserStatusUseCase
+import com.traday.longholder.domain.usecase.SubscribeOnUserStatusUseCase
 import com.traday.longholder.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.onEach
@@ -14,13 +14,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getUserStatusUseCase: GetUserStatusUseCase,
+    private val subscribeOnUserStatusUseCase: SubscribeOnUserStatusUseCase,
     private val getNotificationsWorkerRunner: IGetNotificationsWorkerRunner
 ) : BaseViewModel() {
 
-    private val _userStatusLiveData =
-        executeUseCase(getUserStatusUseCase, EmptyParams()).onEach(::handleNotificationWorker)
-    val userStatus: LiveData<Resource<UserStatus>> get() = _userStatusLiveData.asLiveData()
+    val userStatus: LiveData<Resource<UserStatus>>
+        get() = executeUseCase(
+            subscribeOnUserStatusUseCase,
+            EmptyParams()
+        ).onEach(::handleNotificationWorker).asLiveData()
 
     private fun handleNotificationWorker(userStatusResource: Resource<UserStatus>) {
         if (userStatusResource !is Resource.Success) return
