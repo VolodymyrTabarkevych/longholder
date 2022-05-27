@@ -8,6 +8,7 @@ import com.traday.longholder.domain.usecase.LoginUseCase
 import com.traday.longholder.domain.usecase.RegisterUseCase
 import com.traday.longholder.presentation.base.BaseValidationViewModel
 import com.traday.longholder.presentation.validation.validator.CredentialValidator
+import com.traday.longholder.presentation.validation.validator.base.ValidateResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -28,15 +29,20 @@ class SignUpViewModel @Inject constructor(
 
     fun validateData(email: String, password: String, confirmPassword: String) {
         onValidateFields(
-            ::onEmailValidationSuccess,
+            ::onValidationSuccess,
             CredentialValidator.Email.validate(email),
             CredentialValidator.Password.validate(password),
             CredentialValidator.PasswordMatch.validate(password, confirmPassword)
         )
     }
 
-    private fun onEmailValidationSuccess() {
+    private fun onValidationSuccess() {
         _buttonStateLiveData.postValue(true)
+    }
+
+    override fun onValidateError(errorList: List<ValidateResult.Error>) {
+        super.onValidateError(errorList)
+        _buttonStateLiveData.postValue(false)
     }
 
     fun register(email: String, password: String, confirmPassword: String) {

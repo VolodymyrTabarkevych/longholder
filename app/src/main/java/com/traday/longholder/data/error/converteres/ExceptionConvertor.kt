@@ -19,10 +19,10 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
     }
 
     private fun handle400(error: ErrorResponse): Exception {
-        return if (error.message == NO_AVAILABLE_ACTIVES) {
-            BaseException.NoAvailableActives(error)
-        } else {
-            BaseException.SomethingWentWrongException(error)
+        return when (error.message) {
+            NO_AVAILABLE_ACTIVES -> BaseException.NoAvailableActives(error)
+            USER_ALREADY_EXISTS_ERROR -> BaseException.UserAlreadyExistsException(error)
+            else -> BaseException.SomethingWentWrongException(error)
         }
     }
 
