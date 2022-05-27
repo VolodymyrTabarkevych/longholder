@@ -1,14 +1,9 @@
 package com.traday.longholder.utils.servicerunner
 
-import android.app.AlarmManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import com.traday.longholder.domain.servicerunner.IGetNotificationsWorkerRunner
-import com.traday.longholder.utils.receiver.GetNotificationsWorkerScheduler
 import com.traday.longholder.utils.work.GetNotificationsWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,7 +16,8 @@ class GetNotificationsWorkerRunner @Inject constructor(
     private val context = context.applicationContext
 
     override fun startService() {
-        val isScheduled = GetNotificationsWorker.isScheduled(context)
+        GetNotificationsWorker.start(context)
+/*        val isScheduled = GetNotificationsWorker.isScheduled(context)
         if (isScheduled) return
         val intent = Intent(context, GetNotificationsWorkerScheduler::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
@@ -44,7 +40,7 @@ class GetNotificationsWorkerRunner @Inject constructor(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             pendingIntent
-        )
+        )*/
     }
 
     override fun stopService() {
