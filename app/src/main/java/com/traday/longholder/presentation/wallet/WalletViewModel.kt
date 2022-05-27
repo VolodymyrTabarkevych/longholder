@@ -16,7 +16,6 @@ class WalletViewModel @Inject constructor(
 
     val subscribeOnActivesLiveData: LiveData<Resource<List<Active>>> = executeUseCase(
         useCase = subscribeOnActivesUseCase,
-        params = SubscribeOnActivesUseCase.Params(true),
-        showDialogOnError = false
+        params = SubscribeOnActivesUseCase.Params(true)
     ).asLiveData(timeoutInMs = 10000)
 }
