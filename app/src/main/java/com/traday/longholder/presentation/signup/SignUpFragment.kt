@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpBinding
 import com.traday.longholder.domain.base.Resource
+import com.traday.longholder.domain.error.entities.BaseError
 import com.traday.longholder.extensions.hideKeyboard
 import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
@@ -68,7 +69,15 @@ class SignUpFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpBinding>(
             validationErrorsLiveData.observe(viewLifecycleOwner, ::showValidationError)
             registerLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> setRegisterLoading(false)
+                    is Resource.Error -> {
+                        setRegisterLoading(false)
+                        clearInputFieldsFocusAndHideKeyboard()
+                        if (it.error is BaseError.UserAlreadyExistsError) {
+                            it.error.stringResId?.let { stringResId ->
+                                setEmailError(getString(stringResId))
+                            }
+                        }
+                    }
                     is Resource.Loading -> setRegisterLoading(true)
                     is Resource.Success -> {
                         with(binding) {

@@ -11,6 +11,7 @@ import com.traday.longholder.data.remote.rest.IRestBuilder
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
 import javax.inject.Inject
 
 class AuthenticateRemoteDataSource @Inject constructor(
@@ -38,6 +39,9 @@ class AuthenticateRemoteDataSource @Inject constructor(
             api.login(LoginRequestBody(email = email, password = password))
         }
 
+    override suspend fun forgotPassword(email: String): Result<Unit> =
+        apiResult { api.forgotPassword(email) }
+
     interface API {
 
         @POST("Authenticate/register")
@@ -45,5 +49,8 @@ class AuthenticateRemoteDataSource @Inject constructor(
 
         @POST("Authenticate/login")
         suspend fun login(@Body loginRequestBody: LoginRequestBody): Response<LoginResponseBody>
+
+        @POST("Authenticate/ForgetPassword")
+        suspend fun forgotPassword(@Query("email") email: String): Response<Unit>
     }
 }

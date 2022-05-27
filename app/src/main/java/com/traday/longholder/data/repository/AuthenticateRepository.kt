@@ -21,4 +21,8 @@ class AuthenticateRepository @Inject constructor(
         val token = (loginResult as Result.Success).data.token
         return userLocalDataSource.setUserToken(token)
     }
+
+    override suspend fun forgotPassword(email: String): Result<Unit> {
+        return authenticateRemoteDataSource.forgotPassword(email)
+    }
 }

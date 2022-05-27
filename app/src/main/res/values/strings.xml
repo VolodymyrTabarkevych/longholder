@@ -9,6 +9,8 @@
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="error_make_sure_device_is_connected">Make sure your device is connected to the internet</string>
     <string name="error_unknown">Internal Server Error, please try again later</string>
+    <string name="error_no_user_associated_with_email_exception">No user associated with email</string>
+    <string name="error_user_already_exists">User already exists!</string>
 
     <!-- Common messages -->
     <string name="common_ok">Ok</string>
@@ -130,6 +132,7 @@
     <!-- Reset password -->
     <string name="reset_password_enter_email">Enter you e-mail. We will send you the link to create a new password.</string>
     <string name="reset_password">Reset password</string>
+    <string name="reset_password_mail_has_been_sent">Activation mail has been sent to\n“%s”</string>
 
     <!-- Calculator -->
     <string name="calculator_title">Calculator</string>

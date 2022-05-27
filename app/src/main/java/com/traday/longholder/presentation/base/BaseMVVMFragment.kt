@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
+import com.traday.longholder.domain.error.entities.BaseError
 import com.traday.longholder.extensions.navigateSafe
 import com.traday.longholder.utils.AlertDialogProvider
 import com.traday.longholder.utils.showDialog
@@ -45,7 +46,9 @@ abstract class BaseMVVMFragment<out VM : BaseViewModel, out B : ViewBinding>(
             findNavController().navigateSafe(NavMainDirections.actionGlobalNavStart(true))
         }
         viewModel.showAlertDialogErrorLiveData.observe(viewLifecycleOwner) {
-            showDialog(it.error.msg)
+            if (it.error is BaseError.SomethingWentWrongError) {
+                it.error.stringResId?.let { stringResId -> showDialog(getString(stringResId)) }
+            }
         }
         viewModel.noInternetConnectionLiveData.observe(viewLifecycleOwner) {
             showDialog(

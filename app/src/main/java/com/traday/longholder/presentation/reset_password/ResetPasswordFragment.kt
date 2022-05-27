@@ -6,12 +6,15 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentResetPasswordBinding
+import com.traday.longholder.domain.base.Resource
+import com.traday.longholder.domain.error.entities.BaseError
 import com.traday.longholder.extensions.hideKeyboard
 import com.traday.longholder.extensions.setErrorIfOnFocusAndNotEmpty
 import com.traday.longholder.extensions.setupWithDefaultConfiguration
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.validation.exception.EmailNotValidException
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
+import com.traday.longholder.utils.showDialog
 
 class ResetPasswordFragment :
     BaseMVVMFragment<ResetPasswordViewModel, FragmentResetPasswordBinding>(
@@ -31,7 +34,11 @@ class ResetPasswordFragment :
         with(binding) {
             stResetPassword.setLeftActionOnCLickListener { navController.popBackStack() }
             pbResetPassword.setOnClickListener {
-                navController.popBackStack()
+                val email: String = binding.etResetPasswordEmail.text.toString()
+                viewModel.forgotPassword(email)
+            }
+            pbResetPassword.setClickListenerForDisabledState {
+                clearInputFieldsFocusAndHideKeyboard()
             }
         }
     }
@@ -49,7 +56,37 @@ class ResetPasswordFragment :
         with(viewModel) {
             buttonStateLiveData.observe(viewLifecycleOwner, ::changeButtonState)
             validationErrorsLiveData.observe(viewLifecycleOwner, ::showValidationError)
+            forgotPasswordLiveData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {
+                        setForgotPasswordLoading(false)
+                        clearInputFieldsFocusAndHideKeyboard()
+                        if (it.error is BaseError.NoUserAssociatedWithEmailError) {
+                            it.error.stringResId?.let { stringResId ->
+                                setEmailError(
+                                    getString(
+                                        stringResId
+                                    )
+                                )
+                            }
+                        }
+                    }
+                    is Resource.Loading -> setForgotPasswordLoading(true)
+                    is Resource.Success -> {
+                        setForgotPasswordLoading(false)
+                        val email: String = binding.etResetPasswordEmail.text.toString()
+                        showDialog(
+                            title = getString(R.string.reset_password_mail_has_been_sent, email),
+                            onPositiveButtonClicked = { navController.popBackStack() }
+                        )
+                    }
+                }
+            }
         }
+    }
+
+    private fun setForgotPasswordLoading(isLoading: Boolean) {
+        binding.pbResetPassword.setLoading(isLoading)
     }
 
     private fun changeButtonState(enabled: Boolean) {

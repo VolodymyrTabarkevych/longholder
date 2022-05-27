@@ -22,6 +22,7 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
         return when (error.message) {
             NO_AVAILABLE_ACTIVES -> BaseException.NoAvailableActives(error)
             USER_ALREADY_EXISTS_ERROR -> BaseException.UserAlreadyExistsException(error)
+            NO_USER_ASSOCIATED_WITH_EMAIL -> BaseException.NoUserAssociatedWithEmailException(error)
             else -> BaseException.SomethingWentWrongException(error)
         }
     }
@@ -55,5 +56,6 @@ class ExceptionConvertor @Inject constructor() : IExceptionConvertor {
         const val WRONG_LOGIN_OR_PASSWORD = "Wrong login or password!"
         const val USER_ALREADY_EXISTS_ERROR = "User already exists!"
         const val NO_AVAILABLE_ACTIVES = "No available values!"
+        const val NO_USER_ASSOCIATED_WITH_EMAIL = "No user associated with email"
     }
 }

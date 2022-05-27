@@ -1,12 +1,16 @@
 package com.traday.longholder.domain.error.entities
 
-sealed class BaseError(val msg: String) {
+import androidx.annotation.StringRes
 
-    class NetworkConnectionError(msg: String) : BaseError(msg)
+sealed class BaseError(@StringRes val stringResId: Int?) {
 
-    class SomethingWentWrongError(msg: String) : BaseError(msg)
+    class NetworkConnectionError(stringResId: Int) : BaseError(stringResId)
 
-    class UnauthorizedError(msg: String) : BaseError(msg)
+    class SomethingWentWrongError(stringResId: Int) : BaseError(stringResId)
 
-    class UserAlreadyExistsError(msg: String) : BaseError(msg)
+    class UnauthorizedError(stringResId: Int?) : BaseError(stringResId)
+
+    class UserAlreadyExistsError(stringResId: Int) : BaseError(stringResId)
+
+    class NoUserAssociatedWithEmailError(stringResId: Int) : BaseError(stringResId)
 }
