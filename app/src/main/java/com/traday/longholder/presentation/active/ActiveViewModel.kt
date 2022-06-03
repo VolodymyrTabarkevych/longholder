@@ -13,7 +13,10 @@ import com.traday.longholder.presentation.base.BaseValidationViewModel
 import com.traday.longholder.presentation.validation.validator.CalendarValidator
 import com.traday.longholder.presentation.validation.validator.CryptoValidator
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
+import com.traday.longholder.utils.CALENDAR_FORMAT_PATTERN
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -45,6 +48,9 @@ class ActiveViewModel @Inject constructor(
 
     private val _updateActiveLiveData = MutableLiveData<Resource<Unit>>()
     val updateActiveLiveData: LiveData<Resource<Unit>> get() = _updateActiveLiveData
+
+    private val _calendarDateLiveData = MutableLiveData<String>()
+    val calendarDateLiveData: LiveData<String> get() = _calendarDateLiveData
 
 
     init {
@@ -139,5 +145,14 @@ class ActiveViewModel @Inject constructor(
         executeUseCase(updateActiveUseCase, UpdateActiveUseCase.Params(currentActive)) {
             _updateActiveLiveData.postValue(it)
         }
+    }
+
+    fun setCalendarDate(timeInMillis: Long) {
+        val format = SimpleDateFormat(
+            CALENDAR_FORMAT_PATTERN,
+            Locale.getDefault()
+        )
+        val formattedDate: String = format.format(timeInMillis)
+        _calendarDateLiveData.postValue(formattedDate)
     }
 }
