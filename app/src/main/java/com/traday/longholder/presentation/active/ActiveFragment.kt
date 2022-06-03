@@ -22,10 +22,7 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.customviews.ProgressButton
 import com.traday.longholder.presentation.validation.validator.base.ValidateResult
-import com.traday.longholder.utils.CALENDAR_FORMAT_PATTERN
 import com.traday.longholder.utils.showDialog
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
     R.layout.fragment_active
@@ -57,14 +54,9 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     )
                     .build().also {
                         it.addOnPositiveButtonClickListener { timeInMillis ->
-                            val format = SimpleDateFormat(
-                                CALENDAR_FORMAT_PATTERN,
-                                Locale.getDefault()
+                            viewModel.setCalendarDate(
+                                timeInMillis
                             )
-                            val formattedDate: String = format.format(timeInMillis)
-                            tietActiveDate.setText(formattedDate)
-                            tietActiveDate.setTextColor(getColorCompat(R.color.black))
-                            validateFields()
                         }
                         it.show(childFragmentManager, TAG)
                     }
@@ -268,6 +260,15 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                     }
                 }
             }
+            calendarDateLiveData.observe(viewLifecycleOwner, ::setCalendarDate)
+        }
+    }
+
+    private fun setCalendarDate(date: String) {
+        with(binding) {
+            tietActiveDate.setText(date)
+            tietActiveDate.setTextColor(getColorCompat(R.color.black))
+            validateFields()
         }
     }
 
