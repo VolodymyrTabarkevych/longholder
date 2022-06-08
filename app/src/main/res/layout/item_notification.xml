@@ -24,12 +24,15 @@
 
         <TextView
             android:id="@+id/tvNotificationTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_1_25"
+            android:layout_marginHorizontal="@dimen/spacing_1_25"
+            android:ellipsize="end"
             android:fontFamily="@font/avenir_black_extra_bold"
+            android:lines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/text.size.medium"
+            app:layout_constraintEnd_toStartOf="@id/tvNotificationDate"
             app:layout_constraintStart_toEndOf="@id/ivNotification"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Bitcoin" />
@@ -47,24 +50,26 @@
 
         <TextView
             android:id="@+id/tvNotificationDescription"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_1"
             android:fontFamily="@font/avenir_black_extra_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/text.size.normal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle"
             tools:text="Your holding has ended. You have earned:" />
 
         <TextView
             android:id="@+id/tvNotificationEarned"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_0_75"
             android:fontFamily="@font/avenir_black_extra_bold"
             android:textColor="@color/limeade"
             android:textSize="@dimen/text.size.medium"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNotificationDescription"
             tools:text="+8 323,13 ($1 225,60)" />

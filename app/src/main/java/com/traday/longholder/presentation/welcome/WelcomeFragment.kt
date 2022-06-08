@@ -29,6 +29,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
     }
 
     override fun initViewModel() {
-        viewModel.handleLogout()
+        viewModel.checkIfLogoutNeeded()
     }
 }

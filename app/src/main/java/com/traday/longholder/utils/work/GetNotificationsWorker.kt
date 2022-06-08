@@ -2,20 +2,20 @@ package com.traday.longholder.utils.work
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.work.*
 import com.google.common.util.concurrent.ListenableFuture
-import com.traday.longholder.MainActivity
 import com.traday.longholder.R
 import com.traday.longholder.domain.repository.INotificationRepository
 import com.traday.longholder.extensions.getColorCompat
+import com.traday.longholder.presentation.active.ActiveScreenMode
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit
@@ -31,21 +31,46 @@ class GetNotificationsWorker @AssistedInject constructor(
         val notificationsResult = notificationRepository.getNotifications(true)
         if (notificationsResult !is com.traday.longholder.data.base.Result.Success) return Result.failure()
         val notifications = notificationsResult.data
+
         notifications.forEach {
             if (!it.isRead) {
-                showHoldingHasEndedNotification(it.id, it.earnedMoney)
+                showHoldingHasEndedNotification(it.id, it.activeId, it.earnedMoney)
             }
         }
         notificationRepository.setIsReadForAllNotifications(true)
         return Result.success()
     }
 
-    private fun showHoldingHasEndedNotification(id: Int, earnedMoney: Double) {
-        val intent = Intent(context, MainActivity::class.java)
-        val resultPendingIntent = PendingIntent.getActivity(
-            context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
+    private fun showHoldingHasEndedNotification(
+        notificationId: Int,
+        activeId: Int,
+        earnedMoney: Double
+    ) {
         val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel(manager)
+        }
+        createNotification(
+            notificationId = notificationId,
+            notificationManager = manager,
+            activeId = activeId,
+            earnedMoney = earnedMoney
+        )
+    }
+
+    private fun createNotification(
+        notificationId: Int,
+        notificationManager: NotificationManager,
+        activeId: Int,
+        earnedMoney: Double
+    ) {
+        val pendingIntent = NavDeepLinkBuilder(context)
+            .setGraph(R.navigation.nav_main)
+            .addDestination(R.id.activeFragment)
+            .setArguments(Bundle().apply {
+                putParcelable("mode", ActiveScreenMode.ViewEndedActive(activeId))
+            })
+            .createPendingIntent()
 
         val contentView = RemoteViews(context.packageName, R.layout.notification_hold_ended)
         val textColor = if (earnedMoney >= 0) R.color.limeade else R.color.thunderbird
@@ -61,22 +86,16 @@ class GetNotificationsWorker @AssistedInject constructor(
             R.id.tvNotification,
             context.getString(R.string.push_notification_you_earned, earnedMoney)
         )
-
-        val notification = NotificationCompat.Builder(
-            context,
-            HOLD_ENDED_CHANNEL_ID
-        )
-            .setContentIntent(resultPendingIntent)
+        val notification = NotificationCompat.Builder(context, HOLD_ENDED_CHANNEL_ID)
+            .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_notification)
             .setStyle(NotificationCompat.DecoratedCustomViewStyle())
             .setCustomContentView(contentView)
+            .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel(manager)
-        }
-        manager.notify(id, notification)
+        notificationManager.notify(notificationId, notification)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

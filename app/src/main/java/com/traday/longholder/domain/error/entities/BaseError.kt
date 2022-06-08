@@ -1,16 +1,16 @@
 package com.traday.longholder.domain.error.entities
 
-import androidx.annotation.StringRes
+import com.traday.longholder.domain.base.ProgressiveString
 
-sealed class BaseError(@StringRes val stringResId: Int?) {
+sealed class BaseError(val message: ProgressiveString) {
 
-    class NetworkConnectionError(stringResId: Int) : BaseError(stringResId)
+    class NetworkConnectionError(message: ProgressiveString) : BaseError(message)
 
-    class SomethingWentWrongError(stringResId: Int) : BaseError(stringResId)
+    class SomethingWentWrongError(message: ProgressiveString) : BaseError(message)
 
-    class UnauthorizedError(stringResId: Int?) : BaseError(stringResId)
+    class UnauthorizedError(message: ProgressiveString) : BaseError(message)
 
-    class UserAlreadyExistsError(stringResId: Int) : BaseError(stringResId)
+    class UserAlreadyExistsError(message: ProgressiveString) : BaseError(message)
 
-    class NoUserAssociatedWithEmailError(stringResId: Int) : BaseError(stringResId)
+    class NoUserAssociatedWithEmailError(message: ProgressiveString) : BaseError(message)
 }

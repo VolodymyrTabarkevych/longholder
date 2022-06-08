@@ -47,7 +47,7 @@ abstract class BaseMVVMFragment<out VM : BaseViewModel, out B : ViewBinding>(
         }
         viewModel.showAlertDialogErrorLiveData.observe(viewLifecycleOwner) {
             if (it.error is BaseError.SomethingWentWrongError) {
-                it.error.stringResId?.let { stringResId -> showDialog(getString(stringResId)) }
+                showDialog(it.error.message.toString(resources))
             }
         }
         viewModel.noInternetConnectionLiveData.observe(viewLifecycleOwner) {

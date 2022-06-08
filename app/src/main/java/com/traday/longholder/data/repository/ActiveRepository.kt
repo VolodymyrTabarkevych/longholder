@@ -6,6 +6,7 @@ import com.traday.longholder.data.local.datasource.active.IActiveLocalDataSource
 import com.traday.longholder.data.local.entity.ActiveEntity
 import com.traday.longholder.data.mapper.toEntity
 import com.traday.longholder.data.remote.datasource.active.IActiveRemoteDataSource
+import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.data.remote.requestbody.UpdateActiveRequestBody
 import com.traday.longholder.domain.model.Active
@@ -39,6 +40,10 @@ class ActiveRepository @Inject constructor(
                 activeLocalDataSource.insertOrUpdateActives(mappedCurrencies)
             }
         }
+    }
+
+    override suspend fun getEndedActiveById(id: Int): Result<ActiveDto> {
+        return activeRemoteDataSource.getEndedActiveById(id)
     }
 
     override fun subscribeOnActives(syncAtStart: Boolean): Flow<Result<List<ActiveEntity>>> {

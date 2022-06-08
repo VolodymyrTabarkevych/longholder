@@ -15,7 +15,7 @@ class WelcomeViewModel @Inject constructor(
 
     private val needLogout = WelcomeFragmentArgs.fromSavedStateHandle(state).needLogout
 
-    fun handleLogout() {
+    fun checkIfLogoutNeeded() {
         if (needLogout) {
             executeUseCase(logoutUseCase, EmptyParams())
         }

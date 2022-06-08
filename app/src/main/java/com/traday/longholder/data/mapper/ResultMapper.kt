@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
+import java.util.concurrent.CancellationException
 
 private const val RESULT_MAPPER = "RESULT_MAPPING"
 
@@ -19,22 +20,27 @@ suspend fun <S : Any> apiResult(
     try {
         Result.Success(call()!!.body()!!)
     } catch (e: Exception) {
-        if (e is BaseException.NetworkRequestException) {
-            loge(RESULT_MAPPER, e.error.message, e)
+        when (e) {
+            is CancellationException -> throw e
+            is BaseException.NetworkRequestException -> loge(RESULT_MAPPER, e.error.message, e)
+            else -> loge(RESULT_MAPPER, e.message, e)
         }
         Result.Error(converter.getException(e))
     }
 
-suspend fun <T : Any> result(
-    operation: suspend () -> T?
-): Result<T> =
+suspend fun <S : Any> result(
+    converter: IExceptionConvertor = ExceptionConvertor(),
+    operation: suspend () -> S?
+): Result<S> =
     try {
-        Result.Success(operation() ?: throw BaseException.NoDataException())
+        Result.Success(operation()!!)
     } catch (e: Exception) {
-        e.message?.let { message ->
-            loge(RESULT_MAPPER, message, e)
+        when (e) {
+            is CancellationException -> throw e
+            is BaseException.NetworkRequestException -> loge(RESULT_MAPPER, e.error.message, e)
+            else -> loge(RESULT_MAPPER, e.message, e)
         }
-        Result.Error(e)
+        Result.Error(converter.getException(e))
     }
 
 fun <T : Any> flowResult(
@@ -42,11 +48,13 @@ fun <T : Any> flowResult(
     operation: () -> Flow<T?>
 ): Flow<Result<T>> = operation.invoke()
     .map { value ->
-        Result.Success(value ?: throw BaseException.NoDataException())
+        Result.Success(value!!)
     }
     .catch { e ->
-        if (e is BaseException.NetworkRequestException) {
-            loge(RESULT_MAPPER, e.error.message, e)
+        when (e) {
+            is BaseException.NetworkRequestException -> loge(RESULT_MAPPER, e.error.message, e)
+            is java.lang.Exception -> loge(RESULT_MAPPER, e.message, e)
+            else -> loge(RESULT_MAPPER, e.message.toString())
         }
         Result.Error(converter.getException(Exception(e)))
     }

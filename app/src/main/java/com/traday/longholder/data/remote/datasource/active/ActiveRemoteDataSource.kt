@@ -3,7 +3,9 @@ package com.traday.longholder.data.remote.datasource.active
 import com.traday.longholder.data.base.Result
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
 import com.traday.longholder.data.mapper.apiResult
+import com.traday.longholder.data.mapper.result
 import com.traday.longholder.data.remote.datasource.base.BaseLongHolderDataSource
+import com.traday.longholder.data.remote.dto.ActiveDto
 import com.traday.longholder.data.remote.requestbody.CreateActiveRequestBody
 import com.traday.longholder.data.remote.requestbody.UpdateActiveRequestBody
 import com.traday.longholder.data.remote.responsebody.GetActivesResponseBody
@@ -24,6 +26,15 @@ class ActiveRemoteDataSource @Inject constructor(
     override suspend fun getActives(): Result<GetActivesResponseBody> =
         apiResult { api.getActives() }
 
+    override suspend fun getEndedActiveById(id: Int): Result<ActiveDto> =
+        result {
+            api.getEndedActives()
+                .body()
+                ?.actives
+                ?.find { it.id == id }
+                ?: error("Active does not exists")
+        }
+
     override suspend fun createActive(active: CreateActiveRequestBody): Result<Unit> =
         apiResult { api.createActive(active) }
 
@@ -37,6 +48,9 @@ class ActiveRemoteDataSource @Inject constructor(
 
         @GET("User/getActiveCryptos")
         suspend fun getActives(): Response<GetActivesResponseBody>
+
+        @GET("User/getOldCryptos")
+        suspend fun getEndedActives(): Response<GetActivesResponseBody>
 
         @POST("User/createCrypto")
         suspend fun createActive(@Body active: CreateActiveRequestBody): Response<Unit>

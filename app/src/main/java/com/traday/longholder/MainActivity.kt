@@ -25,9 +25,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     BottomNavigationViewProvider, StartDestinationHandler {
 
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
+
     private val viewModel: MainViewModel by viewModels()
+
     private val navHostFragment by lazy { supportFragmentManager.findFragmentById(R.id.fcvMain) as NavHostFragment }
+
     private val navController by lazy { navHostFragment.navController }
+
     private val rootGraph by lazy { navController.navInflater.inflate(R.navigation.nav_main) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,5 +100,4 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     override fun getBottomNavigationView(): BottomNavigationView {
         return binding.bnvMain
     }
-
 }

@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.traday.longholder.domain.base.Resource
+import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
-import com.traday.longholder.domain.usecase.CreateActiveUseCase
-import com.traday.longholder.domain.usecase.DeleteActiveUseCase
-import com.traday.longholder.domain.usecase.GetCurrenciesUseCase
-import com.traday.longholder.domain.usecase.UpdateActiveUseCase
+import com.traday.longholder.domain.usecase.*
 import com.traday.longholder.presentation.base.BaseValidationViewModel
 import com.traday.longholder.presentation.validation.validator.CalendarValidator
 import com.traday.longholder.presentation.validation.validator.CryptoValidator
@@ -25,11 +23,15 @@ class ActiveViewModel @Inject constructor(
     private val createActiveUseCase: CreateActiveUseCase,
     private val deleteActiveUseCase: DeleteActiveUseCase,
     private val updateActiveUseCase: UpdateActiveUseCase,
+    private val getEndedActiveByIdUseCase: GetEndedActiveByIdUseCase,
     state: SavedStateHandle
 ) : BaseValidationViewModel() {
 
     private val mode: ActiveScreenMode =
         ActiveFragmentArgs.fromSavedStateHandle(state).mode
+
+    private val _modeLiveData = MutableLiveData(mode)
+    val modeLiveData: LiveData<ActiveScreenMode> get() = _modeLiveData
 
     private val _selectedCurrencyLiveData = MutableLiveData<Currency>()
     val selectedCurrencyLiveData: LiveData<Currency> get() = _selectedCurrencyLiveData
@@ -52,14 +54,33 @@ class ActiveViewModel @Inject constructor(
     private val _calendarDateLiveData = MutableLiveData<String>()
     val calendarDateLiveData: LiveData<String> get() = _calendarDateLiveData
 
+    private val _getEndedActiveLiveData = MutableLiveData<Resource<Active>>()
+    val getEndedActiveLiveData: LiveData<Resource<Active>> get() = _getEndedActiveLiveData
+
+    private val _activeLiveData = MutableLiveData<Active>()
+    val activeLiveData: LiveData<Active> get() = _activeLiveData
+
 
     init {
-        getCurrencies()
+        when (mode) {
+            is ActiveScreenMode.Create -> getCurrencies()
+            is ActiveScreenMode.Update -> setActive(mode.active)
+            is ActiveScreenMode.ViewEndedActive -> getEndedActiveById(mode.activeId)
+        }
+    }
+
+    private fun setActive(active: Active) {
+        _activeLiveData.postValue(active)
+    }
+
+    private fun getEndedActiveById(activeId: Int) {
+        executeUseCase(getEndedActiveByIdUseCase, GetEndedActiveByIdUseCase.Params(activeId)) {
+            _getEndedActiveLiveData.postValue(it)
+        }
     }
 
     private fun getCurrencies() {
-        val sync = mode == ActiveScreenMode.Create
-        executeUseCase(getCurrenciesUseCase, GetCurrenciesUseCase.Params(sync)) {
+        executeUseCase(getCurrenciesUseCase, GetCurrenciesUseCase.Params(true)) {
             _getCurrenciesLiveData.postValue(it)
         }
     }
@@ -132,8 +153,9 @@ class ActiveViewModel @Inject constructor(
         }
     }
 
-    fun deleteActive(activeId: Int) {
-        executeUseCase(deleteActiveUseCase, DeleteActiveUseCase.Params(activeId)) {
+    fun deleteActive() {
+        if (mode !is ActiveScreenMode.Update) return
+        executeUseCase(deleteActiveUseCase, DeleteActiveUseCase.Params(mode.active.id)) {
             _deleteActiveLiveData.postValue(it)
         }
     }

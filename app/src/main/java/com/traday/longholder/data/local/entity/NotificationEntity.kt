@@ -9,7 +9,9 @@ import com.traday.longholder.data.local.entity.NotificationEntity.Companion.TABL
 data class NotificationEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id") val id: Int,
+    @ColumnInfo(name = "cryptoId") val activeId: Int,
     @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "nameOfCoin") val nameOfCoin: String,
     @ColumnInfo(name = "valueOfMessage") val valueOfMessage: String?,
     @ColumnInfo(name = "earnedMoney") val earnedMoney: Double,
     @ColumnInfo(name = "linkToTheImage") val linkToTheImage: String?,

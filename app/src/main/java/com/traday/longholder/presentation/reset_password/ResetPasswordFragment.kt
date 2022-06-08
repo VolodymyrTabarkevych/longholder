@@ -62,13 +62,7 @@ class ResetPasswordFragment :
                         setForgotPasswordLoading(false)
                         clearInputFieldsFocusAndHideKeyboard()
                         if (it.error is BaseError.NoUserAssociatedWithEmailError) {
-                            it.error.stringResId?.let { stringResId ->
-                                setEmailError(
-                                    getString(
-                                        stringResId
-                                    )
-                                )
-                            }
+                            setEmailError(it.error.message.toString(resources))
                         }
                     }
                     is Resource.Loading -> setForgotPasswordLoading(true)

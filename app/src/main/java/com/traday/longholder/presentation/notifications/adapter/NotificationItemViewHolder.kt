@@ -3,6 +3,7 @@ package com.traday.longholder.presentation.notifications.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.traday.longholder.databinding.ItemNotificationBinding
 import com.traday.longholder.domain.model.Notification
+import com.traday.longholder.extensions.getColorCompat
 import com.traday.longholder.extensions.loadWithGlide
 
 class NotificationItemViewHolder(private val binding: ItemNotificationBinding) :
@@ -11,10 +12,13 @@ class NotificationItemViewHolder(private val binding: ItemNotificationBinding) :
     fun bind(item: Notification) {
         with(binding) {
             ivNotification.loadWithGlide(item.linkToTheImage)
-            tvNotificationTitle.text = item.name
-            tvNotificationDate.text = item.dateOfSent
+            tvNotificationTitle.text = item.nameOfCoinFormatted
+            tvNotificationDate.text = item.dateOfSentFormatted
             tvNotificationDescription.text = item.valueOfMessage
-            tvNotificationEarned.text = item.earnedMoneyFormatted
+            tvNotificationEarned.apply {
+                setTextColor(getColorCompat(item.earnedMoneyResIdColor))
+                text = item.earnedMoneyFormatted
+            }
         }
     }
 }
