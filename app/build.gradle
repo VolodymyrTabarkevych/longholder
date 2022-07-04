@@ -17,6 +17,7 @@ android {
     def ENABLE_LOGS = "ENABLE_LOGS"
     def ENABLE_CRASH_LOGS = "ENABLE_CRASH_LOGS"
     def HOST = "HOST"
+    def PLATFORM = "PLATFORM"
 
     def Boolean = "Boolean"
     def String = "String"
@@ -24,12 +25,14 @@ android {
     def devHost = '"https://longholder.azurewebsites.net/"'
     def prodHost = '"https://longholder.azurewebsites.net/"'
 
+    def androidPlatform = '"Android"'
+
     defaultConfig {
         applicationId "com.traday.longholder"
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.1"
     }
 
     buildTypes {
@@ -39,6 +42,7 @@ android {
 
             buildConfigField String, HOST, devHost
             buildConfigField Boolean, ENABLE_LOGS, trueValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
         release {
             minifyEnabled true
@@ -46,6 +50,7 @@ android {
 
             buildConfigField String, HOST, prodHost
             buildConfigField Boolean, ENABLE_LOGS, falseValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
     }
 
@@ -55,12 +60,14 @@ android {
             buildConfigField String, HOST, devHost
             buildConfigField Boolean, ENABLE_LOGS, trueValue
             buildConfigField Boolean, ENABLE_CRASH_LOGS, falseValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
 
         production {
             buildConfigField String, HOST, prodHost
             buildConfigField Boolean, ENABLE_LOGS, falseValue
             buildConfigField Boolean, ENABLE_CRASH_LOGS, trueValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
     }
 
@@ -85,6 +92,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.1"
     implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
