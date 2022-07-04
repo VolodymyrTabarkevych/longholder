@@ -19,14 +19,20 @@ class SettingsPreferences @Inject constructor(
     }
 
     override suspend fun getSelectedLanguage(): Language = read {
-        Language.valueOf(it[SELECTED_LANGUAGE] ?: run {
-            val language = Locale.getDefault()
-            Language.ENGLISH.name
-        })
+        Language.valueOf(it[SELECTED_LANGUAGE] ?: getDefaultLanguage().name)
     }
 
     override fun subscribeOnSelectedLanguage(): Flow<Language> = subscribe {
-        Language.valueOf(it[SELECTED_LANGUAGE] ?: Language.ENGLISH.name)
+        Language.valueOf(it[SELECTED_LANGUAGE] ?: getDefaultLanguage().name)
+    }
+
+    private fun getDefaultLanguage(): Language {
+        val defaultLocaleName = Locale.getDefault().language
+        return if (defaultLocaleName == Language.ENGLISH.shortName) {
+            Language.ENGLISH
+        } else {
+            Language.UKRAINIAN
+        }
     }
 
     companion object {
