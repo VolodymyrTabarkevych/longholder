@@ -11,11 +11,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WalletViewModel @Inject constructor(
-    private val subscribeOnActivesUseCase: SubscribeOnActivesUseCase
+    subscribeOnActivesUseCase: SubscribeOnActivesUseCase
 ) : BaseViewModel() {
 
     val subscribeOnActivesLiveData: LiveData<Resource<List<Active>>> = executeUseCase(
         useCase = subscribeOnActivesUseCase,
-        params = SubscribeOnActivesUseCase.Params(true)
+        params = SubscribeOnActivesUseCase.Params(true),
+        showDialogOnError = false
     ).asLiveData(timeoutInMs = 10000)
 }
