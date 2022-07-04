@@ -38,6 +38,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
     private fun initActionButtons() {
         with(binding) {
             tilActiveAmount.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
+            tilActiveWantedPercents.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
             tietActiveDate.setOnClickListener {
                 val dateValidatorMin: DateValidator =
                     DateValidatorPointForward.from(System.currentTimeMillis())
@@ -140,6 +141,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
             tietActiveDate.setTextColor(getColorCompat(R.color.black))
             tvActiveCommentTitle.text = getString(R.string.active_your_comment)
+            tvActiveWantedPercentsTitle.text = getString(R.string.active_enter_wanted_percents)
             tietActiveComment.isEnabled = false
             llActiveInfo.show()
 
@@ -149,6 +151,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 setOnClickListener {
                     viewModel.updateActive(
                         valueOfCrypto = tietActiveAmount.text.toString(),
+                        wantedPercents = tietActiveWantedPercents.text.toString(),
                         dateOfEnd = tietActiveDate.text.toString()
                     )
                 }
@@ -182,6 +185,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             actvActiveSelectCurrency.isEnabled = true
             tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
             tvActiveCommentTitle.text = getString(R.string.active_leave_comment)
+            tvActiveWantedPercentsTitle.text = getString(R.string.active_enter_wanted_percents)
             llActiveInfo.gone()
 
             pbActiveFirstAction.apply {
@@ -189,6 +193,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 setOnClickListener {
                     viewModel.createActive(
                         valueOfCrypto = tietActiveAmount.text.toString(),
+                        wantedPercents = tietActiveWantedPercents.text.toString(),
                         dateOfEnd = tietActiveDate.text.toString(),
                         comment = tietActiveComment.text.toString()
                     )
@@ -214,6 +219,8 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 isEnabled = false
                 setTextColor(getColorCompat(R.color.black))
             }
+            tvActiveWantedPercentsTitle.text = getString(R.string.active_wanted_percents)
+            tietActiveWantedPercents.isEnabled = false
             tvActiveCommentTitle.text = getString(R.string.active_your_comment)
             tietActiveComment.isEnabled = false
             llActiveInfo.show()
@@ -227,6 +234,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             tilActiveSelectCurrency.setStartIconWithGlide(active.linkToImage)
             actvActiveSelectCurrency.setText(active.nameFormatted)
             tietActiveAmount.setText(active.valueOfCrypto.toString())
+            tietActiveWantedPercents.setText(active.wantedPercents.toString())
             tietActiveDate.setText(active.dateOfEnd)
             tietActiveComment.setText(active.comment)
             tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
@@ -322,8 +330,9 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
     private fun validateFields() {
         with(binding) {
             val cryptoAmount = tietActiveAmount.text.toString()
+            val wantedPercents = tietActiveWantedPercents.text.toString()
             val calendarDate: String = tietActiveDate.text.toString()
-            viewModel.validateFields(cryptoAmount, calendarDate)
+            viewModel.validateFields(cryptoAmount, wantedPercents, calendarDate)
         }
     }
 

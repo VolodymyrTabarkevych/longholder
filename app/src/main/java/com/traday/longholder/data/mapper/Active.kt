@@ -22,7 +22,8 @@ fun ActiveDto.toEntity() = ActiveEntity(
     linkToImage = linkToImage,
     earnedMoney = earnedMoney,
     percents = percents,
-    symbol = symbol
+    symbol = symbol,
+    wantedPercents = wantedPercents
 )
 
 fun Active.toEntity() = ActiveEntity(
@@ -41,7 +42,8 @@ fun Active.toEntity() = ActiveEntity(
     linkToImage = linkToImage,
     earnedMoney = earnedMoney,
     percents = percents,
-    symbol = symbol
+    symbol = symbol,
+    wantedPercents = wantedPercents
 )
 
 fun ActiveEntity.toDomain() = Active(
@@ -60,7 +62,8 @@ fun ActiveEntity.toDomain() = Active(
     linkToImage = linkToImage,
     earnedMoney = earnedMoney,
     percents = percents,
-    symbol = symbol
+    symbol = symbol,
+    wantedPercents = wantedPercents
 )
 
 fun ActiveDto.toDomain() = Active(
@@ -79,7 +82,8 @@ fun ActiveDto.toDomain() = Active(
     linkToImage = linkToImage,
     earnedMoney = earnedMoney,
     percents = percents,
-    symbol = symbol
+    symbol = symbol,
+    wantedPercents = wantedPercents
 )
 
 fun Active.toDto() = ActiveDto(
@@ -99,5 +103,6 @@ fun Active.toDto() = ActiveDto(
     earnedMoney = earnedMoney,
     percents = percents,
     symbol = symbol,
+    wantedPercents = wantedPercents
 )
 

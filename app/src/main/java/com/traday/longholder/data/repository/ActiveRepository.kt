@@ -67,6 +67,7 @@ class ActiveRepository @Inject constructor(
     override suspend fun createActive(
         name: String?,
         valueOfCrypto: String,
+        wantedPercents: String,
         currentCurrencyPrice: Double,
         cryptoPriceOnStart: Double,
         dateOfEnd: String,
@@ -78,6 +79,7 @@ class ActiveRepository @Inject constructor(
             CreateActiveRequestBody(
                 name = name,
                 valueOfCrypto = valueOfCrypto.toDouble(),
+                wantedPercents = wantedPercents.toDouble(),
                 currentCurrencyPrice = currentCurrencyPrice,
                 cryptoPriceOnStart = cryptoPriceOnStart,
                 dateOfEnd = dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
