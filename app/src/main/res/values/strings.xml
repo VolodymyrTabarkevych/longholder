@@ -40,6 +40,9 @@
     <string name="dialog_do_you_want_stop_holding">Do you want to stop holding?</string>
     <string name="dialog_if_you_stop_holding">If you stop your holding now, the coin will be removed from your wallet. </string>
 
+    <!-- Snack -->
+    <string name="snack_successfully_added">Active was successfully added</string>
+
     <!-- Validator messages -->
     <string name="allowed_symbols_for_password">-+_~!@#$%^&amp;*?\\/().:;\"\'[]{}|,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <string name="validation_email_not_valid">Invalid email address, please try again</string>
@@ -108,6 +111,7 @@
 
     <!-- Theme -->
     <string name="theme_title">Theme</string>
+    <string name="theme_light">Light</string>
 
     <!-- Active -->
     <string name="active_add">Add your Active</string>

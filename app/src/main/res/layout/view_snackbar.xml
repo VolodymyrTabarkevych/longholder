@@ -13,7 +13,7 @@
         android:lines="1"
         android:paddingHorizontal="@dimen/spacing_2"
         android:paddingVertical="@dimen/spacing_2_25"
-        android:text="Active was successfuly added"
+        android:text="@string/snack_successfully_added"
         android:textColor="@color/limeade"
         app:drawableEndCompat="@drawable/ic_close" />
 </merge>
