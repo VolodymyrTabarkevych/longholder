@@ -1,7 +1,6 @@
 package com.traday.longholder.presentation.subscription
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -15,7 +14,6 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
-import com.traday.longholder.utils.showDialog
 
 class SubscriptionFragment :
     BaseMVVMFragment<SubscriptionViewModel, FragmentSubscriptionBinding>(
@@ -42,19 +40,9 @@ class SubscriptionFragment :
                 val nextPage = if (currentPage < lastPage) currentPage.inc() else lastPage
                 vpSubscription.setCurrentItem(nextPage, true)
             }
-            pbSubscriptionStart.setOnClickListener {
-                showDialog(
-                    "This feature is not yet implemented",
-                    onCustomize = { dialogCommonBinding, _ ->
-                        dialogCommonBinding.tvDialogTitle.gravity = Gravity.CENTER_HORIZONTAL
-                    })
-            }
             pbSubscriptionCancel.setOnClickListener {
-                showDialog(
-                    "This feature is not yet implemented",
-                    onCustomize = { dialogCommonBinding, _ ->
-                        dialogCommonBinding.tvDialogTitle.gravity = Gravity.CENTER_HORIZONTAL
-                    })
+                viewModel.stopSubscription()
+                navController.popBackStack()
             }
         }
     }
@@ -79,9 +67,31 @@ class SubscriptionFragment :
     override fun initViewModel() {
         with(viewModel) {
             isUserOnSubscription.observe(viewLifecycleOwner) {
-                if (it is Resource.Success) setSubscriptionScreen(it.data)
+                if (it is Resource.Success) {
+                    if (it.data) {
+                        viewModel.getActiveSubscription()
+                    } else {
+                        viewModel.getSubscriptions()
+                    }
+                    setSubscriptionScreen(it.data)
+                }
             }
             onboardingButtonsLiveData.observe(viewLifecycleOwner, ::setActionButtons)
+            getSubscriptionsLiveData.observe(viewLifecycleOwner) {
+                if (it is Resource.Success) {
+                    val billingClient = it.data.first
+                    val billingFlowParams = it.data.second
+
+                    binding.pbSubscriptionStart.setOnClickListener {
+                        billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+                    }
+                }
+            }
+            getActiveSubscriptionLiveData.observe(viewLifecycleOwner) {
+                if (it is Resource.Success) {
+                    println(it.data.purchaseTime)
+                }
+            }
         }
     }
 

@@ -114,6 +114,8 @@
     <string name="active_select_coin">Select your coin</string>
     <string name="active_your_coin">Your coin</string>
     <string name="active_enter_amount">Enter amount</string>
+    <string name="active_enter_wanted_percents">Enter wanted percents</string>
+    <string name="active_wanted_percents">Wanted percents</string>
     <string name="active_amount">Amount</string>
     <string name="active_date_end_hold">Date of stop of hold</string>
     <string name="active_date_hint">dd/mm/yyyy</string>

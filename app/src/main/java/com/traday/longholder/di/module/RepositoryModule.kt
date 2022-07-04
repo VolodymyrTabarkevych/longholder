@@ -31,4 +31,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindCalcRepository(repository: CalcRepository): ICalcRepository
+
+    @Binds
+    fun bindSubscriptionRepository(repository: SubscriptionRepository): ISubscriptionRepository
 }

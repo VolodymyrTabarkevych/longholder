@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.traday.longholder.databinding.ActivityMainBinding
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.enums.UserStatus
+import com.traday.longholder.extensions.collectLatestWhenStarted
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
 import com.traday.longholder.presentation.base.BottomNavigationViewProvider
@@ -46,12 +47,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     }
 
     private fun initViewModel() {
-        viewModel.userStatus.observe(this) {
+        viewModel.userStatus.collectLatestWhenStarted(this) {
             when (it) {
                 is Resource.Error -> handleUserStatus(UserStatus.NOT_AUTHORIZED)
-                is Resource.Success -> {
-                    handleUserStatus(it.data)
-                }
+                is Resource.Success -> handleUserStatus(it.data)
             }
         }
     }

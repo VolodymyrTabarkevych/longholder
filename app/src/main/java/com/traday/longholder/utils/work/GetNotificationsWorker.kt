@@ -115,7 +115,7 @@ class GetNotificationsWorker @AssistedInject constructor(
         private const val HOLD_ENDED_CHANNEL_NAME = "Holding ended"
         private const val REPEAT_INTERVAL_HOURS = 1L
 
-        fun start(context: Context) {
+        fun startPeriodicWork(context: Context) {
             val request = PeriodicWorkRequestBuilder<GetNotificationsWorker>(
                 REPEAT_INTERVAL_HOURS,
                 TimeUnit.HOURS

@@ -8,6 +8,6 @@ import com.traday.longholder.utils.work.GetNotificationsWorker
 class GetNotificationsWorkerScheduler : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        GetNotificationsWorker.start(context)
+        GetNotificationsWorker.startPeriodicWork(context)
     }
 }

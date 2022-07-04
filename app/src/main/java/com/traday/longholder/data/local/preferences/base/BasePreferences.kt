@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 
 
 abstract class BasePreferences(protected val dataStore: DataStore<Preferences>) {
@@ -19,4 +20,7 @@ abstract class BasePreferences(protected val dataStore: DataStore<Preferences>) 
     protected suspend fun <T : Any?> read(
         operation: suspend (preferences: Preferences) -> T
     ): T = operation(dataStore.data.first())
+
+    protected fun <T : Any?> subscribe(operation: (preferences: Preferences) -> T) =
+        dataStore.data.map { operation.invoke(it) }
 }

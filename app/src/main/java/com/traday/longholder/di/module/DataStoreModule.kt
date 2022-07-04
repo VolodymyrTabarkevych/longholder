@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.traday.longholder.di.qualifire.SubscriptionPreferences
 import com.traday.longholder.di.qualifire.UserPreferences
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,7 @@ import javax.inject.Singleton
 object DataStoreModule {
 
     private const val USER_PREFERENCES_NAME = "user_preferences"
+    private const val SUBSCRIPTION_PREFERENCES_NAME = "subscription_preferences"
 
     @Singleton
     @Provides
@@ -36,6 +38,19 @@ object DataStoreModule {
             migrations = listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME)),
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { context.preferencesDataStoreFile(USER_PREFERENCES_NAME) }
+        )
+    }
+
+    @Singleton
+    @Provides
+    @SubscriptionPreferences
+    fun provideSubscriptionPreferencesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+        return PreferenceDataStoreFactory.create(
+            corruptionHandler = ReplaceFileCorruptionHandler(
+                produceNewData = { emptyPreferences() }),
+            migrations = listOf(SharedPreferencesMigration(context, SUBSCRIPTION_PREFERENCES_NAME)),
+            scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
+            produceFile = { context.preferencesDataStoreFile(SUBSCRIPTION_PREFERENCES_NAME) }
         )
     }
 }

@@ -1,8 +1,6 @@
 package com.traday.longholder.domain.servicerunner
 
-interface IGetNotificationsWorkerRunner {
+interface IStopSubscriptionWorkerRunner {
 
     fun startWorker()
-
-    fun stopWorker()
 }
