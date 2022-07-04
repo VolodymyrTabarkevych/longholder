@@ -15,8 +15,8 @@ class GetNotificationsWorkerRunner @Inject constructor(
 
     private val context = context.applicationContext
 
-    override fun startService() {
-        GetNotificationsWorker.start(context)
+    override fun startWorker() {
+        GetNotificationsWorker.startPeriodicWork(context)
 /*        val isScheduled = GetNotificationsWorker.isScheduled(context)
         if (isScheduled) return
         val intent = Intent(context, GetNotificationsWorkerScheduler::class.java)
@@ -43,7 +43,7 @@ class GetNotificationsWorkerRunner @Inject constructor(
         )*/
     }
 
-    override fun stopService() {
+    override fun stopWorker() {
         GetNotificationsWorker.stop(context)
     }
 

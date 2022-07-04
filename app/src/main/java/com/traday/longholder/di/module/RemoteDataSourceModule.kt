@@ -12,6 +12,8 @@ import com.traday.longholder.data.remote.datasource.notification.INotificationRe
 import com.traday.longholder.data.remote.datasource.notification.NotificationRemoteDataSource
 import com.traday.longholder.data.remote.datasource.report.IReportRemoteDataSource
 import com.traday.longholder.data.remote.datasource.report.ReportRemoteDataSource
+import com.traday.longholder.data.remote.datasource.subscription.ISubscriptionRemoteDataSource
+import com.traday.longholder.data.remote.datasource.subscription.SubscriptionRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.IUserRemoteDataSource
 import com.traday.longholder.data.remote.datasource.user.UserRemoteDataSource
 import dagger.Binds
@@ -43,4 +45,7 @@ interface RemoteDataSourceModule {
 
     @Binds
     fun bindCalcRemoteDataSource(source: CalcRemoteDataSource): ICalcRemoteDataSource
+
+    @Binds
+    fun bindSubscriptionDataSource(source: SubscriptionRemoteDataSource): ISubscriptionRemoteDataSource
 }

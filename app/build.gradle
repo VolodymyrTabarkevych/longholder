@@ -17,6 +17,7 @@ android {
     def ENABLE_LOGS = "ENABLE_LOGS"
     def ENABLE_CRASH_LOGS = "ENABLE_CRASH_LOGS"
     def HOST = "HOST"
+    def PLATFORM = "PLATFORM"
 
     def Boolean = "Boolean"
     def String = "String"
@@ -24,12 +25,14 @@ android {
     def devHost = '"https://longholder.azurewebsites.net/"'
     def prodHost = '"https://longholder.azurewebsites.net/"'
 
+    def androidPlatform = '"Android"'
+
     defaultConfig {
         applicationId "com.traday.longholder"
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.1"
     }
 
     buildTypes {
@@ -39,6 +42,7 @@ android {
 
             buildConfigField String, HOST, devHost
             buildConfigField Boolean, ENABLE_LOGS, trueValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
         release {
             minifyEnabled true
@@ -46,6 +50,7 @@ android {
 
             buildConfigField String, HOST, prodHost
             buildConfigField Boolean, ENABLE_LOGS, falseValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
     }
 
@@ -55,12 +60,14 @@ android {
             buildConfigField String, HOST, devHost
             buildConfigField Boolean, ENABLE_LOGS, trueValue
             buildConfigField Boolean, ENABLE_CRASH_LOGS, falseValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
 
         production {
             buildConfigField String, HOST, prodHost
             buildConfigField Boolean, ENABLE_LOGS, falseValue
             buildConfigField Boolean, ENABLE_CRASH_LOGS, trueValue
+            buildConfigField String, PLATFORM, androidPlatform
         }
     }
 
@@ -78,13 +85,14 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "androidx.fragment:fragment-ktx:1.4.1"
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -122,4 +130,6 @@ dependencies {
 
     //work manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    implementation "com.android.billingclient:billing-ktx:$billing_version"
 }

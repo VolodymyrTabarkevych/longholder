@@ -24,7 +24,8 @@ data class Active(
     val linkToImage: String?,
     val earnedMoney: Double,
     val percents: Double,
-    val symbol: String
+    val symbol: String,
+    val wantedPercents: Double
 ) : Parcelable {
 
     val earnedMoneyFormatted: String get() = (if (earnedMoney >= 0.0) "+" else EMPTY_STRING) + earnedMoney.replaceDotWithComma()

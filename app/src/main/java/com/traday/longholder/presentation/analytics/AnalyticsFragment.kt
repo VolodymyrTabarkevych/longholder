@@ -1,7 +1,6 @@
 package com.traday.longholder.presentation.analytics
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AutoCompleteTextView
@@ -26,7 +25,6 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
-import com.traday.longholder.utils.showDialog
 
 class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalyticsBinding>(
     layoutResId = R.layout.fragment_analytics,
@@ -51,18 +49,12 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
                     AnalyticsFragmentDirections.actionAnalyticsFragmentToCalculatorFragment()
                 )
             }
+
             pbAnalyticsNext.setOnClickListener {
                 val currentPage = vpAnalytics.currentItem
                 val lastPage = subscriptionAdapter.itemCount.dec()
                 val nextPage = if (currentPage < lastPage) currentPage.inc() else lastPage
                 vpAnalytics.setCurrentItem(nextPage, true)
-            }
-            pbAnalyticsStart.setOnClickListener {
-                showDialog(
-                    "This feature is not yet implemented",
-                    onCustomize = { dialogCommonBinding, _ ->
-                        dialogCommonBinding.tvDialogTitle.gravity = Gravity.CENTER_HORIZONTAL
-                    })
             }
         }
     }
@@ -87,7 +79,14 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
     override fun initViewModel() {
         with(viewModel) {
             isUserOnSubscription.observe(viewLifecycleOwner) {
-                if (it is Resource.Success) setAnalyticsScreen(it.data)
+                if (it is Resource.Success) {
+                    if (it.data) {
+                        getCurrencies()
+                    } else {
+                        getSubscriptions()
+                    }
+                    setAnalyticsScreen(it.data)
+                }
             }
             onboardingButtonsLiveData.observe(viewLifecycleOwner, ::setActionButtons)
             selectedCurrencyLiveData.observe(viewLifecycleOwner, ::setCurrency)
@@ -112,6 +111,15 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
                     }
                 }
             }
+            getSubscriptionsLiveData.observe(viewLifecycleOwner) {
+                if (it is Resource.Success) {
+                    val billingClient = it.data.first
+                    val billingFlowParams = it.data.second
+                    binding.pbAnalyticsStart.setOnClickListener { _ ->
+                        billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+                    }
+                }
+            }
         }
     }
 
@@ -131,6 +139,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     private fun setCurrenciesLoading(isLoading: Boolean) {
         with(binding) {
+            tilAnalyticsSelectCurrency.isVisible = !isLoading
             pbAnalytics.isVisible = isLoading
         }
     }

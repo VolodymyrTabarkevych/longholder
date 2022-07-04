@@ -2,7 +2,7 @@ package com.traday.longholder.domain.servicerunner
 
 interface IGetNotificationsWorkerRunner {
 
-    fun startService()
+    fun startWorker()
 
-    fun stopService()
+    fun stopWorker()
 }

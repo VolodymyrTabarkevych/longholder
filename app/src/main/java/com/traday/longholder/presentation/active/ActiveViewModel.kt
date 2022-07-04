@@ -85,12 +85,13 @@ class ActiveViewModel @Inject constructor(
         }
     }
 
-    fun validateFields(amount: String, date: String) {
+    fun validateFields(amount: String, wantedPercents: String, date: String) {
         when (mode) {
             is ActiveScreenMode.Create -> {
                 onValidateFields(
                     ::onValidationSuccess,
                     CryptoValidator.Amount.validate(amount),
+                    CryptoValidator.Amount.validate(wantedPercents),
                     CalendarValidator.Date.validate(date)
                 )
             }
@@ -100,12 +101,17 @@ class ActiveViewModel @Inject constructor(
                     newValue = amount
                 ) !is ValidateResult.Error
 
+                val wantedPercentsWasChanged = CryptoValidator.AmountsNotSame.validate(
+                    oldValue = mode.active.wantedPercents.toString(),
+                    newValue = wantedPercents
+                ) !is ValidateResult.Error
+
                 val dateWasChanged = CalendarValidator.DatesNotSame.validate(
                     oldValue = mode.active.dateOfEnd,
                     newValue = date
                 ) !is ValidateResult.Error
 
-                if (amountWasChanged || dateWasChanged) {
+                if (amountWasChanged || wantedPercentsWasChanged || dateWasChanged) {
                     onValidateFields(
                         ::onValidationSuccess,
                         CryptoValidator.Amount.validate(amount),
@@ -133,6 +139,7 @@ class ActiveViewModel @Inject constructor(
 
     fun createActive(
         valueOfCrypto: String,
+        wantedPercents: String,
         dateOfEnd: String,
         comment: String?
     ) {
@@ -143,6 +150,7 @@ class ActiveViewModel @Inject constructor(
                 currentCurrencyPrice = selectedCurrency.price,
                 cryptoPriceOnStart = selectedCurrency.price,
                 valueOfCrypto = valueOfCrypto,
+                wantedPercents = wantedPercents,
                 dateOfEnd = dateOfEnd,
                 comment = comment,
                 linkToImage = selectedCurrency.linkToPhoto,
@@ -160,10 +168,14 @@ class ActiveViewModel @Inject constructor(
         }
     }
 
-    fun updateActive(valueOfCrypto: String, dateOfEnd: String) {
+    fun updateActive(valueOfCrypto: String, wantedPercents: String, dateOfEnd: String) {
         if (mode !is ActiveScreenMode.Update) return
         val currentActive =
-            mode.active.copy(valueOfCrypto = valueOfCrypto.toDouble(), dateOfEnd = dateOfEnd)
+            mode.active.copy(
+                valueOfCrypto = valueOfCrypto.toDouble(),
+                wantedPercents = wantedPercents.toDouble(),
+                dateOfEnd = dateOfEnd
+            )
         executeUseCase(updateActiveUseCase, UpdateActiveUseCase.Params(currentActive)) {
             _updateActiveLiveData.postValue(it)
         }

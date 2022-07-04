@@ -23,3 +23,7 @@
 -keepclassmembers class * extends androidx.work.CoroutineWorker {
     public <init>(android.content.Context,androidx.work.WorkerParameters);
 }
+-keep class com.traday.longholder.data** { *; }
+
+-keepnames class * extends java.io.Serializable
+-keepnames class * extends android.os.Parcelable

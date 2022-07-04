@@ -17,6 +17,7 @@ interface IActiveRepository {
     suspend fun createActive(
         name: String?,
         valueOfCrypto: String,
+        wantedPercents: String,
         currentCurrencyPrice: Double,
         cryptoPriceOnStart: Double,
         dateOfEnd: String,

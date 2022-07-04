@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class CreateActiveRequestBody(
     @SerializedName("name") val name: String?,
     @SerializedName("valueOfCrypto") val valueOfCrypto: Double,
+    @SerializedName("wantedPercents") val wantedPercents: Double,
     @SerializedName("currentCurrencyPrice") val currentCurrencyPrice: Double,
     @SerializedName("cryptoPriceOnStart") val cryptoPriceOnStart: Double,
     @SerializedName("dateOfEnd") val dateOfEnd: String,

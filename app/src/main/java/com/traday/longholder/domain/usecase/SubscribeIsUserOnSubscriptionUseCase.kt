@@ -5,19 +5,16 @@ import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.FlowUseCase
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.error.handlers.IErrorHandler
-import com.traday.longholder.domain.repository.IUserRepository
+import com.traday.longholder.domain.repository.ISubscriptionRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class SubscribeIsUserOnSubscriptionUseCase @Inject constructor(
-    private val userRepository: IUserRepository,
+    private val subscriptionRepository: ISubscriptionRepository,
     private val errorHandler: IErrorHandler
-) : FlowUseCase<SubscribeIsUserOnSubscriptionUseCase.Params, Boolean>() {
+) : FlowUseCase<EmptyParams, Boolean>() {
 
-    override fun run(params: Params): Flow<Resource<Boolean>> {
-        return userRepository.subscribeOnUser(params.syncOnStart)
-            .toResource(errorHandler) { it.isOnSubscription }
+    override fun run(params: EmptyParams): Flow<Resource<Boolean>> {
+        return subscriptionRepository.subscribeOnIsUserHasSubscription().toResource(errorHandler)
     }
-
-    class Params(val syncOnStart: Boolean) : EmptyParams()
 }

@@ -18,5 +18,6 @@ data class ActiveDto(
     @SerializedName("linkToImage") val linkToImage: String?,
     @SerializedName("earnedMoney") val earnedMoney: Double,
     @SerializedName("percents") val percents: Double,
-    @SerializedName("symbol") val symbol: String
+    @SerializedName("symbol") val symbol: String,
+    @SerializedName("wantedPercents") val wantedPercents: Double
 )

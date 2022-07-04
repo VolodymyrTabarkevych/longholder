@@ -99,6 +99,31 @@
                 </com.traday.longholder.presentation.customviews.AppTextInputLayout>
 
                 <TextView
+                    android:id="@+id/tvActiveWantedPercentsTitle"
+                    style="@style/TextAppearance.App.Screen.TextInputHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_2"
+                    android:text="@string/active_enter_wanted_percents" />
+
+                <com.traday.longholder.presentation.customviews.AppTextInputLayout
+                    android:id="@+id/tilActiveWantedPercents"
+                    style="@style/Widget.App.TextInputLayout.FilledBox.DisabledHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_1">
+
+                    <com.traday.longholder.presentation.customviews.ClearFocusTextInputEditText
+                        android:id="@+id/tietActiveWantedPercents"
+                        style="@style/Widget.App.TextInputEditText.OutlinedBox.DisabledHint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/black" />
+                </com.traday.longholder.presentation.customviews.AppTextInputLayout>
+
+                <TextView
                     style="@style/TextAppearance.App.Screen.TextInputHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

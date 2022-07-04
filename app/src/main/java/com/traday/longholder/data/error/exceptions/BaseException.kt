@@ -23,6 +23,8 @@ object BaseException {
     class NoUserAssociatedWithEmailException(error: ErrorResponse) :
         NetworkRequestException(error)
 
+    class UserNotSubscribed(error: ErrorResponse) : NetworkRequestException(error)
+
     class NoAvailableActives(error: ErrorResponse) : NetworkRequestException(error)
 
     open class LocalRequestException : IOException()

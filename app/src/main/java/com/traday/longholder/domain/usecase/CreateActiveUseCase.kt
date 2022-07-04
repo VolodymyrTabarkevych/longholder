@@ -17,6 +17,7 @@ class CreateActiveUseCase @Inject constructor(
         return activeRepository.createActive(
             name = params.name,
             valueOfCrypto = params.valueOfCrypto,
+            wantedPercents = params.wantedPercents,
             currentCurrencyPrice = params.currentCurrencyPrice,
             cryptoPriceOnStart = params.cryptoPriceOnStart,
             dateOfEnd = params.dateOfEnd,
@@ -29,6 +30,7 @@ class CreateActiveUseCase @Inject constructor(
     class Params(
         val name: String?,
         val valueOfCrypto: String,
+        val wantedPercents: String,
         val currentCurrencyPrice: Double,
         val cryptoPriceOnStart: Double,
         val dateOfEnd: String,

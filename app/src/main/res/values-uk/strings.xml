@@ -1,0 +1,147 @@
+<resources>
+    <!-- Main -->
+    <string name="app_name">ЛонгХолдер</string>
+    <string name="tab_title_wallet">Гаманець</string>
+    <string name="tab_title_analytics">Аналітика</string>
+    <string name="tab_title_profile">Профіль</string>
+
+    <!-- Common errors -->
+    <string name="error_no_internet_connection">Немає підключення до Інтернету</string>
+    <string name="error_make_sure_device_is_connected">Переконайтеся, що ваш пристрій підключено до Інтернету</string>
+    <string name="error_unknown">Внутрішня помилка сервера, спробуйте пізніше</string>
+    <string name="error_no_user_associated_with_email_exception">Немає користувачів, пов’язаних з електронною поштою</string>
+    <string name="error_user_already_exists">Користувач вже існує!</string>
+
+    <!-- Common messages -->
+    <string name="common_ok">В порядку</string>
+    <string name="common_your_email">Твоя електронна пошта</string>
+    <string name="common_password">Пароль</string>
+    <string name="common_name">Ім\'я</string>
+    <string name="common_surname">Прізвище</string>
+    <string name="common_next">Далі</string>
+    <string name="common_skip">Пропустити</string>
+    <string name="common_dollar">$</string>
+    <string name="common_dollar_value_with_brackets">($%s)</string>
+    <string name="common_earned_crypto_with_percent">%1$s (%2$s %%)</string>
+    <string name="common_earned_crypto">%1$s</string>
+    <string name="common_value_with_percent">%.2f%%</string>
+    <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
+    <string name="common_cancel">Скасувати</string>
+    <string name="common_update">оновлення</string>
+    <string name="common_percent_sign">%</string>
+
+    <!-- Notification -->
+    <string name="push_notification_holding_has_ended">Ваше утримання закінчилося</string>
+    <string name="push_notification_you_earned">Ви заробили: %.2f</string>
+
+    <!-- Dialog -->
+    <string name="dialog_log_out_title">Ви хочете вийти?</string>
+    <string name="dialog_log_out">Вийти</string>
+    <string name="dialog_do_you_want_stop_holding">Ви хочете припинити утримання?</string>
+    <string name="dialog_if_you_stop_holding">Якщо ви припините своє утримання зараз, монета буде вилучена з вашого гаманця.</string>
+
+    <!-- Validator messages -->
+    <string name="allowed_symbols_for_password">- _~!@</string>
+    <string name="validation_email_not_valid">Недійсна адреса електронної пошти, спробуйте ще раз</string>
+    <string name="validation_name_not_valid">Ім’я не може бути порожнім</string>
+    <string name="validation_surename_not_valid">Прізвище не може бути пустим</string>
+    <string name="validation_password_not_valid">Пароль може містити мінімум 8 символів, 1 велику літеру та 1 цифру.</string>
+    <string name="validation_crypto_amount_not_valid">Будь ласка, введіть значення більше 1</string>
+    <string name="validation_password_match">Обидва паролі мають збігатися</string>
+    <string name="validation_value_not_valid">Недійсне значення</string>
+    <string name="validation_same_value">Така сама сума</string>
+    <string name="validation_same_date">Та сама дата</string>
+
+    <!-- Welcome screen -->
+    <string name="welcome_registration">Реєстрація</string>
+    <string name="welcome_login">Логін</string>
+
+    <!-- Sign up screen -->
+    <string name="sign_up_what_email_password">Який ваш e-mail і пароль?</string>
+    <string name="sign_up_what_email">Який твій е-мейл?</string>
+    <string name="sign_up_policy">Термін дії полісу відноситься до періоду, протягом якого ваш страховий поліс буде діяти. Цей термін визначається під час придбання страхового плану.</string>
+    <string name="sign_up_what_name">Як вас звати?</string>
+    <string name="sign_up_create_password">Створіть пароль.</string>
+    <string name="sign_up_confirm_password">Підтвердьте пароль</string>
+    <string name="sign_up_create_password_description">Пароль може містити мінімум 8 символів, 1 велику літеру та 1 цифру.</string>
+
+    <!-- Login screen -->
+    <string name="login_email_and_password">Який ваш e-mail і пароль?</string>
+    <string name="login_forgot_password">Забули пароль?</string>
+    <string name="login">Логін</string>
+
+    <!-- Onboarding screen -->
+    <string name="onboarding_start">Давайте розпочнемо!</string>
+
+    <!-- Wallet screen -->
+    <string name="wallet_my_actives">Мої криптоактиви</string>
+    <string name="wallet_have_not_add_actives">Ви ще не додали жодного активу.</string>
+    <string name="wallet_add_your_actives_now">Додайте свої активи та почніть керувати ними зараз!</string>
+    <string name="wallet_add_your_actives">Додайте свої активи</string>
+    <string name="wallet_on_hold_from">На утриманні від %s</string>
+
+    <!-- Analytics -->
+    <string name="analytics_title">Аналітика</string>
+    <string name="analytics_total_info">Повна інформація</string>
+    <string name="analytics_total_on_hold">Всього на очікуванні</string>
+    <string name="analytics_current_exchange_rate">Поточний курс обміну</string>
+    <string name="analytics_total_in_currnecy">Разом у валюті</string>
+    <string name="analytics_profit">Прибуток</string>
+    <string name="analytics_raise_fold">Підняти/скласти у %</string>
+
+    <!-- Profile -->
+    <string name="profile_title">Профіль</string>
+    <string name="profile_item_notifications">Сповіщення</string>
+    <string name="profile_item_language">Мову</string>
+    <string name="profile_item_theme">Тема</string>
+    <string name="profile_item_subscription">Підписка</string>
+    <string name="profile_item_log_out">Вийти</string>
+
+    <!-- Notifications -->
+    <string name="notifications_title">Сповіщення</string>
+    <string name="notifications_empty_notifications_title">У вас ще немає повідомлень</string>
+
+    <!-- Language -->
+    <string name="language_title">Мову</string>
+
+    <!-- Theme -->
+    <string name="theme_title">Тема</string>
+
+    <!-- Active -->
+    <string name="active_add">Додайте свій актив</string>
+    <string name="active_your">Ваш активний</string>
+    <string name="active_update">Оновіть свій Active</string>
+    <string name="active_select_coin">Виберіть свою монету</string>
+    <string name="active_your_coin">Ваша монета</string>
+    <string name="active_enter_amount">Введіть суму</string>
+    <string name="active_enter_wanted_percents">Введіть бажаний відсоток</string>
+    <string name="active_wanted_percents">Бажаний відсоток</string>
+    <string name="active_amount">Сума</string>
+    <string name="active_date_end_hold">Дата зупинки утримання</string>
+    <string name="active_date_hint">дд/мм/рррр</string>
+    <string name="active_summary">Підсумок на день покупки</string>
+    <string name="active_summary_today">Підсумок сьогодні</string>
+    <string name="active_profit">Прибуток, якщо продати зараз</string>
+    <string name="active_leave_comment">Залиште свій коментар</string>
+    <string name="active_your_comment">Ваш коментар</string>
+    <string name="active_put_on_hold">Призупинити, відкласти, поставити на режим очікування</string>
+    <string name="active_stop_holding">Зупиніть утримання</string>
+
+    <!-- Subscription -->
+    <string name="subscription_title">Підписка</string>
+    <string name="subscription_cancel_subscription">Скасувати підписку</string>
+
+    <!-- Reset password -->
+    <string name="reset_password_enter_email">Введіть свій e-mail. Ми надішлемо вам посилання для створення нового пароля.</string>
+    <string name="reset_password">Скинути пароль</string>
+    <string name="reset_password_mail_has_been_sent">Лист активації надіслано на\n“%s”</string>
+
+    <!-- Calculator -->
+    <string name="calculator_title">Калькулятор</string>
+    <string name="calculator_from_number">від числа</string>
+    <string name="calculator_result">Результат</string>
+    <string name="calculator_number">Номер</string>
+    <string name="calculator_default_result">0</string>
+    <string name="calculator_add_percent">додати %</string>
+    <string name="calculator_subtract_percent">відняти %</string>
+</resources>
