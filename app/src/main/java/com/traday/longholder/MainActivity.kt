@@ -3,7 +3,6 @@ package com.traday.longholder
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.IdRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -16,13 +15,16 @@ import com.traday.longholder.domain.enums.UserStatus
 import com.traday.longholder.extensions.collectLatestWhenStarted
 import com.traday.longholder.extensions.gone
 import com.traday.longholder.extensions.show
+import com.traday.longholder.presentation.base.BaseActivity
 import com.traday.longholder.presentation.base.BottomNavigationViewProvider
 import com.traday.longholder.presentation.base.StartDestinationHandler
 import com.traday.longholder.presentation.base.TabBarHandler
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
+class MainActivity : BaseActivity(R.layout.activity_main), TabBarHandler,
     BottomNavigationViewProvider, StartDestinationHandler {
 
     private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::bind)
@@ -47,10 +49,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), TabBarHandler,
     }
 
     private fun initViewModel() {
-        viewModel.userStatus.collectLatestWhenStarted(this) {
-            when (it) {
-                is Resource.Error -> handleUserStatus(UserStatus.NOT_AUTHORIZED)
-                is Resource.Success -> handleUserStatus(it.data)
+        with(viewModel) {
+            userStatus.collectLatestWhenStarted(this@MainActivity) {
+                when (it) {
+                    is Resource.Error -> handleUserStatus(UserStatus.NOT_AUTHORIZED)
+                    is Resource.Success -> handleUserStatus(it.data)
+                }
+            }
+            selectedLanguage.collectLatestWhenStarted(this@MainActivity) {
+                if (it is Resource.Success && it.data.shortName != Locale.getDefault().language) {
+                    recreate()
+                }
             }
         }
     }

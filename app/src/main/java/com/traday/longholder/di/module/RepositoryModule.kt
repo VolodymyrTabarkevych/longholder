@@ -34,4 +34,7 @@ interface RepositoryModule {
 
     @Binds
     fun bindSubscriptionRepository(repository: SubscriptionRepository): ISubscriptionRepository
+
+    @Binds
+    fun bindSettingsRepository(repository: SettingsRepository): ISettingsRepository
 }

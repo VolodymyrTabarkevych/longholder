@@ -27,7 +27,7 @@
     <string name="common_value_with_percent">%.2f%%</string>
     <string name="common_crypto_price_in_other_currency">1 %1$s = $%2$s</string>
     <string name="common_cancel">Скасувати</string>
-    <string name="common_update">оновлення</string>
+    <string name="common_update">Оновити</string>
     <string name="common_percent_sign">%</string>
 
     <!-- Notification -->
@@ -103,6 +103,8 @@
 
     <!-- Language -->
     <string name="language_title">Мову</string>
+    <string name="language_en">Англійська</string>
+    <string name="language_uk">Українська</string>
 
     <!-- Theme -->
     <string name="theme_title">Тема</string>

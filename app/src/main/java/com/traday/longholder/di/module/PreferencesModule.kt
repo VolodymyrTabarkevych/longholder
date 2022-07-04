@@ -1,5 +1,7 @@
 package com.traday.longholder.di.module
 
+import com.traday.longholder.data.local.preferences.settings.ISettingsPreferences
+import com.traday.longholder.data.local.preferences.settings.SettingsPreferences
 import com.traday.longholder.data.local.preferences.subscription.ISubscriptionPreferences
 import com.traday.longholder.data.local.preferences.subscription.SubscriptionPreferences
 import com.traday.longholder.data.local.preferences.user.IUserPreferences
@@ -18,4 +20,7 @@ interface PreferencesModule {
 
     @Binds
     fun provideSubscriptionPreferences(preferences: SubscriptionPreferences): ISubscriptionPreferences
+
+    @Binds
+    fun provideSettingsPreferences(preferences: SettingsPreferences): ISettingsPreferences
 }

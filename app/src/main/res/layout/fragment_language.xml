@@ -19,6 +19,7 @@
         android:text="@string/language_title" />
 
     <FrameLayout
+        android:id="@+id/flLanguageEnglish"
         style="@style/Widget.App.MenuItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,10 +27,28 @@
         android:layout_marginTop="@dimen/spacing_3">
 
         <TextView
+            android:id="@+id/tvLanguageEnglish"
             style="@style/TextAppearance.App.MenuItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="English"
-            app:drawableEndCompat="@drawable/ic_radio_button" />
+            android:text="@string/language_en"
+            app:drawableEndCompat="@drawable/ic_radio_button_checked" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/flLanguageUkrainian"
+        style="@style/Widget.App.MenuItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/spacing_3">
+
+        <TextView
+            android:id="@+id/tvLanguageUkrainian"
+            style="@style/TextAppearance.App.MenuItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/language_uk"
+            app:drawableEndCompat="@drawable/ic_radio_button_checked" />
     </FrameLayout>
 </LinearLayout>

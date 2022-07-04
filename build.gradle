@@ -3,7 +3,7 @@ buildscript {
     ext {
         hilt_version = "2.40"
         hilt_jetpack_version = "1.0.0-alpha03"
-        nav_version = "2.4.2"
+        nav_version = "2.5.0"
         binding_version = "1.5.2"
         retrofit_version = '2.9.0'
         retrofit_adapter_version = '0.9.2'

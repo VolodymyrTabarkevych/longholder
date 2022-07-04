@@ -103,6 +103,8 @@
 
     <!-- Language -->
     <string name="language_title">Language</string>
+    <string name="language_en">English</string>
+    <string name="language_uk">Ukrainian</string>
 
     <!-- Theme -->
     <string name="theme_title">Theme</string>

@@ -9,3 +9,7 @@ annotation class UserPreferences
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class SubscriptionPreferences
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SettingsPreferences

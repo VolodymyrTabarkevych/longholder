@@ -6,6 +6,8 @@ import com.traday.longholder.data.local.datasource.currency.CurrencyLocalDataSou
 import com.traday.longholder.data.local.datasource.currency.ICurrencyLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.INotificationLocalDataSource
 import com.traday.longholder.data.local.datasource.notification.NotificationLocalDataSource
+import com.traday.longholder.data.local.datasource.settings.ISettingsLocalDataSource
+import com.traday.longholder.data.local.datasource.settings.SettingsLocalDataSource
 import com.traday.longholder.data.local.datasource.subscription.ISubscriptionLocalDataSource
 import com.traday.longholder.data.local.datasource.subscription.SubscriptionLocalDataSource
 import com.traday.longholder.data.local.datasource.user.IUserLocalDataSource
@@ -33,4 +35,7 @@ interface LocalDataSourceModule {
 
     @Binds
     fun bindSubscriptionLocalDataSource(source: SubscriptionLocalDataSource): ISubscriptionLocalDataSource
+
+    @Binds
+    fun bindSettingsLocalDataSource(source: SettingsLocalDataSource): ISettingsLocalDataSource
 }
