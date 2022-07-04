@@ -50,6 +50,10 @@ class AnalyticsViewModel @Inject constructor(
     private val _getReportLiveData = MutableLiveData<Resource<Report>>()
     val getReportLiveData: LiveData<Resource<Report>> get() = _getReportLiveData
 
+    init {
+        getCurrencies()
+    }
+
     fun getCurrencies() {
         executeUseCase(getCurrenciesUseCase, GetCurrenciesUseCase.Params(true)) {
             _getCurrenciesLiveData.postValue(it)

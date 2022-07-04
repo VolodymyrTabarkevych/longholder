@@ -53,7 +53,7 @@ class MainViewModel @Inject constructor(
                 getNotificationsWorkerRunner.stopWorker()
             }
             UserStatus.AUTHORIZED, UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> {
-                syncBillingServiceWithServer()
+                //syncBillingServiceWithServer()
                 getNotificationsWorkerRunner.startWorker()
             }
         }

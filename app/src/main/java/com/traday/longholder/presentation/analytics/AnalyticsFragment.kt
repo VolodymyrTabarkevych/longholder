@@ -80,9 +80,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
         with(viewModel) {
             isUserOnSubscription.observe(viewLifecycleOwner) {
                 if (it is Resource.Success) {
-                    if (it.data) {
-                        getCurrencies()
-                    } else {
+                    if (!it.data) {
                         getSubscriptions()
                     }
                     setAnalyticsScreen(it.data)
