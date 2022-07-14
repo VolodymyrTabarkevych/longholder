@@ -51,6 +51,8 @@ class BillingClientRunner @Inject constructor(
                         .setProductList(products)
                         .build()
                 )
+                println(products.size)
+                println(productDetailsResult.productDetailsList?.size)
 
                 val productDetailsParamsList =
                     productDetailsResult.productDetailsList?.mapIndexed { _, productDetails ->

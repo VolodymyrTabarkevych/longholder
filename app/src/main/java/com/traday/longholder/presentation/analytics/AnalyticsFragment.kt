@@ -25,6 +25,7 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
 import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
+import com.traday.longholder.utils.showDialog
 
 class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalyticsBinding>(
     layoutResId = R.layout.fragment_analytics,
@@ -110,11 +111,14 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
                 }
             }
             getSubscriptionsLiveData.observe(viewLifecycleOwner) {
-                if (it is Resource.Success) {
-                    val billingClient = it.data.first
-                    val billingFlowParams = it.data.second
-                    binding.pbAnalyticsStart.setOnClickListener { _ ->
-                        billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+                when (it) {
+                    is Resource.Error -> showDialog(it.error.message.toString(resources))
+                    is Resource.Success -> {
+                        val billingClient = it.data.first
+                        val billingFlowParams = it.data.second
+                        binding.pbAnalyticsStart.setOnClickListener { _ ->
+                            billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
+                        }
                     }
                 }
             }

@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_2"
-            android:layout_marginTop="@dimen/spacing_2"
+            android:layout_marginTop="@dimen/sc_spacing_2"
             android:background="@color/transparent"
             app:tabBackground="@drawable/ic_tab_indicator_selector"
             app:tabGravity="center"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_5"
+            android:layout_marginTop="@dimen/sc_spacing_2"
             android:fontFamily="@font/avenir_roman_regular"
             android:text="Starting at $4,99/month"
             android:textColor="@color/gray"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_2"
             android:layout_marginTop="@dimen/spacing_1_75"
-            android:layout_marginBottom="@dimen/spacing_5"
+            android:layout_marginBottom="@dimen/sc_spacing_3"
             app:progressButtonText="@string/common_next" />
 
         <com.traday.longholder.presentation.customviews.ProgressButton
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_2"
             android:layout_marginTop="@dimen/spacing_1_75"
-            android:layout_marginBottom="@dimen/spacing_5"
+            android:layout_marginBottom="@dimen/sc_spacing_3"
             android:visibility="gone"
             app:pbIcon="@drawable/img_rocket"
             app:progressButtonText="@string/onboarding_start" />

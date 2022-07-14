@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentLoginBinding
 import com.traday.longholder.domain.base.Resource
@@ -76,7 +77,7 @@ class LoginFragment : BaseMVVMFragment<LoginViewModel, FragmentLoginBinding>(
                     is Resource.Loading -> setLoginLoading(true)
                     is Resource.Success -> {
                         setLoginLoading(false)
-                        navController.navigateSafe(LoginFragmentDirections.actionLoginFragmentToOnboardingFragment())
+                        navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
                     }
                 }
             }

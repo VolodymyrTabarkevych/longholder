@@ -7,3 +7,7 @@ fun Double.replaceDotWithComma(): String {
     return this.toString().replace(DOT, COMMA)
 }
 
+fun String.replaceDotWithComma(): String {
+    return this.replace(DOT, COMMA)
+}
+

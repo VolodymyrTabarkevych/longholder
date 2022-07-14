@@ -70,11 +70,13 @@ class MainActivity : BaseActivity(R.layout.activity_main), TabBarHandler,
             UserStatus.NOT_VERIFIED -> TODO()
             UserStatus.AUTHORIZED -> R.id.nav_wallet
             UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> {
-                setStartDestinationForNestedGraph(
+                //Uncomment for enabling onboarding
+/*                setStartDestinationForNestedGraph(
                     graphId = R.id.nav_start,
                     destinationId = R.id.onboardingFragment
                 )
-                R.id.nav_start
+                R.id.nav_start*/
+                R.id.nav_wallet
             }
         }
         setStartDestination(destinationId)

@@ -9,6 +9,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sc_spacing_2"
         android:src="@drawable/img_welcome"
         tools:ignore="ContentDescription" />
 
@@ -16,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_6"
-        android:layout_marginTop="@dimen/spacing_4"
+        android:layout_marginTop="@dimen/sc_spacing_4"
         android:fontFamily="@font/avenir_medium"
         android:gravity="center"
         android:text="Why you should get Subscription"

@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.Purchase
-import com.android.billingclient.api.QueryProductDetailsParams
 import com.traday.longholder.domain.base.EmptyParams
 import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.servicerunner.IBillingClientRunner
@@ -61,15 +60,9 @@ abstract class SubscriptionViewModel(
                 is Resource.Error -> _getSubscriptionsLiveData.postValue(it)
                 is Resource.Loading -> _getSubscriptionsLiveData.postValue(Resource.Loading)
                 is Resource.Success -> {
-                    val subscriptions = it.data.map { subscription ->
-                        QueryProductDetailsParams.Product.newBuilder()
-                            .setProductId(subscription)
-                            .setProductType(BillingClient.ProductType.SUBS)
-                            .build()
-                    }
                     _getSubscriptionsLiveData.postValue(
                         billingClientRunner.getProductDetailsParams(
-                            subscriptions
+                            it.data
                         )
                     )
                 }

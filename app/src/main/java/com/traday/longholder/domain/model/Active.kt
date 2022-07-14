@@ -28,7 +28,9 @@ data class Active(
     val wantedPercents: Double
 ) : Parcelable {
 
-    val earnedMoneyFormatted: String get() = (if (earnedMoney >= 0.0) "+" else EMPTY_STRING) + earnedMoney.replaceDotWithComma()
+    val earnedMoneyFormatted: String
+        get() = (if (earnedMoney >= 0.0) "+" else EMPTY_STRING) + String.format("%.2f", earnedMoney)
+            .replaceDotWithComma()
 
     val earnedMoneyResIdColor: Int get() = if (earnedMoney >= 0.0) R.color.limeade else R.color.thunderbird
 
@@ -36,11 +38,16 @@ data class Active(
 
     val valueOfCryptoFormatted: String get() = valueOfCrypto.replaceDotWithComma()
 
-    val priceInOtherCurrencyOnStartFormatted: String get() = priceInOtherCurrencyOnStart.replaceDotWithComma()
+    val priceInOtherCurrencyOnStartFormatted: String
+        get() = String.format(
+            "%.2f",
+            priceInOtherCurrencyOnStart
+        ).replaceDotWithComma()
 
     val priceInOtherCurrencyOnEndFormatted: String get() = priceInOtherCurrencyOnEnd.replaceDotWithComma()
 
-    val currentCurrencyPriceFormatted: String get() = currentCurrencyPrice.replaceDotWithComma()
+    val currentCurrencyPriceFormatted: String
+        get() = String.format("%.2f", currentCurrencyPrice).replaceDotWithComma()
 
     val currentCurrencyPriceSummaryFormatted: String
         get() = calculateCurrentCurrencyPriceSummary(

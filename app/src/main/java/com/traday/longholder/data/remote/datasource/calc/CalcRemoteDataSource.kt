@@ -51,7 +51,7 @@ class CalcRemoteDataSource @Inject constructor(
             @Path("number") number: Double
         ): Response<String>
 
-        @GET("Calc/dividePercent/{percent}/{number}")
+        @GET("Calc/subtract/{percent}/{number}")
         suspend fun subtractPercent(
             @Path("percent") percent: Double,
             @Path("number") number: Double

@@ -58,6 +58,7 @@
     <!-- Welcome screen -->
     <string name="welcome_registration">Реєстрація</string>
     <string name="welcome_login">Логін</string>
+    <string name="welcome_title">Вчасно інвестуй, вчасно фіксуй прибуток</string>
 
     <!-- Sign up screen -->
     <string name="sign_up_what_email_password">Який ваш e-mail і пароль?</string>
@@ -105,7 +106,7 @@
     <string name="notifications_empty_notifications_title">У вас ще немає повідомлень</string>
 
     <!-- Language -->
-    <string name="language_title">Мову</string>
+    <string name="language_title">Мова</string>
     <string name="language_en">Англійська</string>
     <string name="language_uk">Українська</string>
 

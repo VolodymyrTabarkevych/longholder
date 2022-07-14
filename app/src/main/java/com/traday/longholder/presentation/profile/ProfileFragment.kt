@@ -49,7 +49,6 @@ class ProfileFragment : BaseMVVMFragment<ProfileViewModel, FragmentProfileBindin
             flProfileLogout.setOnClickListener {
                 showDialog(
                     title = getString(R.string.dialog_log_out_title),
-                    message = getString(R.string.dialog_if_you_stop_holding),
                     positiveButtonText = getString(R.string.dialog_log_out),
                     onPositiveButtonClicked = { viewModel.logout() },
                     negativeButtonText = getString(R.string.common_cancel)

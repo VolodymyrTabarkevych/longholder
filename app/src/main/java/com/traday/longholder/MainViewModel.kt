@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     createSubscriptionWorkerRunner: ICreateSubscriptionWorkerRunner,
     stopSubscriptionWorkerRunner: IStopSubscriptionWorkerRunner,
     getSubscriptionsUseCase: GetSubscriptionsUseCase,
-    isUserHasSubscriptionUseCase: IsUserHasSubscriptionUseCase
+    private val isUserHasSubscriptionUseCase: IsUserHasSubscriptionUseCase
 ) : SubscriptionViewModel(
     billingClientRunner,
     createSubscriptionWorkerRunner,
@@ -53,7 +53,7 @@ class MainViewModel @Inject constructor(
                 getNotificationsWorkerRunner.stopWorker()
             }
             UserStatus.AUTHORIZED, UserStatus.AUTHORIZED_NOT_PASSED_ONBOARDING -> {
-                //syncBillingServiceWithServer()
+                syncBillingServiceWithServer()
                 getNotificationsWorkerRunner.startWorker()
             }
         }
