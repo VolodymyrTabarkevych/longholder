@@ -31,7 +31,7 @@ android {
         applicationId "com.traday.longholder"
         minSdk 23
         targetSdk 31
-        versionCode 7
+        versionCode 8
         versionName "1.0.5"
     }
 

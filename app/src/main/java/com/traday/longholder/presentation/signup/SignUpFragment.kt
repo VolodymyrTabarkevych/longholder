@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.traday.longholder.NavMainDirections
 import com.traday.longholder.R
 import com.traday.longholder.databinding.FragmentSignUpBinding
 import com.traday.longholder.domain.base.Resource
@@ -91,7 +92,7 @@ class SignUpFragment : BaseMVVMFragment<SignUpViewModel, FragmentSignUpBinding>(
                     is Resource.Error -> setRegisterLoading(false)
                     is Resource.Loading -> setRegisterLoading(true)
                     is Resource.Success -> {
-                        navController.navigateSafe(SignUpFragmentDirections.actionSignUpFragmentToOnboardingFragment())
+                        navController.navigateSafe(NavMainDirections.actionGlobalNavWallet())
                     }
                 }
             }
