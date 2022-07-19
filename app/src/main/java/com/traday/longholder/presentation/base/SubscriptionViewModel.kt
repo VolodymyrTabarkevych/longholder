@@ -24,7 +24,7 @@ abstract class SubscriptionViewModel(
 ) : BaseViewModel() {
 
     private val _getSubscriptionsLiveData =
-        MutableLiveData<Resource<Pair<BillingClient, BillingFlowParams>>>()
+        EventLiveData<Resource<Pair<BillingClient, BillingFlowParams>>>()
     val getSubscriptionsLiveData: LiveData<Resource<Pair<BillingClient, BillingFlowParams>>> get() = _getSubscriptionsLiveData
 
     private val _getActiveSubscriptionLiveData = MutableLiveData<Resource<Purchase>>()

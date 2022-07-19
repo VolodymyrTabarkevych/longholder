@@ -26,6 +26,6 @@ class SubscriptionAdapter : RecyclerView.Adapter<SubscriptionAdapter.OnboardingI
 
     companion object {
 
-        private const val ITEM_COUNT = 3
+        private const val ITEM_COUNT = 1
     }
 }

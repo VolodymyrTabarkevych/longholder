@@ -1,70 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sc_spacing_2"
+        android:src="@drawable/ic_welcome_logo"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/sc_spacing_5"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_welcome"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sc_spacing_5"
+        android:fontFamily="@font/avenir_medium"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/spacing_0_5"
+        android:text="@string/welcome_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text.size.xx_medium" />
+
+
+    <com.traday.longholder.presentation.customviews.ProgressButton
+        android:id="@+id/pbWelcomeRegistration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_4"
+        app:progressButtonText="@string/welcome_registration" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sc_spacing_2"
-            android:src="@drawable/ic_welcome_logo"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sc_spacing_5"
-            android:src="@drawable/img_welcome"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sc_spacing_5"
-            android:fontFamily="@font/avenir_medium"
-            android:gravity="center"
-            android:lineSpacingExtra="@dimen/spacing_0_5"
-            android:text="@string/welcome_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text.size.xx_medium" />
-
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <com.traday.longholder.presentation.customviews.ProgressButton
-            android:id="@+id/pbWelcomeRegistration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_2"
-            android:layout_marginTop="@dimen/sc_spacing_4"
-            app:progressButtonText="@string/welcome_registration" />
-
-        <com.traday.longholder.presentation.customviews.ProgressButton
-            android:id="@+id/pbWelcomeLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/spacing_2"
-            android:layout_marginTop="@dimen/sc_spacing_2"
-            android:layout_marginBottom="@dimen/sc_spacing_3"
-            app:progressButtonText="@string/welcome_login"
-            app:progressButtonType="emptyWithBorder" />
-    </LinearLayout>
-</ScrollView>
+    <com.traday.longholder.presentation.customviews.ProgressButton
+        android:id="@+id/pbWelcomeLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_2"
+        android:layout_marginTop="@dimen/sc_spacing_2"
+        android:layout_marginBottom="@dimen/sc_spacing_3"
+        app:progressButtonText="@string/welcome_login"
+        app:progressButtonType="emptyWithBorder" />
+</LinearLayout>

@@ -57,6 +57,10 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
                 val nextPage = if (currentPage < lastPage) currentPage.inc() else lastPage
                 vpAnalytics.setCurrentItem(nextPage, true)
             }
+
+            pbAnalyticsStart.setOnClickListener {
+                viewModel.getSubscriptions()
+            }
         }
     }
 
@@ -81,9 +85,6 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
         with(viewModel) {
             isUserOnSubscription.observe(viewLifecycleOwner) {
                 if (it is Resource.Success) {
-                    if (!it.data) {
-                        getSubscriptions()
-                    }
                     setAnalyticsScreen(it.data)
                 }
             }
@@ -112,17 +113,24 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
             }
             getSubscriptionsLiveData.observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> showDialog(it.error.message.toString(resources))
+                    is Resource.Error -> {
+                        setSubscriptionsLoading(false)
+                        showDialog(it.error.message.toString(resources))
+                    }
+                    is Resource.Loading -> setSubscriptionsLoading(true)
                     is Resource.Success -> {
+                        setSubscriptionsLoading(false)
                         val billingClient = it.data.first
                         val billingFlowParams = it.data.second
-                        binding.pbAnalyticsStart.setOnClickListener { _ ->
-                            billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
-                        }
+                        billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
                     }
                 }
             }
         }
+    }
+
+    private fun setSubscriptionsLoading(isLoading: Boolean) {
+        binding.pbAnalyticsStart.setLoading(isLoading)
     }
 
     private fun setAnalyticsScreen(show: Boolean) {
@@ -134,8 +142,8 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     private fun setActionButtons(isLastPage: Boolean) {
         with(binding) {
-            pbAnalyticsNext.isVisible = !isLastPage
-            pbAnalyticsStart.isVisible = isLastPage
+/*            pbAnalyticsNext.isVisible = !isLastPage
+            pbAnalyticsStart.isVisible = isLastPage*/
         }
     }
 

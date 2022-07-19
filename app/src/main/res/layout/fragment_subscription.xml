@@ -38,6 +38,7 @@
             android:layout_marginHorizontal="@dimen/spacing_2"
             android:layout_marginTop="@dimen/spacing_2"
             android:background="@color/transparent"
+            android:visibility="gone"
             app:tabBackground="@drawable/ic_tab_indicator_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
@@ -61,6 +62,7 @@
             android:layout_marginHorizontal="@dimen/spacing_2"
             android:layout_marginTop="@dimen/spacing_1_75"
             android:layout_marginBottom="@dimen/spacing_5"
+            android:visibility="gone"
             app:progressButtonText="@string/common_next" />
 
         <com.traday.longholder.presentation.customviews.ProgressButton
@@ -70,7 +72,6 @@
             android:layout_marginHorizontal="@dimen/spacing_2"
             android:layout_marginTop="@dimen/spacing_1_75"
             android:layout_marginBottom="@dimen/spacing_5"
-            android:visibility="gone"
             app:pbIcon="@drawable/img_rocket"
             app:progressButtonText="@string/onboarding_start" />
     </LinearLayout>

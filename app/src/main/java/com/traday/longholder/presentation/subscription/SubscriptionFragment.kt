@@ -14,6 +14,7 @@ import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.base.WindowBackgroundMode
 import com.traday.longholder.presentation.common.adapter.SubscriptionAdapter
+import com.traday.longholder.utils.showDialog
 
 class SubscriptionFragment :
     BaseMVVMFragment<SubscriptionViewModel, FragmentSubscriptionBinding>(
@@ -44,6 +45,9 @@ class SubscriptionFragment :
                 viewModel.stopSubscription()
                 navController.popBackStack()
             }
+            binding.pbSubscriptionStart.setOnClickListener {
+                viewModel.getSubscriptions()
+            }
         }
     }
 
@@ -70,19 +74,22 @@ class SubscriptionFragment :
                 if (it is Resource.Success) {
                     if (it.data) {
                         viewModel.getActiveSubscription()
-                    } else {
-                        viewModel.getSubscriptions()
                     }
                     setSubscriptionScreen(it.data)
                 }
             }
             onboardingButtonsLiveData.observe(viewLifecycleOwner, ::setActionButtons)
             getSubscriptionsLiveData.observe(viewLifecycleOwner) {
-                if (it is Resource.Success) {
-                    val billingClient = it.data.first
-                    val billingFlowParams = it.data.second
-
-                    binding.pbSubscriptionStart.setOnClickListener {
+                when (it) {
+                    is Resource.Error -> {
+                        setSubscriptionsLoading(false)
+                        showDialog(it.error.message.toString(resources))
+                    }
+                    is Resource.Loading -> setSubscriptionsLoading(true)
+                    is Resource.Success -> {
+                        setSubscriptionsLoading(false)
+                        val billingClient = it.data.first
+                        val billingFlowParams = it.data.second
                         billingClient.launchBillingFlow(requireActivity(), billingFlowParams)
                     }
                 }
@@ -95,10 +102,14 @@ class SubscriptionFragment :
         }
     }
 
+    private fun setSubscriptionsLoading(isLoading: Boolean) {
+        binding.pbSubscriptionStart.setLoading(isLoading)
+    }
+
     private fun setActionButtons(isLastPage: Boolean) {
         with(binding) {
-            pbSubscriptionNext.isVisible = !isLastPage
-            pbSubscriptionStart.isVisible = isLastPage
+/*            pbSubscriptionNext.isVisible = !isLastPage
+            pbSubscriptionStart.isVisible = isLastPage*/
         }
     }
 
