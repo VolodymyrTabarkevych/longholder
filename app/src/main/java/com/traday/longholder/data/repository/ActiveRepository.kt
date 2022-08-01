@@ -73,7 +73,8 @@ class ActiveRepository @Inject constructor(
         dateOfEnd: String,
         comment: String?,
         linkToImage: String?,
-        symbol: String
+        symbol: String,
+        indexOnExchange: String
     ): Result<Unit> {
         val createRemoteActiveResult = activeRemoteDataSource.createActive(
             CreateActiveRequestBody(
@@ -85,7 +86,8 @@ class ActiveRepository @Inject constructor(
                 dateOfEnd = dateOfEnd.formatDateClientFormatToServerFormatOrEmpty(),
                 comment = comment,
                 linkToImage = linkToImage,
-                symbol = symbol
+                symbol = symbol,
+                indexOnExchange = indexOnExchange
             )
         )
         return if (createRemoteActiveResult is Result.Success) {

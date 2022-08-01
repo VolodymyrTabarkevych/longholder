@@ -11,5 +11,6 @@ data class CreateActiveRequestBody(
     @SerializedName("dateOfEnd") val dateOfEnd: String,
     @SerializedName("comment") val comment: String?,
     @SerializedName("linkToImage") val linkToImage: String?,
-    @SerializedName("symbol") val symbol: String
+    @SerializedName("symbol") val symbol: String,
+    @SerializedName("IndexOnExchange") val indexOnExchange: String
 )

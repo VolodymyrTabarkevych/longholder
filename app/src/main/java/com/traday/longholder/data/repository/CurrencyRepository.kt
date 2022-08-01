@@ -5,6 +5,7 @@ import com.traday.longholder.data.local.datasource.currency.ICurrencyLocalDataSo
 import com.traday.longholder.data.local.entity.CurrencyEntity
 import com.traday.longholder.data.mapper.toEntity
 import com.traday.longholder.data.remote.datasource.currency.ICurrencyRemoteDataSource
+import com.traday.longholder.data.remote.dto.CurrencyDto
 import com.traday.longholder.domain.repository.ICurrencyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
@@ -38,6 +39,10 @@ class CurrencyRepository @Inject constructor(
                 currencyLocalDataSource.insertOrUpdateCurrencies(mappedCurrencies)
             }
         }
+    }
+
+    override suspend fun getUserCurrencies(): Result<List<CurrencyDto>> {
+        return currencyRemoteDataSource.getUserCurrencies()
     }
 
     override fun subscribeOnCurrencies(syncAtStart: Boolean): Flow<Result<List<CurrencyEntity>>> {

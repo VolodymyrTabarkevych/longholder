@@ -18,11 +18,11 @@ suspend fun BillingClient.awaitConnection(): Boolean = suspendCoroutine {
         override fun onBillingSetupFinished(billingResult: BillingResult) {
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                 it.resume(true)
+            } else {
+                it.resume(false)
             }
         }
 
-        override fun onBillingServiceDisconnected() {
-            it.resume(false)
-        }
+        override fun onBillingServiceDisconnected() {}
     })
 }

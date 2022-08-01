@@ -23,9 +23,16 @@ class CurrencyRemoteDataSource @Inject constructor(
         api.getCurrencies()
     }
 
+    override suspend fun getUserCurrencies(): Result<List<CurrencyDto>> = apiResult {
+        api.getUserCurrencies()
+    }
+
     interface API {
 
         @GET("Currency/allcrypto")
         suspend fun getCurrencies(): Response<List<CurrencyDto>>
+
+        @GET("User/report/getReportedValues")
+        suspend fun getUserCurrencies(): Response<List<CurrencyDto>>
     }
 }

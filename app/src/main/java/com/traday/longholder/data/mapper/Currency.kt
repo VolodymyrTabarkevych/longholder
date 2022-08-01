@@ -15,6 +15,16 @@ fun CurrencyDto.toEntity(id: Int) = CurrencyEntity(
     symbol = symbol
 )
 
+fun CurrencyDto.toDomain(id: Int) = Currency(
+    id = id,
+    linkToPhoto = linkToPhoto,
+    name = name?.replaceFirstChar(Char::titlecase),
+    indexOnExchange = indexOnExchange,
+    price = price,
+    dateOfUpdate = dateOfUpdate.formatDateServerFormatToClientFormatOrEmpty(),
+    symbol = symbol
+)
+
 fun CurrencyEntity.toDomain() = Currency(
     id = id,
     linkToPhoto = linkToPhoto,

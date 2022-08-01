@@ -154,7 +154,8 @@ class ActiveViewModel @Inject constructor(
                 dateOfEnd = dateOfEnd,
                 comment = comment,
                 linkToImage = selectedCurrency.linkToPhoto,
-                symbol = selectedCurrency.symbol
+                symbol = selectedCurrency.symbol,
+                indexOnExchange = selectedCurrency.indexOnExchange
             )
         ) {
             _createActiveLiveData.postValue(it)

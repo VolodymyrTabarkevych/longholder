@@ -6,4 +6,6 @@ import com.traday.longholder.data.remote.dto.CurrencyDto
 interface ICurrencyRemoteDataSource {
 
     suspend fun getCurrencies(): Result<List<CurrencyDto>>
+
+    suspend fun getUserCurrencies(): Result<List<CurrencyDto>>
 }

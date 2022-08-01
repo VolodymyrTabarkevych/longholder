@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AutoCompleteTextView
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -17,10 +18,7 @@ import com.traday.longholder.domain.base.Resource
 import com.traday.longholder.domain.model.Active
 import com.traday.longholder.domain.model.Currency
 import com.traday.longholder.domain.model.Report
-import com.traday.longholder.extensions.getColorCompat
-import com.traday.longholder.extensions.navigateSafe
-import com.traday.longholder.extensions.rightDrawable
-import com.traday.longholder.extensions.setStartIconWithGlide
+import com.traday.longholder.extensions.*
 import com.traday.longholder.presentation.base.BaseMVVMFragment
 import com.traday.longholder.presentation.base.TabBarMode
 import com.traday.longholder.presentation.common.adapter.CurrencyAdapter
@@ -41,6 +39,7 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
     override fun initView(inflatedView: View, savedInstanceState: Bundle?) {
         initActionButtons()
         initViewPager()
+        viewModel.getUserCurrencies()
     }
 
     private fun initActionButtons() {
@@ -149,21 +148,27 @@ class AnalyticsFragment : BaseMVVMFragment<AnalyticsViewModel, FragmentAnalytics
 
     private fun setCurrenciesLoading(isLoading: Boolean) {
         with(binding) {
-            tilAnalyticsSelectCurrency.isVisible = !isLoading
+            tilAnalyticsSelectCurrency.isInvisible = isLoading
             pbAnalytics.isVisible = isLoading
         }
     }
 
     private fun setCurrencies(currencies: List<Currency>) {
         with(binding) {
-            (actvAnalyticsSelectCurrency as? AutoCompleteTextView)?.apply {
-                if (text.toString().isEmpty()) {
-                    setInitialCurrency(currencies.first())
-                }
-                val adapter = CurrencyAdapter(requireContext(), currencies)
-                setAdapter(adapter)
-                setOnItemClickListener { _, _, i, _ ->
-                    viewModel.selectCurrencyAndLoadReport(currencies[i])
+            if (currencies.isEmpty()) {
+                tilAnalyticsSelectCurrency.gone()
+                setTotalInfo(viewModel.getDummyReport())
+            } else {
+                tilAnalyticsSelectCurrency.show()
+                (actvAnalyticsSelectCurrency as? AutoCompleteTextView)?.apply {
+                    if (text.toString().isEmpty()) {
+                        setInitialCurrency(currencies.first())
+                    }
+                    val adapter = CurrencyAdapter(requireContext(), currencies)
+                    setAdapter(adapter)
+                    setOnItemClickListener { _, _, i, _ ->
+                        viewModel.selectCurrencyAndLoadReport(currencies[i])
+                    }
                 }
             }
         }

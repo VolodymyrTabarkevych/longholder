@@ -12,12 +12,13 @@ import com.traday.longholder.domain.servicerunner.ICreateSubscriptionWorkerRunne
 import com.traday.longholder.domain.servicerunner.IStopSubscriptionWorkerRunner
 import com.traday.longholder.domain.usecase.*
 import com.traday.longholder.presentation.base.SubscriptionViewModel
+import com.traday.longholder.utils.EMPTY_STRING
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class AnalyticsViewModel @Inject constructor(
-    private val getCurrenciesUseCase: GetCurrenciesUseCase,
+    private val getUserCurrenciesUseCase: GetUserCurrenciesUseCase,
     private val getReportUseCase: GetReportUseCase,
     subscribeIsUserOnSubscriptionUseCase: SubscribeIsUserOnSubscriptionUseCase,
     billingClientRunner: IBillingClientRunner,
@@ -50,12 +51,8 @@ class AnalyticsViewModel @Inject constructor(
     private val _getReportLiveData = MutableLiveData<Resource<Report>>()
     val getReportLiveData: LiveData<Resource<Report>> get() = _getReportLiveData
 
-    init {
-        getCurrencies()
-    }
-
-    fun getCurrencies() {
-        executeUseCase(getCurrenciesUseCase, GetCurrenciesUseCase.Params(true)) {
+    fun getUserCurrencies() {
+        executeUseCase(getUserCurrenciesUseCase, EmptyParams()) {
             _getCurrenciesLiveData.postValue(it)
         }
     }
@@ -68,9 +65,29 @@ class AnalyticsViewModel @Inject constructor(
         _selectedCurrencyLiveData.postValue(currency)
         executeUseCase(
             getReportUseCase,
-            GetReportUseCase.Params(currencyId = currency.indexOnExchange)
+            GetReportUseCase.Params(currencyId = currency.indexOnExchange),
+            showDialogOnError = false
         ) {
-            _getReportLiveData.postValue(it)
+            when (it) {
+                is Resource.Error -> _getReportLiveData.postValue(Resource.Success(getDummyReport()))
+                is Resource.Success -> _getReportLiveData.postValue(it)
+            }
         }
+    }
+
+    fun getDummyReport(): Report {
+        return Report(
+            id = 0,
+            name = EMPTY_STRING,
+            currencyCode = EMPTY_STRING,
+            profit = 0.0,
+            allMoney = 0.0,
+            countOfCrypto = 0.0,
+            percents = 0.0,
+            priceNow = 0.0,
+            coinName = EMPTY_STRING,
+            actives = emptyList(),
+            dateOfReport = EMPTY_STRING
+        )
     }
 }

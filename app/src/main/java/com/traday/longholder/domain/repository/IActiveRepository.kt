@@ -23,7 +23,8 @@ interface IActiveRepository {
         dateOfEnd: String,
         comment: String?,
         linkToImage: String?,
-        symbol: String
+        symbol: String,
+        indexOnExchange: String
     ): Result<Unit>
 
     suspend fun updateActive(active: Active): Result<Unit>

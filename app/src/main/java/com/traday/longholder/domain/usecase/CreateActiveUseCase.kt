@@ -23,7 +23,8 @@ class CreateActiveUseCase @Inject constructor(
             dateOfEnd = params.dateOfEnd,
             comment = params.comment,
             linkToImage = params.linkToImage,
-            symbol = params.symbol
+            symbol = params.symbol,
+            indexOnExchange = params.indexOnExchange
         ).toResource(errorHandler)
     }
 
@@ -36,6 +37,7 @@ class CreateActiveUseCase @Inject constructor(
         val dateOfEnd: String,
         val comment: String?,
         val linkToImage: String?,
-        val symbol: String
+        val symbol: String,
+        val indexOnExchange: String
     ) : EmptyParams()
 }
