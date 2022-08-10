@@ -16,10 +16,10 @@ class CreateActiveUseCase @Inject constructor(
     override suspend fun run(params: Params): Resource<Unit> {
         return activeRepository.createActive(
             name = params.name,
+            priceOnStart = params.priceOnStart,
             valueOfCrypto = params.valueOfCrypto,
             wantedPercents = params.wantedPercents,
             currentCurrencyPrice = params.currentCurrencyPrice,
-            cryptoPriceOnStart = params.cryptoPriceOnStart,
             dateOfEnd = params.dateOfEnd,
             comment = params.comment,
             linkToImage = params.linkToImage,
@@ -30,10 +30,10 @@ class CreateActiveUseCase @Inject constructor(
 
     class Params(
         val name: String?,
+        val priceOnStart: String,
         val valueOfCrypto: String,
         val wantedPercents: String,
         val currentCurrencyPrice: Double,
-        val cryptoPriceOnStart: Double,
         val dateOfEnd: String,
         val comment: String?,
         val linkToImage: String?,

@@ -85,17 +85,23 @@ class ActiveViewModel @Inject constructor(
         }
     }
 
-    fun validateFields(amount: String, wantedPercents: String, date: String) {
+    fun validateFields(priceOnStart: String, amount: String, wantedPercents: String, date: String) {
         when (mode) {
             is ActiveScreenMode.Create -> {
                 onValidateFields(
                     ::onValidationSuccess,
+                    CryptoValidator.Amount.validate(priceOnStart),
                     CryptoValidator.Amount.validate(amount),
                     CryptoValidator.Amount.validate(wantedPercents),
                     CalendarValidator.Date.validate(date)
                 )
             }
             is ActiveScreenMode.Update -> {
+                val priceOnStartWasChanged = CryptoValidator.AmountsNotSame.validate(
+                    oldValue = mode.active.cryptoPriceOnStart.toString(),
+                    newValue = priceOnStart
+                ) !is ValidateResult.Error
+
                 val amountWasChanged = CryptoValidator.AmountsNotSame.validate(
                     oldValue = mode.active.valueOfCrypto.toString(),
                     newValue = amount
@@ -111,7 +117,7 @@ class ActiveViewModel @Inject constructor(
                     newValue = date
                 ) !is ValidateResult.Error
 
-                if (amountWasChanged || wantedPercentsWasChanged || dateWasChanged) {
+                if (priceOnStartWasChanged || amountWasChanged || wantedPercentsWasChanged || dateWasChanged) {
                     onValidateFields(
                         ::onValidationSuccess,
                         CryptoValidator.Amount.validate(amount),
@@ -138,6 +144,7 @@ class ActiveViewModel @Inject constructor(
     }
 
     fun createActive(
+        priceOnStart: String,
         valueOfCrypto: String,
         wantedPercents: String,
         dateOfEnd: String,
@@ -147,8 +154,8 @@ class ActiveViewModel @Inject constructor(
         executeUseCase(
             createActiveUseCase, CreateActiveUseCase.Params(
                 name = selectedCurrency.indexOnExchange,
+                priceOnStart = priceOnStart,
                 currentCurrencyPrice = selectedCurrency.price,
-                cryptoPriceOnStart = selectedCurrency.price,
                 valueOfCrypto = valueOfCrypto,
                 wantedPercents = wantedPercents,
                 dateOfEnd = dateOfEnd,
@@ -169,10 +176,16 @@ class ActiveViewModel @Inject constructor(
         }
     }
 
-    fun updateActive(valueOfCrypto: String, wantedPercents: String, dateOfEnd: String) {
+    fun updateActive(
+        priceOnStart: String,
+        valueOfCrypto: String,
+        wantedPercents: String,
+        dateOfEnd: String
+    ) {
         if (mode !is ActiveScreenMode.Update) return
         val currentActive =
             mode.active.copy(
+                cryptoPriceOnStart = priceOnStart.toDouble(),
                 valueOfCrypto = valueOfCrypto.toDouble(),
                 wantedPercents = wantedPercents.toDouble(),
                 dateOfEnd = dateOfEnd

@@ -122,6 +122,8 @@
     <string name="active_your_coin">Ваша монета</string>
     <string name="active_enter_amount">Введіть суму</string>
     <string name="active_enter_wanted_percents">Введіть бажаний відсоток</string>
+    <string name="active_enter_price_on_start">Введіть ціну на початку</string>
+    <string name="active_price_on_start">Ціна на початку</string>
     <string name="active_wanted_percents">Бажаний відсоток</string>
     <string name="active_amount">Сума</string>
     <string name="active_date_end_hold">Дата зупинки холду</string>
@@ -131,7 +133,7 @@
     <string name="active_profit">Прибуток, якщо продати зараз</string>
     <string name="active_leave_comment">Залиште свій коментар</string>
     <string name="active_your_comment">Ваш коментар</string>
-    <string name="active_put_on_hold">Призупинити холд</string>
+    <string name="active_put_on_hold">Створити холд</string>
     <string name="active_stop_holding">Зупинити холд</string>
 
     <!-- Subscription -->

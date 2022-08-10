@@ -39,6 +39,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
         with(binding) {
             tilActiveAmount.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
             tilActiveWantedPercents.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
+            tilActivePriceOnStart.setupWithDefaultConfiguration(onStateChanged = ::validateFields)
             tietActiveDate.setOnClickListener {
                 val dateValidatorMin: DateValidator =
                     DateValidatorPointForward.from(System.currentTimeMillis())
@@ -142,6 +143,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             tietActiveDate.setTextColor(getColorCompat(R.color.black))
             tvActiveCommentTitle.text = getString(R.string.active_your_comment)
             tvActiveWantedPercentsTitle.text = getString(R.string.active_enter_wanted_percents)
+            tvActivePriceOnStartTitle.text = getString(R.string.active_enter_price_on_start)
             tietActiveComment.isEnabled = false
             llActiveInfo.show()
 
@@ -150,6 +152,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
                 setText(getString(R.string.common_update))
                 setOnClickListener {
                     viewModel.updateActive(
+                        priceOnStart = tietActivePriceOnStart.text.toString(),
                         valueOfCrypto = tietActiveAmount.text.toString(),
                         wantedPercents = tietActiveWantedPercents.text.toString(),
                         dateOfEnd = tietActiveDate.text.toString()
@@ -186,12 +189,14 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             tvActiveAmountTitle.text = getString(R.string.active_enter_amount)
             tvActiveCommentTitle.text = getString(R.string.active_leave_comment)
             tvActiveWantedPercentsTitle.text = getString(R.string.active_enter_wanted_percents)
+            tvActivePriceOnStartTitle.text = getString(R.string.active_enter_price_on_start)
             llActiveInfo.gone()
 
             pbActiveFirstAction.apply {
                 setText(getString(R.string.active_put_on_hold))
                 setOnClickListener {
                     viewModel.createActive(
+                        priceOnStart = tietActivePriceOnStart.text.toString(),
                         valueOfCrypto = tietActiveAmount.text.toString(),
                         wantedPercents = tietActiveWantedPercents.text.toString(),
                         dateOfEnd = tietActiveDate.text.toString(),
@@ -221,6 +226,8 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             }
             tvActiveWantedPercentsTitle.text = getString(R.string.active_wanted_percents)
             tietActiveWantedPercents.isEnabled = false
+            tvActivePriceOnStartTitle.text = getString(R.string.active_price_on_start)
+            tietActivePriceOnStart.isEnabled = false
             tvActiveCommentTitle.text = getString(R.string.active_your_comment)
             tietActiveComment.isEnabled = false
             llActiveInfo.show()
@@ -235,6 +242,7 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
             actvActiveSelectCurrency.setText(active.nameFormatted)
             tietActiveAmount.setText(active.valueOfCrypto.toString())
             tietActiveWantedPercents.setText(active.wantedPercents.toString())
+            tietActivePriceOnStart.setText(active.cryptoPriceOnStart.toString())
             tietActiveDate.setText(active.dateOfEnd)
             tietActiveComment.setText(active.comment)
             tvActiveSummaryDay.text = active.priceInOtherCurrencyOnStartFormatted
@@ -329,10 +337,16 @@ class ActiveFragment : BaseMVVMFragment<ActiveViewModel, FragmentActiveBinding>(
 
     private fun validateFields() {
         with(binding) {
+            val priceOnStart = tietActivePriceOnStart.text.toString()
             val cryptoAmount = tietActiveAmount.text.toString()
             val wantedPercents = tietActiveWantedPercents.text.toString()
             val calendarDate: String = tietActiveDate.text.toString()
-            viewModel.validateFields(cryptoAmount, wantedPercents, calendarDate)
+            viewModel.validateFields(
+                priceOnStart = priceOnStart,
+                amount = cryptoAmount,
+                wantedPercents = wantedPercents,
+                date = calendarDate
+            )
         }
     }
 
